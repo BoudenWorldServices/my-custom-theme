@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/comp-proven",
+  "title": "Compliance – Proven Performance",
+  "description": "Grey 2-column section: text on left, dark case study aside on right.",
+  "category": "goliath",
+  "icon": "chart-bar",
+  "keywords": ["compliance", "performance", "case study"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading": { "type": "string", "default": "Proven Performance Backed by Lifetime Warranty" },
+    "p1":      { "type": "string", "default": "Goliath™ is supported by a lifetime impact warranty, reflecting our confidence in its durability and long-term performance." },
+    "p2":      { "type": "string", "default": "Once installed, it provides continuous protection in the same location without the need to change your uprights regularly. This reduces the frequency of repairs and keeps your uprights in good condition, through inspection cycles." },
+    "caseH3":  { "type": "string", "default": "Case Study: B&M" },
+    "caseP":   { "type": "string", "default": "Our client, B&M, reduced racking repair costs by over 30% within the first 12 months of installation. This was achieved by preventing repeat damage to the uprights in their warehouse, which also reduces the likelihood of compliance issues arising from compromised uprights." }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

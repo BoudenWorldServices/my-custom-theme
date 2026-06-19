@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/hiw-uk-standards",
+  "title": "How It Works – UK Standards",
+  "description": "Four-column card grid showing UK racking standards that Goliath™ aligns with.",
+  "category": "goliath",
+  "icon": "admin-site-alt3",
+  "keywords": ["standards", "compliance", "uk", "cards", "how it works"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading":    { "type": "string", "default": "Designed to Meet UK Standards" },
+    "intro1":     { "type": "string", "default": "Goliath™ is developed to meet the UK's racking regulations and industry best practices. This ensures every repair supports both safety and compliance." },
+    "intro2":     { "type": "string", "default": "It aligns with key standards, including:" },
+    "card1Title": { "type": "string", "default": "BS EN 15512:2020 + A1:2022" },
+    "card1Body":  { "type": "string", "default": "Regulations for steel storage systems for adjustable pallet racking-principles for structural design" },
+    "card2Title": { "type": "string", "default": "BS EN 15635:2008" },
+    "card2Body":  { "type": "string", "default": "Regulations for steel static storage systems application and maintenance of storage equipment" },
+    "card3Title": { "type": "string", "default": "SEMA code of practice" },
+    "card3Body":  { "type": "string", "default": "for the design of adjustable pallet racking" },
+    "card4Title": { "type": "string", "default": "SEMA code of practice" },
+    "card4Body":  { "type": "string", "default": "for the design and use of racking protection" },
+    "closing":    { "type": "string", "default": "We're proud that Goliath™ is reinforced in a way that supports ongoing safety, reduces risk, and meets the expectations of UK regulatory bodies. Our upright repair solution was built according to UK H&S specifications, making it a trusted solution for warehouses in the UK." }
+  },
+  "supports": { "html": false, "align": false }
+}

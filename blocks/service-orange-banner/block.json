@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/service-orange-banner",
+  "title": "Service – Orange Feature Banner",
+  "description": "Dark banner with optional image and description text, used at the top of service sub-pages.",
+  "category": "goliath",
+  "icon": "cover-image",
+  "keywords": ["service", "banner", "orange"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading":    { "type": "string", "default": "Service Heading" },
+    "description":{ "type": "string", "default": "" },
+    "image":      { "type": "string", "default": "" },
+    "imageAlt":   { "type": "string", "default": "" }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/cta-section",
+  "title": "Goliath CTA Section",
+  "description": "Orange call-to-action banner with heading, description, and button linking to /contact/.",
+  "category": "goliath",
+  "icon": "megaphone",
+  "keywords": [
+    "cta",
+    "call to action",
+    "button",
+    "contact"
+  ],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Ready to get started?"
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Book Free Assessment"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "/contact/"
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

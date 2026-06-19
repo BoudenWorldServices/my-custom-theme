@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/about-leadership",
+  "title": "About \u2013 Leadership",
+  "description": "Photo and biography layout for the company\u2019s leadership section.",
+  "category": "goliath",
+  "icon": "admin-users",
+  "keywords": ["about", "leadership", "team", "director", "bio"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading":              { "type": "string", "default": "Leadership" },
+    "subtitle":             { "type": "string", "default": "Qualified professionals with deep expertise in warehouse racking safety and structural engineering." },
+    "leaderName":           { "type": "string", "default": "Managing Director" },
+    "leaderRole":           { "type": "string", "default": "Founder & Managing Director" },
+    "leaderQualifications": { "type": "string", "default": "SEMA Approved Racking Inspector" },
+    "bioP1":                { "type": "string", "default": "With extensive experience in warehouse racking safety and structural repair, our managing director identified a fundamental flaw in the traditional approach to racking maintenance: the endless cycle of damage, replacement, and repeat damage." },
+    "bioP2":                { "type": "string", "default": "This insight led to the development of the Goliath repair system, engineered to not only restore damaged uprights but to reinforce them against future impact. Every installation is backed by a lifetime warranty because we stand behind the quality of our work." },
+    "photo":                { "type": "string", "default": "" }
+  },
+  "supports": {
+    "html": false,
+    "align": false,
+    "multiple": false
+  }
+}

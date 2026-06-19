@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/videos-copy",
+  "title": "Videos – Supporting Copy",
+  "description": "Two-column supporting copy section on the Videos page.",
+  "category": "goliath",
+  "icon": "text",
+  "keywords": ["videos", "copy", "text"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "leftHeading": { "type": "string", "default": "Goliath™ Rack Repair & Safety Videos" },
+    "leftP1":      { "type": "string", "default": "Pallet racking damage is a constant issue in busy warehouses, but the real problem is how it is managed over time. Goliath™ is designed to break the cycle of repeated damage, costly replacements, and downtime." },
+    "leftP2":      { "type": "string", "default": "Our video series shows how Goliath™ repairs and reinforces uprights differently from traditional methods, delivering a permanent solution that improves safety, reduces downtime, and lowers long-term maintenance costs." },
+    "rightHeading": { "type": "string", "default": "Learn How Goliath™ Breaks the Repair Cycle" },
+    "rightP1":     { "type": "string", "default": "Traditional pallet racking repair replaces damaged uprights after impact, restoring the rack but not preventing future damage." },
+    "rightP2":     { "type": "string", "default": "The Goliath™ video series shows how our high-strength steel repair system reinforces the impact zone, turning repeated repairs into a permanent structural upgrade." }
+  },
+  "supports": { "html": false, "align": false }
+}

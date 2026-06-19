@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/hp-dent-risk",
+  "title": "Homepage – Is It Just a Dent?",
+  "description": "Split section: large image left, eyebrow + orange heading + stat + body + CTA button right.",
+  "category": "goliath",
+  "icon": "warning",
+  "keywords": ["dent", "risk", "damage", "homepage"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "eyebrow":  { "type": "string", "default": "Explore the Features" },
+    "heading":  { "type": "string", "default": "It is not just a dent..." },
+    "stat":     { "type": "string", "default": "The Real Cost, Structural collapse risk increases by 60% with each unrepaired impact" },
+    "body":     { "type": "string", "default": "You deserve a solution that's fast, permanent, and guaranteed. Traditional repairs are temporary patches. Full replacements are expensive and disruptive. There has to be a better way." },
+    "ctaText":  { "type": "string", "default": "Discover the Solution" },
+    "ctaUrl":   { "type": "string", "default": "#contact" },
+    "image":    { "type": "string", "default": "" },
+    "imageAlt": { "type": "string", "default": "Damaged warehouse upright" }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

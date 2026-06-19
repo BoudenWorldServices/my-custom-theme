@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/hp-advantages",
+  "title": "Homepage – 6 Advantages",
+  "description": "Six numbered advantage items in a two-column grid, followed by a dark CTA bar with case-study and contact links.",
+  "category": "goliath",
+  "icon": "star-filled",
+  "keywords": ["advantages", "reasons", "compliance", "homepage"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "eyebrow": { "type": "string", "default": "The Goliath Difference" },
+    "heading": { "type": "string", "default": "6 Reasons, 6 Advantages" },
+    "intro1": { "type": "string", "default": "Your customers aren't buying a \"product\" – they're buying risk reduction and peace of mind." },
+    "intro2": { "type": "string", "default": "We don't sell products. We serve you with a solid, durable solution to your problems backed by lifetime guarantees and unwavering reassurance." },
+    "advantages": {
+      "type": "array",
+      "default": [
+        {"num": "01", "title": "Lifetime Impact Warranty Forever", "desc": "Our lifetime warranty means you're protected forever. No time limits, no hidden clauses – complete peace of mind.", "badge": "Forever", "highlight": false},
+        {"num": "02", "title": "6mm Construction Steel", "desc": "Military-grade robust construction designed to withstand the toughest warehouse environments.", "badge": "", "highlight": false},
+        {"num": "03", "title": "Exclusive Design", "desc": "Design registration protected. Available only through Goliath in the UK/EU.", "badge": "", "highlight": false},
+        {"num": "04", "title": "Fully UK Compliant", "desc": "Meets all UK warehouse safety regulations. HSE approved and certified.", "badge": "", "highlight": true},
+        {"num": "05", "title": "70% Cost Reduction", "desc": "£350 vs £2,025 for traditional replacement. Save thousands without compromising safety.", "badge": "", "highlight": false},
+        {"num": "06", "title": "Universal Compatibility", "desc": "Adapts to all major UK and EU racking brands. One solution fits all.", "badge": "", "highlight": false}
+      ]
+    },
+    "barText": { "type": "string", "default": "100% Client Satisfaction • Save 70% • 30min Installation • Lifetime Warranty" },
+    "cta1Text": { "type": "string", "default": "View case studies" },
+    "cta1Url": { "type": "string", "default": "/case-studies/" },
+    "cta2Text": { "type": "string", "default": "Get Similar Results" },
+    "cta2Url": { "type": "string", "default": "#contact" }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

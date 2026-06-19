@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/legal-content",
+  "title": "Legal Content Section",
+  "description": "Editable HTML content section for legal pages (Privacy Policy, Terms of Service).",
+  "category": "goliath",
+  "icon": "media-document",
+  "keywords": ["legal", "privacy", "terms", "content"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "content": {
+      "type": "string",
+      "default": "<p class=\"font-roboto text-[17px] leading-[28px] text-[#364153]\">Enter your legal page content here.</p>"
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

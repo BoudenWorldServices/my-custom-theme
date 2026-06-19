@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/hp-process",
+  "title": "Homepage \u2013 Installation Process",
+  "description": "Four-step installation process section with icons, heading, accent text, and step cards.",
+  "category": "goliath",
+  "icon": "list-view",
+  "keywords": ["process", "steps", "installation", "homepage"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading":    { "type": "string", "default": "Installation process" },
+    "subheading": { "type": "string", "default": "Fast, Easy, Guaranteed" },
+    "accent":     { "type": "string", "default": "Unique solution to end the repetitive cycle of upright damage." },
+    "body1":      { "type": "string", "default": "From assessment to installation to lifetime protection \u2013 we handle everything so you can focus on your business." },
+    "body2":      { "type": "string", "default": "Our team can install GOLIATH\u2122 in your warehouse in as little as 30 minutes." },
+    "steps": {
+      "type": "array",
+      "default": [
+        { "title": "Identify Damaged Upright",    "description": "Comprehensive evaluation of your racking system. Our expert team identifies all areas of concern and provides detailed recommendations." },
+        { "title": "Apply Fast, Permanent Repair", "description": "Installation takes just 30 minutes per upright. Minimal disruption to your operations \u2013 get back to work quickly." },
+        { "title": "Lifetime Warranty Activated",  "description": "Your repair is covered forever. If any impact damage occurs, we replace the affected parts at no cost to you." },
+        { "title": "Peace of Mind Guaranteed",     "description": "Rest easy knowing your racking is safe, compliant, and protected. Focus on running your business, not worrying about safety." }
+      ]
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

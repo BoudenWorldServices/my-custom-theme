@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/wg-vs-standard",
+  "title": "Why Goliath vs Standard Repair",
+  "description": "Two-column comparison of traditional repair vs the Goliath method, plus a three-image grid.",
+  "category": "goliath",
+  "icon": "columns",
+  "keywords": ["why goliath", "comparison", "vs", "standard", "repair"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading":  { "type": "string", "default": "Goliath\u2122 vs. Standard Repair" },
+    "tradH3":   { "type": "string", "default": "Traditional Repair" },
+    "tradP":    { "type": "string", "default": "Traditional pallet racking repair\u2019s sole focus is on replacing damaged uprights. This means uprights have to be damaged first before being repaired. The biggest problem with standard repair is that it doesn\u2019t prevent the same issue from happening again." },
+    "tradBold": { "type": "string", "default": "This means uprights are replaced and eventually damaged again." },
+    "golH3":    { "type": "string", "default": "Goliath\u2122 is Different" },
+    "golP":     { "type": "string", "default": "Instead of repeatedly replacing the upright with the standard system, the upright is replaced with our high-strength steel repair system. Goliath\u2122 is built to brace for impact, ensuring the structure is stronger and more resilient to handle high-traffic environments more effectively." },
+    "golBold":  { "type": "string", "default": "While standard repair methods are reactive, Goliath\u2122 is a permanent upgrade for future circumstances." },
+    "img1":     { "type": "string", "default": "" },
+    "img1Alt":  { "type": "string", "default": "Goliath upright repair solution installed in warehouse" },
+    "img2":     { "type": "string", "default": "" },
+    "img2Alt":  { "type": "string", "default": "Close-up of Goliath repair kit in use" },
+    "img3":     { "type": "string", "default": "" },
+    "img3Alt":  { "type": "string", "default": "Before and after Goliath installation" }
+  },
+  "supports": {
+    "html": false,
+    "align": false,
+    "multiple": false
+  }
+}

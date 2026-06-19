@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/text-columns",
+  "title": "Goliath Text Columns",
+  "description": "Two-column text layout. Each column has an optional heading, body paragraphs, and an orange callout sentence.",
+  "category": "goliath",
+  "icon": "columns",
+  "keywords": [
+    "columns",
+    "text",
+    "two column",
+    "problem",
+    "solution"
+  ],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "sectionTitle": {
+      "type": "string",
+      "default": ""
+    },
+    "col1Heading": {
+      "type": "string",
+      "default": ""
+    },
+    "col1Body": {
+      "type": "string",
+      "default": ""
+    },
+    "col1Callout": {
+      "type": "string",
+      "default": ""
+    },
+    "col2Heading": {
+      "type": "string",
+      "default": ""
+    },
+    "col2Body": {
+      "type": "string",
+      "default": ""
+    },
+    "col2Callout": {
+      "type": "string",
+      "default": ""
+    },
+    "showDivider": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

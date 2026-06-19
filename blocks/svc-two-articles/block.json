@@ -1,0 +1,65 @@
+{
+    "apiVersion": 2,
+    "name": "goliath/svc-two-articles",
+    "title": "Service Two Articles",
+    "category": "theme",
+    "description": "Two-column article layout with optional icons, headings, paragraphs and lists.",
+    "supports": {
+        "html": false
+    },
+    "attributes": {
+        "article1Icon": {
+            "type": "string",
+            "default": ""
+        },
+        "article1Heading": {
+            "type": "string",
+            "default": ""
+        },
+        "article1Paragraphs": {
+            "type": "array",
+            "default": []
+        },
+        "article1Bold": {
+            "type": "string",
+            "default": ""
+        },
+        "article1SubHeading": {
+            "type": "string",
+            "default": ""
+        },
+        "article1Items": {
+            "type": "array",
+            "default": []
+        },
+        "article2Icon": {
+            "type": "string",
+            "default": ""
+        },
+        "article2Heading": {
+            "type": "string",
+            "default": ""
+        },
+        "article2Paragraphs": {
+            "type": "array",
+            "default": []
+        },
+        "article2Bold": {
+            "type": "string",
+            "default": ""
+        },
+        "article2SubHeading": {
+            "type": "string",
+            "default": ""
+        },
+        "article2Items": {
+            "type": "array",
+            "default": []
+        },
+        "bannerText": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "render": "file:./render.php"
+}

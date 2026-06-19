@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/comp-warranty-overlay",
+  "title": "Compliance – Warranty Image",
+  "description": "Full-width image with absolutely-positioned orange overlay listing warranty bullet points.",
+  "category": "goliath",
+  "icon": "format-image",
+  "keywords": ["warranty", "image", "overlay"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "h3":    { "type": "string", "default": "Warranty Coverage Includes:" },
+    "item1": { "type": "string", "default": "Overall structure and repair process coverage for life" },
+    "item2": { "type": "string", "default": "Free replacement or repair if damaged from normal use" },
+    "item3": { "type": "string", "default": "Free from manufacturing defects guarantee" },
+    "item4": { "type": "string", "default": "No questions asked warranty claim process" },
+    "image": { "type": "string", "default": "" }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

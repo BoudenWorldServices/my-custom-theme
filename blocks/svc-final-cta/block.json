@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/svc-final-cta",
+  "title": "Services – Final CTA",
+  "description": "Orange full-width CTA section with heading, description, and button.",
+  "category": "goliath",
+  "icon": "megaphone",
+  "keywords": ["services", "cta", "final"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading":     { "type": "string", "default": "Interested in GOLIATH™?" },
+    "headingDark": { "type": "string", "default": "GOLIATH™" },
+    "description": { "type": "string", "default": "Planning a new warehouse project? Get a tailored quote for Goliath™ protection. Our team will work with your specifications to provide clear pricing and a realistic timeline." },
+    "btnText":     { "type": "string", "default": "Get Your Project Quote" },
+    "btnUrl":      { "type": "string", "default": "/contact/" }
+  },
+  "supports": { "html": false, "align": false }
+}

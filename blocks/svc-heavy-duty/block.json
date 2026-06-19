@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/svc-heavy-duty",
+  "title": "Services – Heavy Duty / Built to Last",
+  "description": "Before/after hover image swap with feature list.",
+  "category": "goliath",
+  "icon": "hammer",
+  "keywords": ["services", "heavy duty", "features"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading":     { "type": "string", "default": "Heavy Duty." },
+    "h3":          { "type": "string", "default": "Built to Last." },
+    "description": { "type": "string", "default": "Installing GOLIATH™ on new racking projects provides unmatched protection and long-term value for your warehouse infrastructure." },
+    "feat1Title":  { "type": "string", "default": "Protection from Day One" },
+    "feat1Desc":   { "type": "string", "default": "Install GOLIATH™ on new racking to prevent damage before it happens. Proactive protection saves money and ensures safety from the start." },
+    "feat2Title":  { "type": "string", "default": "Faster Installation" },
+    "feat2Desc":   { "type": "string", "default": "Installing GOLIATH™ during initial setup is even quicker than retrofitting. Integrate protection seamlessly into your new warehouse project." },
+    "feat3Title":  { "type": "string", "default": "Lifetime Warranty" },
+    "feat3Desc":   { "type": "string", "default": "Your new racking comes with permanent protection. Never worry about upright damage again with our comprehensive lifetime warranty." },
+    "feat4Title":  { "type": "string", "default": "Lower Total Cost" },
+    "feat4Desc":   { "type": "string", "default": "Avoid future repair costs entirely. Installing GOLIATH™ upfront is the most cost-effective approach for long-term warehouse operations." },
+    "beforeImage": { "type": "string", "default": "" },
+    "afterImage":  { "type": "string", "default": "" }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

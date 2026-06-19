@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Large media files (upload these separately via FTP/media library)
+assets/videos/
+
+# Build cache (keep dist/ and blocks-build/ since they're needed on server)
+# If you run build on server, uncomment these:
+# dist/
+# blocks-build/

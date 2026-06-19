@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-noir: #020202;
+  --color-orange: #ff5c00;
+  --color-orange-light: #ff6b2c;
+  --color-ebony: #12192D;
+  --color-blue-dark: #003D71;
+  --color-blue-mid: #05559A;
+  --color-blue-text: #03447B;
+  --color-grey-91: #e8e8e9;
+  --color-grey-light: #faf5ff;
+
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+  --font-yantramanav: "Yantramanav", sans-serif;
+  --font-inter: "Inter", sans-serif;
+}
+
+@layer components {
+  .hero-gradient-bg {
+    background-image: linear-gradient(164.476deg, rgb(2, 2, 2) 0%, rgb(3, 3, 3) 7.1429%, rgb(5, 5, 5) 14.286%, rgb(8, 8, 8) 21.429%, rgb(12, 12, 12) 28.571%, rgb(15, 15, 15) 35.714%, rgb(19, 19, 19) 42.857%, rgb(23, 23, 23) 50%, rgb(26, 26, 26) 57.143%, rgb(30, 30, 30) 64.286%, rgb(34, 34, 34) 71.429%, rgb(38, 38, 38) 78.571%, rgb(43, 43, 43) 85.714%, rgb(47, 47, 47) 92.857%, rgb(51, 51, 51) 100%);
+  }
+
+  .section-shell {
+    @apply px-4 sm:px-6 lg:px-10 xl:px-[68px];
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-[#ff5c00] text-white font-roboto font-bold tracking-[0.35px] transition-colors hover:bg-orange-light;
+  }
+
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-2 bg-noir text-white font-roboto font-bold tracking-[0.35px] transition-colors hover:bg-ebony;
+  }
+
+  .btn-outline-light {
+    @apply inline-flex items-center justify-center border border-white text-white font-roboto font-bold tracking-[0.35px] transition-colors hover:bg-white hover:text-noir;
+  }
+
+  /**
+   * Full-width CTA on narrow viewports; auto width from sm breakpoint up.
+   * Pair with explicit sm:w-[…] on anchors for desktop pixel widths.
+   */
+  .btn-block-mobile {
+    @apply w-full sm:w-auto;
+  }
+}

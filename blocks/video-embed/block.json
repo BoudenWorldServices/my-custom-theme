@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/video-embed",
+  "title": "Goliath Video Embed",
+  "description": "MP4 video player alongside a heading, body text, and optional callout. Used in case studies and service pages.",
+  "category": "goliath",
+  "icon": "video-alt3",
+  "keywords": [
+    "video",
+    "mp4",
+    "embed",
+    "media"
+  ],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "videoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "body": {
+      "type": "string",
+      "default": ""
+    },
+    "callout": {
+      "type": "string",
+      "default": ""
+    },
+    "videoPosition": {
+      "type": "string",
+      "enum": [
+        "left",
+        "right"
+      ],
+      "default": "left"
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

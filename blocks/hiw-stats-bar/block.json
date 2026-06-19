@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/hiw-stats-bar",
+  "title": "How It Works – Stats Bar",
+  "description": "Four-stat horizontal bar with vertical dividers for the How It Works page.",
+  "category": "goliath",
+  "icon": "chart-bar",
+  "keywords": ["stats", "bar", "how it works", "hiw"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "stat1Value": { "type": "string", "default": "30 Minutes" },
+    "stat1Label": { "type": "string", "default": "Installation" },
+    "stat2Value": { "type": "string", "default": "Lifetime" },
+    "stat2Label": { "type": "string", "default": "Warranty" },
+    "stat3Value": { "type": "string", "default": "100%" },
+    "stat3Label": { "type": "string", "default": "UK Compliance" },
+    "stat4Value": { "type": "string", "default": "Minimal" },
+    "stat4Label": { "type": "string", "default": "Downtime" }
+  },
+  "supports": { "html": false, "align": false }
+}

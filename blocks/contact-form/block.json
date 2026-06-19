@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/contact-form",
+  "title": "Contact Form Section",
+  "description": "Full-width form section with sidebar (large text, contact details, why-request bullets) and the assessment request form with spam protection.",
+  "category": "goliath",
+  "icon": "email",
+  "keywords": ["contact", "form", "assessment", "enquiry"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "formHeading":    { "type": "string", "default": "Request a Free Warehouse Assessment" },
+    "sidebarLine1":   { "type": "string", "default": "Get Your Free" },
+    "sidebarLine2":   { "type": "string", "default": "Consultation" },
+    "sidebarBody":    { "type": "string", "default": "Lifetime warranty, 30-minute installation, minimal downtime. Find out how Goliath can reduce your racking repair costs." },
+    "whyHeading":     { "type": "string", "default": "Why Request an Assessment?" },
+    "bullet1":        { "type": "string", "default": "Free, no-obligation evaluation" },
+    "bullet2":        { "type": "string", "default": "Response within 1 working day" },
+    "bullet3":        { "type": "string", "default": "Transparent, honest pricing" },
+    "bullet4":        { "type": "string", "default": "Expert safety advice" }
+  },
+  "supports": { "html": false, "align": false }
+}

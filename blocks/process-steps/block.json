@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/process-steps",
+  "title": "Goliath Process Steps",
+  "description": "Numbered orange steps for how-it-works and service pages. Up to 6 steps with title and description.",
+  "category": "goliath",
+  "icon": "list-view",
+  "keywords": ["steps", "process", "numbered", "how it works"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "sectionHeading": { "type": "string", "default": "" },
+    "layout": { "type": "string", "enum": ["vertical", "horizontal"], "default": "vertical" },
+    "step1Title": { "type": "string", "default": "" },
+    "step1Body": { "type": "string", "default": "" },
+    "step2Title": { "type": "string", "default": "" },
+    "step2Body": { "type": "string", "default": "" },
+    "step3Title": { "type": "string", "default": "" },
+    "step3Body": { "type": "string", "default": "" },
+    "step4Title": { "type": "string", "default": "" },
+    "step4Body": { "type": "string", "default": "" },
+    "step5Title": { "type": "string", "default": "" },
+    "step5Body": { "type": "string", "default": "" },
+    "step6Title": { "type": "string", "default": "" },
+    "step6Body": { "type": "string", "default": "" }
+  },
+  "supports": { "html": false, "align": false }
+}

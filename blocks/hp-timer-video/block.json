@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/hp-timer-video",
+  "title": "Homepage \u2013 Timer Video Banner",
+  "description": "Split full-bleed banner: orange text panel on the left, autoplay video (or fallback image) on the right.",
+  "category": "goliath",
+  "icon": "video-alt3",
+  "keywords": ["video", "timer", "banner", "homepage"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "eyebrow":       { "type": "string", "default": "Never replace a racking upright again" },
+    "heading":       { "type": "string", "default": "Installed in less than 30 minutes, covered for life" },
+    "compat":        { "type": "string", "default": "Compatible with all UK and EU racking systems" },
+    "video":         { "type": "string", "default": "" },
+    "fallbackImage": { "type": "string", "default": "" }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

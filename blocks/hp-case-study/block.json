@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/hp-case-study",
+  "title": "Homepage – Case Study + KPI + Expert",
+  "description": "Three-part section: featured case study mosaic, KPI stat rings, and expert assessment dark CTA.",
+  "category": "goliath",
+  "icon": "chart-pie",
+  "keywords": ["case study", "kpi", "expert", "homepage"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "eyebrow":            { "type": "string", "default": "Featured Case Study" },
+    "heading":            { "type": "string", "default": "UK leading retailer saved 70% on repairs in the first 12 months vs traditional replacement" },
+    "body":               { "type": "string", "default": "As a result, Goliath is now being rolled out across all of their sites and is even being installed as standard for all new fit-out projects." },
+
+    "caseImg1":           { "type": "string", "default": "" },
+    "caseImg2":           { "type": "string", "default": "" },
+    "caseImg3":           { "type": "string", "default": "" },
+
+    "viewCaseStudiesText": { "type": "string", "default": "View Case Studies" },
+    "viewCaseStudiesUrl":  { "type": "string", "default": "/case-studies/" },
+
+    "kpiEyebrow":         { "type": "string", "default": "Proven Results" },
+    "kpiHeading":         { "type": "string", "default": "Real Results, Real ROI" },
+    "kpiSubheading":      { "type": "string", "default": "Leading UK businesses trust Goliath to protect their warehouse infrastructure" },
+    "kpi1Value":          { "type": "string", "default": "100%" },
+    "kpi1Label":          { "type": "string", "default": "Client Satisfaction" },
+    "kpi2Value":          { "type": "string", "default": "70%" },
+    "kpi2Label":          { "type": "string", "default": "Average Cost Savings" },
+    "kpi3Value":          { "type": "string", "default": "85%" },
+    "kpi3Label":          { "type": "string", "default": "Reduction in Downtime" },
+
+    "expertBadge":        { "type": "string", "default": "Free Audit" },
+    "expertHeadline":     { "type": "string", "default": "Our SEMA qualified inspectors will assess your warehouse and demonstrate how Goliath can help you" },
+    "expertFeature1Title": { "type": "string", "default": "Qualified" },
+    "expertFeature1Sub":   { "type": "string", "default": "inspectors" },
+    "expertFeature2Title": { "type": "string", "default": "Tailored" },
+    "expertFeature2Sub":   { "type": "string", "default": "Solution" },
+    "expertFeature3Title": { "type": "string", "default": "Analysis" },
+    "expertFeature3Sub":   { "type": "string", "default": "Report" },
+    "expertCta1Text":     { "type": "string", "default": "Interested in GOLIATH™?" },
+    "expertCta1Url":      { "type": "string", "default": "#contact" },
+    "expertCta2Text":     { "type": "string", "default": "Book My Free Site Survey" },
+    "expertCta2Url":      { "type": "string", "default": "#contact" }
+  },
+  "supports": { "html": false, "align": false }
+}

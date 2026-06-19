@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/cs-solution",
+  "title": "Case Study \u2013 Solution",
+  "description": "Solution section with optional video, solution text paragraphs, and an optional orange callout box.",
+  "category": "goliath",
+  "icon": "lightbulb",
+  "keywords": ["case study", "solution", "video"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "video":            { "type": "string", "default": "" },
+    "solutionText":     { "type": "string", "default": "" },
+    "solutionCallout":  { "type": "string", "default": "" }
+  },
+  "supports": {
+    "html": false,
+    "align": false,
+    "multiple": false
+  }
+}

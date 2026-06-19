@@ -1,0 +1,21 @@
+{
+    "apiVersion": 2,
+    "name": "goliath/svc-fullwidth-image",
+    "title": "Service Fullwidth Image",
+    "category": "theme",
+    "description": "Full-width image section.",
+    "supports": {
+        "html": false
+    },
+    "attributes": {
+        "image": {
+            "type": "string",
+            "default": ""
+        },
+        "imageAlt": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "render": "file:./render.php"
+}

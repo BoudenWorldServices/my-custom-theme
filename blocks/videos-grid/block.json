@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/videos-grid",
+  "title": "Videos Grid",
+  "description": "Dynamic video card grids for installation/product demos and safety/compliance videos.",
+  "category": "goliath",
+  "icon": "grid-view",
+  "keywords": ["videos", "grid", "installation", "safety"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "installHeading":  { "type": "string", "default": "Installation & Product Demos" },
+    "installSubtitle": { "type": "string", "default": "Watch how Goliath™ is installed and see the product in action" },
+    "safetyHeading":   { "type": "string", "default": "Safety & Compliance" },
+    "safetySubtitle":  { "type": "string", "default": "Understanding warehouse racking safety regulations and best practices" }
+  },
+  "supports": { "html": false, "align": false }
+}

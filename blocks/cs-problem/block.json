@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/cs-problem",
+  "title": "Case Study \u2013 Problem & Tried",
+  "description": "Two-column section showing 'The Problem' and 'What They Tried', each with optional callout text.",
+  "category": "goliath",
+  "icon": "editor-alignleft",
+  "keywords": ["case study", "problem", "tried"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "title":           { "type": "string", "default": "" },
+    "problemText":     { "type": "string", "default": "" },
+    "problemCallout":  { "type": "string", "default": "" },
+    "triedText":       { "type": "string", "default": "" },
+    "triedCallout":    { "type": "string", "default": "" }
+  },
+  "supports": {
+    "html": false,
+    "align": false,
+    "multiple": false
+  }
+}

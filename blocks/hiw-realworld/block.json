@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/hiw-realworld",
+  "title": "How It Works – Real World & Compliance",
+  "description": "Two-column text section: Real-World Environments on the left, Built to Support Compliance on the right.",
+  "category": "goliath",
+  "icon": "building",
+  "keywords": ["real world", "compliance", "two column", "how it works"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "realworldH2": { "type": "string", "default": "Installed in Real-World Environments" },
+    "realworldIntro": { "type": "string", "default": "Goliath™ is fitted directly onto existing racking and is installed at ground-level impact zones." },
+    "realworldListIntro": { "type": "string", "default": "You'll see it in places like:" },
+    "realworldItems": {
+      "type": "array",
+      "default": ["Distribution centres", "Logistics operations", "Retail warehouses", "Manufacturing facilities", "Cold stores", "Document storage warehouses"]
+    },
+    "realworldClosing": { "type": "string", "default": "Once it is installed, it becomes a part of the upright that provides continuous protection without affecting daily operations." },
+    "complianceH2": { "type": "string", "default": "Built to Support Compliance" },
+    "complianceIntro": { "type": "string", "default": "Goliath™ aligns with recognised UK standards:" },
+    "complianceItems": {
+      "type": "array",
+      "default": ["BS EN 15512", "BS EN 15635", "SEMA guidelines"]
+    },
+    "complianceClosing": { "type": "string", "default": "By reinforcing damaged uprights, our permanent upright repair helps maintain structural integrity and supports ongoing inspection requirements." }
+  },
+  "supports": { "html": false, "align": false }
+}

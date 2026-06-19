@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/comp-only-system",
+  "title": "Compliance – Only System of Its Kind",
+  "description": "Orange band 2-column split: left text column and right highlighted panel.",
+  "category": "goliath",
+  "icon": "megaphone",
+  "keywords": ["compliance", "unique", "orange"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "leftH2":  { "type": "string", "default": "The Only System of Its Kind in the UK and Europe" },
+    "leftP1":  { "type": "string", "default": "Goliath™ is the only pallet racking repair kit and protection system of its kind available across the UK and Europe." },
+    "leftP2":  { "type": "string", "default": "Unlike traditional repair methods, Goliath™ is a permanent solution for the most common racking problems in warehouses. It stops the cycle of damage during facility usage and replacement." },
+    "rightH3": { "type": "string", "default": "From a Compliance Perspective" },
+    "rightP1": { "type": "string", "default": "Continuous damage causes structural weaknesses, which raises concerns during inspections. A system that prevents that damage, like Goliath™, provides a more stable, consistent outcome." },
+    "rightP2": { "type": "string", "default": "Goliath™ has also been independently tested and verified to perform excellently under real-world impact conditions. This provides additional assurance to our clients that the system is effective and suitable for long-term use in demanding warehouse environments." }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

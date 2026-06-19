@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/comp-compatibility",
+  "title": "Compliance – Compatibility List",
+  "description": "Stacked bordered list + side image + gradient CTA box.",
+  "category": "goliath",
+  "icon": "list-view",
+  "keywords": ["compliance", "compatibility", "racking"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading": { "type": "string", "default": "How compatible is GOLIATH™?" },
+    "intro":   { "type": "string", "default": "GOLIATH™ is designed to work with all major pallet racking systems. Here's a list of the top 10 racking companies GOLIATH™ is compatible with:" },
+    "items":   { "type": "string", "default": "Link 51 XL, Dexion Mk3, Dexion P90, Mecalux, Stow, Apex, Redirack, PSS (all types), Bito, Hi-Lo Premier Rack & Rack Plan" },
+    "boxH3":   { "type": "string", "default": "Don't see your type?" },
+    "boxP":    { "type": "string", "default": "No problem. GOLIATH™ can be adapted to work with all pallet racking systems. Contact us to discuss your specific racking configuration." },
+    "boxCta":  { "type": "string", "default": "Check Compatibility" },
+    "image":   { "type": "string", "default": "" },
+    "boxCtaUrl": { "type": "string", "default": "/#contact" }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

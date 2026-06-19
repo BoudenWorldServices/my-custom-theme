@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/hiw-installation",
+  "title": "How It Works – Installation Process",
+  "description": "Two-column section: HTML5 video on the left, numbered installation steps on the right.",
+  "category": "goliath",
+  "icon": "video-alt3",
+  "keywords": ["installation", "steps", "video", "how it works"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading":    { "type": "string", "default": "Installation process" },
+    "videoText":  { "type": "string", "default": "Installation Video" },
+    "videoFile":  { "type": "string", "default": "goliath-demo.mp4" },
+    "videoUrl":   { "type": "string", "default": "" },
+    "posterUrl":  { "type": "string", "default": "" },
+    "videoPageUrl": { "type": "string", "default": "" },
+    "step1Title": { "type": "string", "default": "Precision Cutting" },
+    "step1Desc":  { "type": "string", "default": "We use a specially designed cutting jig that's bolted to the existing damaged upright. This allows us to get a factory cut to the upright. The damaged section is cut out using a handheld bandsaw with a cutting jig that allows us to make a perfect cut every time. The damaged upright is removed. We use a prop system to hold the empty racking in place." },
+    "step2Title": { "type": "string", "default": "Fitting Goliath™" },
+    "step2Desc":  { "type": "string", "default": "Goliath™ is fitted into place and all nuts and bolts are loosely fitted, which connects the upright and repair kit together." },
+    "step3Title": { "type": "string", "default": "Securing the Structure" },
+    "step3Desc":  { "type": "string", "default": "Bracing is bolted to Goliath™, and the prop is lowered, allowing all nuts and bolts to be tightened." },
+    "step4Title": { "type": "string", "default": "Floor Fixing" },
+    "step4Desc":  { "type": "string", "default": "Goliath™ is fixed down using two no. M16 double helix floor bolts, designed to work with Goliath™ to offer extra strength." },
+    "step5Title": { "type": "string", "default": "Installation Complete" },
+    "step5Desc":  { "type": "string", "default": "Installation is complete. You can resume your warehouse operations, knowing that any previously damaged racking has been repaired." }
+  },
+  "supports": { "html": false, "align": false }
+}

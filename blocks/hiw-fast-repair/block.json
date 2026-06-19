@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/hiw-fast-repair",
+  "title": "How It Works – Fast Repair",
+  "description": "Grey two-column section with copy on the left and an orange highlight box on the right.",
+  "category": "goliath",
+  "icon": "clock",
+  "keywords": ["fast", "repair", "how it works", "two column"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading": { "type": "string", "default": "Fast, On-Site Repair with Minimal Disruption" },
+    "para1":   { "type": "string", "default": "Racking damage needs to be addressed quickly. This is because unaddressed upright damage puts lives in danger. But replacing your racking should not be the reason to shut down your operation." },
+    "para2":   { "type": "string", "default": "Goliath™ is fast and efficient. Installation within live warehouse environments is done without removing and replacing the existing full uprights. Only the damaged section is cut out and replaced with our high-strength steel repair. This reinforces the structure without major disruption." },
+    "para3":   { "type": "string", "default": "Installation takes as little as 30 minutes per upright, allowing work to be completed while your warehouse continues to operate. This means minimal downtime and much higher safety standards whenever Goliath™ is installed." },
+    "boxH3":   { "type": "string", "default": "30 Minutes Installation" },
+    "boxPara": { "type": "string", "default": "Installation takes as little as 30 minutes per upright, allowing work to be completed while your warehouse continues to operate. This means minimal downtime and much higher safety standards whenever Goliath™ is installed." }
+  },
+  "supports": { "html": false, "align": false }
+}

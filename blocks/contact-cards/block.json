@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/contact-cards",
+  "title": "Contact Quick Cards",
+  "description": "Three-column grid of contact method cards: Phone, Email, Location. Contact details are pulled from global theme settings.",
+  "category": "goliath",
+  "icon": "phone",
+  "keywords": ["contact", "cards", "phone", "email", "location"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "phoneSubtitle": { "type": "string", "default": "Mon–Fri, 8am–6pm GMT" },
+    "emailSubtitle": { "type": "string", "default": "We respond within 1 working day" }
+  },
+  "supports": { "html": false, "align": false }
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/hp-solution",
+  "title": "Homepage \u2013 Solution",
+  "description": "Full-width solution section: large image, feature list with four bordered items, and overlapping orange promise card.",
+  "category": "goliath",
+  "icon": "shield",
+  "keywords": ["solution", "promise", "features", "homepage"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "eyebrow":      { "type": "string", "default": "INSTALL ONCE," },
+    "badge":        { "type": "string", "default": "Forever Protected" },
+    "heading":      { "type": "string", "default": "Protect for lifetime" },
+    "intro":        { "type": "string", "default": "Every warehouse is a high-pressure environment. Tight deadlines, high traffic, and continuous forklift movement increase the risk of damage to warehouse racks." },
+    "promiseTitle": { "type": "string", "default": "Goliath Promise" },
+    "promiseQuote": { "type": "string", "default": "\"We offer more than repairs. We deliver confidence, safety, and the certainty that your warehouse is protected for life.\"" },
+    "mainImage":    { "type": "string", "default": "" },
+    "features": {
+      "type": "array",
+      "default": [
+        {
+          "title": "Cost Savings That Add Up",
+          "desc": "Install Goliath™ once and save thousands on your maintenance budgets and ongoing repairs. One of our clients, B&M, noted a reduction in their repair and maintenance costs, with no further costs required in the locations where Goliath™ had been fitted, improving ROI in the long term."
+        },
+        {
+          "title": "Sustainability",
+          "desc": "Traditional upright repairs mean more steel is used during continuous replacement. With Goliath, you fix it once, and it reduces steel consumption and encourages sustainable warehouse operation."
+        },
+        {
+          "title": "Health & safety improvements",
+          "desc": "In areas where the upright takes the most damage, Goliath™'s engineered structure reduces the risk of damage significantly, creating a safe working environment. We also ensure repairs are completed smoothly with minimal disruption."
+        },
+        {
+          "title": "Designed for durability",
+          "desc": "Goliath™ is engineered for impact resistance in high-traffic warehouse environments. It provides long-term protection during use."
+        }
+      ]
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

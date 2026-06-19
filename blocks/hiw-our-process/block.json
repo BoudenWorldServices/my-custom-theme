@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/hiw-our-process",
+  "title": "How It Works – Our Process",
+  "description": "Two-column section with installation process copy on the left and a dark quote box on the right.",
+  "category": "goliath",
+  "icon": "list-view",
+  "keywords": ["process", "installation", "how it works", "quote"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading": { "type": "string", "default": "Our Installation Process" },
+    "para1":   { "type": "string", "default": "The process starts by highlighting the damaged area of the upright. Instead of removing the entire upright when replacing, we only remove the affected area. This limits the area of focus." },
+    "para2":   { "type": "string", "default": "Goliath™ is fitted in place of the damaged steel by securing it directly to the existing upright, forming a reinforced structure that restores load integrity and improves resistance to future impact." },
+    "para3":   { "type": "string", "default": "Bracing is bolted to Goliath™, and the prop is lowered, allowing all nuts and bolts to be tightened. Goliath™ is fixed down using two no. M16 double helix floor bolts, designed to work with Goliath™ to offer extra strength." },
+    "para4":   { "type": "string", "default": "Installation is complete. You can resume your warehouse operations safely, knowing that any previously damaged racking has been repaired." },
+    "quote":   { "type": "string", "default": "Installation is complete. You can resume your warehouse operations safely, knowing that any previously damaged racking has been repaired." }
+  },
+  "supports": { "html": false, "align": false }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/cs-hero",
+  "title": "Case Study Hero",
+  "description": "Dark gradient hero for a case study. Shows 'Case Study: {client}' with white label and orange client name, plus an optional intro paragraph.",
+  "category": "goliath",
+  "icon": "portfolio",
+  "keywords": ["case study", "hero", "heading"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "client": { "type": "string", "default": "Case Study" },
+    "intro":  { "type": "string", "default": "" }
+  },
+  "supports": {
+    "html": false,
+    "align": false,
+    "multiple": false
+  }
+}

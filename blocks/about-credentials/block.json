@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/about-credentials",
+  "title": "About \u2013 Credentials",
+  "description": "Dark four-column credentials grid with editable credential cards.",
+  "category": "goliath",
+  "icon": "awards",
+  "keywords": ["about", "credentials", "sema", "qualifications", "standards"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading": { "type": "string", "default": "Our Credentials" },
+    "credentials": {
+      "type": "array",
+      "default": [
+        { "title": "SEMA Approved", "desc": "Our repair system is approved by the Storage Equipment Manufacturers\u2019 Association, the UK\u2019s leading authority on storage systems." },
+        { "title": "BS EN 15512", "desc": "Goliath\u2122 meets the structural design requirements for adjustable pallet racking systems as defined by this European standard." },
+        { "title": "BS EN 15635", "desc": "Our solution aligns with the application and maintenance requirements for steel static storage systems." },
+        { "title": "Registered Design", "desc": "Goliath\u2122 is a registered design, protected intellectual property available exclusively through our network." }
+      ]
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false,
+    "multiple": false
+  }
+}

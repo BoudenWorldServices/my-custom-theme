@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/resource-cards",
+  "title": "Goliath Resource Cards",
+  "description": "Up to 4 link cards with title, description, and arrow CTA button. Used for \"Explore Resources\" sections.",
+  "category": "goliath",
+  "icon": "welcome-learn-more",
+  "keywords": ["resources", "links", "cards", "learn more"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading": { "type": "string", "default": "" },
+    "card1Title": { "type": "string", "default": "" },
+    "card1Desc": { "type": "string", "default": "" },
+    "card1ButtonText": { "type": "string", "default": "Learn More" },
+    "card1Url": { "type": "string", "default": "" },
+    "card2Title": { "type": "string", "default": "" },
+    "card2Desc": { "type": "string", "default": "" },
+    "card2ButtonText": { "type": "string", "default": "Learn More" },
+    "card2Url": { "type": "string", "default": "" },
+    "card3Title": { "type": "string", "default": "" },
+    "card3Desc": { "type": "string", "default": "" },
+    "card3ButtonText": { "type": "string", "default": "Learn More" },
+    "card3Url": { "type": "string", "default": "" },
+    "card4Title": { "type": "string", "default": "" },
+    "card4Desc": { "type": "string", "default": "" },
+    "card4ButtonText": { "type": "string", "default": "Learn More" },
+    "card4Url": { "type": "string", "default": "" }
+  },
+  "supports": { "html": false, "align": false }
+}

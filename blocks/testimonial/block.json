@@ -1,0 +1,43 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/testimonial",
+  "title": "Goliath Testimonial",
+  "description": "Client testimonial quote with attribution on an orange background. Used at the bottom of case study pages.",
+  "category": "goliath",
+  "icon": "format-quote",
+  "keywords": [
+    "testimonial",
+    "quote",
+    "review",
+    "client"
+  ],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "preHeading": {
+      "type": "string",
+      "default": ""
+    },
+    "quote": {
+      "type": "string",
+      "default": ""
+    },
+    "attribution": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Get Similar Results"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "/contact/"
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

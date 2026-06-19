@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/service-image-split",
+  "title": "Service – Image Text Split",
+  "description": "2-column section with an image on one side and text on the other.",
+  "category": "goliath",
+  "icon": "align-pull-left",
+  "keywords": ["service", "image", "split", "2 column"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading":       { "type": "string", "default": "" },
+    "body":          { "type": "string", "default": "" },
+    "image":         { "type": "string", "default": "" },
+    "imageAlt":      { "type": "string", "default": "" },
+    "imagePosition": { "type": "string", "enum": ["left", "right"], "default": "left" }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/faq-resources",
+  "title": "FAQ Resources Grid",
+  "description": "Three-column resource cards with title, description, and Learn More link. Used on the FAQ page.",
+  "category": "goliath",
+  "icon": "grid-view",
+  "keywords": ["faq", "resources", "cards", "links"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading":  { "type": "string", "default": "Explore More Resources" },
+    "card1Title": { "type": "string", "default": "How It Works" },
+    "card1Desc":  { "type": "string", "default": "Learn about our 30-minute installation process" },
+    "card1Url":   { "type": "string", "default": "/how-it-works/" },
+    "card2Title": { "type": "string", "default": "Compliance" },
+    "card2Desc":  { "type": "string", "default": "Understand how Goliath™ meets UK safety standards" },
+    "card2Url":   { "type": "string", "default": "/compliance/" },
+    "card3Title": { "type": "string", "default": "Case Studies" },
+    "card3Desc":  { "type": "string", "default": "See real-world results from B&M and others" },
+    "card3Url":   { "type": "string", "default": "/case-studies/" }
+  },
+  "supports": { "html": false, "align": false }
+}

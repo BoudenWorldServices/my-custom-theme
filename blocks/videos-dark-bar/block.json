@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/videos-dark-bar",
+  "title": "Videos – Black CTA Bar",
+  "description": "Dark bar with text and two buttons for video page CTA.",
+  "category": "goliath",
+  "icon": "minus",
+  "keywords": ["videos", "cta", "dark bar"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "text":    { "type": "string", "default": "Ready to see Goliath™ in your warehouse?" },
+    "btn1":    { "type": "string", "default": "Book a free on-site demonstration" },
+    "btn2":    { "type": "string", "default": "Schedule live demo" },
+    "btn1Url": { "type": "string", "default": "/contact/" },
+    "btn2Url": { "type": "string", "default": "/contact/" }
+  },
+  "supports": { "html": false, "align": false }
+}

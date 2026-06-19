@@ -1,0 +1,33 @@
+{
+    "apiVersion": 2,
+    "name": "goliath/svc-image-pair",
+    "title": "Service Image Pair",
+    "category": "theme",
+    "description": "Two side-by-side images in a grey background section.",
+    "supports": {
+        "html": false
+    },
+    "attributes": {
+        "image1": {
+            "type": "string",
+            "default": ""
+        },
+        "image1Alt": {
+            "type": "string",
+            "default": ""
+        },
+        "image2": {
+            "type": "string",
+            "default": ""
+        },
+        "image2Alt": {
+            "type": "string",
+            "default": ""
+        },
+        "introText": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "render": "file:./render.php"
+}

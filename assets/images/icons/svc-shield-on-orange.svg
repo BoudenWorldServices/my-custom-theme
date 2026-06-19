@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+  <!-- Same shield path as svc-shield-icon; white fill so it reads on #ff5c00 -->
+  <path d="M20 4L6 10v10c0 8.4 5.96 16.24 14 18 8.04-1.76 14-9.6 14-18V10L20 4z" fill="#ffffff"/>
+  <path d="M17 20l3 3 6-6" stroke="#ff5c00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

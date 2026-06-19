@@ -1,0 +1,65 @@
+{
+    "apiVersion": 2,
+    "name": "goliath/svc-dark-section",
+    "title": "Service Dark Section",
+    "category": "theme",
+    "description": "Dark background two-column section with text + orange callout card, optional tick list.",
+    "supports": {
+        "html": false
+    },
+    "attributes": {
+        "heading": {
+            "type": "string",
+            "default": ""
+        },
+        "paragraphs": {
+            "type": "array",
+            "default": []
+        },
+        "tickItems": {
+            "type": "array",
+            "default": []
+        },
+        "afterListText": {
+            "type": "string",
+            "default": ""
+        },
+        "calloutIcon": {
+            "type": "string",
+            "default": ""
+        },
+        "calloutHeading": {
+            "type": "string",
+            "default": ""
+        },
+        "calloutDesc": {
+            "type": "string",
+            "default": ""
+        },
+        "boldText": {
+            "type": "string",
+            "default": ""
+        },
+        "calloutPosition": {
+            "type": "string",
+            "default": "right"
+        },
+        "calloutHeight": {
+            "type": "string",
+            "default": ""
+        },
+        "calloutTextSize": {
+            "type": "string",
+            "default": ""
+        },
+        "headingSize": {
+            "type": "string",
+            "default": ""
+        },
+        "paragraphSpacing": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "render": "file:./render.php"
+}

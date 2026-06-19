@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/hp-hero",
+  "title": "Homepage Hero (Carousel)",
+  "description": "Full-bleed hero section with orange text panel, carousel of images/videos, and prev/next navigation.",
+  "category": "goliath",
+  "icon": "cover-image",
+  "keywords": ["hero", "carousel", "homepage"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "companyName":        { "type": "string", "default": "Goliath Pallet Racking Repair Ltd" },
+    "heading":            { "type": "string", "default": "Safe, Instant Repair for Damaged Uprights" },
+    "tagline1":           { "type": "string", "default": "Minimal Downtime, Maximum Safety" },
+    "tagline2":           { "type": "string", "default": "Lifetime Warranty" },
+    "ctaText":            { "type": "string", "default": "Get Your Free Assessment" },
+    "ctaUrl":             { "type": "string", "default": "/contact/" },
+    "secondaryCtaText":   { "type": "string", "default": "View more" },
+    "secondaryCtaUrl":    { "type": "string", "default": "#solution" },
+    "stat1Label":         { "type": "string", "default": "Installation" },
+    "stat1Value":         { "type": "string", "default": "30 Minutes" },
+    "stat2Label":         { "type": "string", "default": "Warranty" },
+    "stat2Value":         { "type": "string", "default": "Lifetime" },
+    "stat3Label":         { "type": "string", "default": "UK Compliance" },
+    "stat3Value":         { "type": "string", "default": "100%" },
+    "video1":             { "type": "string", "default": "" },
+    "video2":             { "type": "string", "default": "" },
+    "video3":             { "type": "string", "default": "" },
+    "slide1":             { "type": "string", "default": "" },
+    "slide2":             { "type": "string", "default": "" },
+    "slide3":             { "type": "string", "default": "" },
+    "slide1Alt":          { "type": "string", "default": "Goliath racking repair in a warehouse" },
+    "slide2Alt":          { "type": "string", "default": "Goliath installation on pallet racking" },
+    "slide3Alt":          { "type": "string", "default": "Damaged racking upright showing dent impact" }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

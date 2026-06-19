@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/team-member",
+  "title": "Goliath Team Member",
+  "description": "Team profile card with photo, name, role, qualifications, and biography. Use multiple cards side by side for a team grid.",
+  "category": "goliath",
+  "icon": "admin-users",
+  "keywords": ["team", "member", "profile", "person", "bio", "about"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "photo": { "type": "string", "default": "" },
+    "name": { "type": "string", "default": "" },
+    "role": { "type": "string", "default": "" },
+    "qualifications": { "type": "string", "default": "" },
+    "bio": { "type": "string", "default": "" },
+    "background": { "type": "string", "enum": ["white", "gray"], "default": "white" }
+  },
+  "supports": { "html": false, "align": false }
+}

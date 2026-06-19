@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/orange-banner",
+  "title": "Goliath Banner Strip",
+  "description": "Full-width coloured text banner. Orange, dark, or gray background. Use for bold statements, callouts, and section transitions.",
+  "category": "goliath",
+  "icon": "minus",
+  "keywords": ["banner", "strip", "orange", "callout", "statement"],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "text": { "type": "string", "default": "" },
+    "background": { "type": "string", "enum": ["orange", "dark", "gray"], "default": "orange" },
+    "centered": { "type": "boolean", "default": true },
+    "size": { "type": "string", "enum": ["small", "medium", "large"], "default": "medium" }
+  },
+  "supports": { "html": false, "align": false }
+}
