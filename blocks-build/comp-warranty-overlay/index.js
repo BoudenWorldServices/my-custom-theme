@@ -1,1 +1,88 @@
-(()=>{"use strict";const e=window.wp.blocks,t=window.wp.blockEditor,l=window.wp.components,n=JSON.parse('{"UU":"goliath/comp-warranty-overlay"}'),o=window.ReactJSXRuntime;(0,e.registerBlockType)(n.UU,{edit({attributes:e,setAttributes:n}){const{h3:i,item1:a,item2:s,item3:r,item4:c,image:d}=e;return(0,o.jsxs)(o.Fragment,{children:[(0,o.jsxs)(t.InspectorControls,{children:[(0,o.jsxs)(l.PanelBody,{title:"Overlay Content",initialOpen:!0,children:[(0,o.jsx)(l.TextControl,{label:"Heading (H3)",value:i,onChange:e=>n({h3:e})}),(0,o.jsx)(l.TextControl,{label:"Bullet 1",value:a,onChange:e=>n({item1:e})}),(0,o.jsx)(l.TextControl,{label:"Bullet 2",value:s,onChange:e=>n({item2:e})}),(0,o.jsx)(l.TextControl,{label:"Bullet 3",value:r,onChange:e=>n({item3:e})}),(0,o.jsx)(l.TextControl,{label:"Bullet 4",value:c,onChange:e=>n({item4:e})})]}),(0,o.jsx)(l.PanelBody,{title:"Image",initialOpen:!1,children:(0,o.jsx)(l.TextControl,{label:"Image URL (leave blank to use Settings › Customizer value)",value:d,onChange:e=>n({image:e}),help:"Paste a direct image URL or leave blank to use the theme option."})})]}),(0,o.jsxs)("div",{...(0,t.useBlockProps)({style:{background:"#f3f3f3",padding:"24px",position:"relative"}}),children:[(0,o.jsx)("div",{style:{background:"#ccc",height:"200px",marginBottom:"16px",display:"flex",alignItems:"center",justifyContent:"center",color:"#666"},children:d?(0,o.jsx)("img",{src:d,alt:"",style:{width:"100%",height:"100%",objectFit:"cover"}}):"Background image (set via URL or theme option)"}),(0,o.jsxs)("div",{style:{background:"#ff5c00",padding:"24px"},children:[(0,o.jsx)("p",{style:{color:"#fff",fontWeight:700,fontSize:"16px",margin:"0 0 8px"},children:i}),[a,s,r,c].filter(Boolean).map((e,t)=>(0,o.jsxs)("p",{style:{color:"#fff",fontSize:"13px",margin:"4px 0"},children:["✓ ",e]},t))]})]})]})},save:()=>null})})();
+(() => {
+    "use strict";
+
+    const { registerBlockType } = window.wp.blocks;
+    const { InspectorControls, useBlockProps, MediaUpload, MediaUploadCheck } = window.wp.blockEditor;
+    const { PanelBody, TextControl, Button } = window.wp.components;
+    const { createElement: el, Fragment } = window.wp.element;
+
+    const metadata = JSON.parse('{"UU":"goliath/comp-warranty-overlay"}');
+
+    registerBlockType(metadata.UU, {
+        edit({ attributes, setAttributes }) {
+            const { h3, item1, item2, item3, item4, image, imageId } = attributes;
+            const blockProps = useBlockProps({ style: { background: "#f3f3f3", padding: "24px", position: "relative" } });
+            const fallbackUrl = window.goliathCompWarrantyFallback || "";
+            const displayUrl = image || fallbackUrl;
+
+            const onSelectImage = (media) => {
+                setAttributes({
+                    image: media.url,
+                    imageId: media.id,
+                });
+            };
+
+            const onRemoveImage = () => {
+                setAttributes({
+                    image: "",
+                    imageId: 0,
+                });
+            };
+
+            return el(Fragment, null,
+                el(InspectorControls, null,
+                    el(PanelBody, { title: "Overlay Content", initialOpen: true },
+                        el(TextControl, { label: "Heading (H3)", value: h3, onChange: (v) => setAttributes({ h3: v }) }),
+                        el(TextControl, { label: "Bullet 1", value: item1, onChange: (v) => setAttributes({ item1: v }) }),
+                        el(TextControl, { label: "Bullet 2", value: item2, onChange: (v) => setAttributes({ item2: v }) }),
+                        el(TextControl, { label: "Bullet 3", value: item3, onChange: (v) => setAttributes({ item3: v }) }),
+                        el(TextControl, { label: "Bullet 4", value: item4, onChange: (v) => setAttributes({ item4: v }) })
+                    ),
+                    el(PanelBody, { title: "Image", initialOpen: true },
+                        el(MediaUploadCheck, null,
+                            el(MediaUpload, {
+                                onSelect: onSelectImage,
+                                allowedTypes: ["image"],
+                                value: imageId,
+                                render: ({ open }) => el(Fragment, null,
+                                    displayUrl
+                                        ? el("div", { style: { marginBottom: "12px" } },
+                                            el("img", { src: displayUrl, alt: "", style: { width: "100%", height: "auto", maxHeight: "180px", objectFit: "cover", borderRadius: "4px" } }),
+                                            el("div", { style: { marginTop: "8px", display: "flex", gap: "8px" } },
+                                                el(Button, { variant: "secondary", onClick: open }, image ? "Replace image" : "Change image"),
+                                                image ? el(Button, { isDestructive: true, variant: "link", onClick: onRemoveImage }, "Remove") : null
+                                            )
+                                        )
+                                        : el(Button, { variant: "secondary", onClick: open }, "Upload image")
+                                )
+                            })
+                        )
+                    )
+                ),
+                el("div", blockProps,
+                    el("div", {
+                        style: { background: "#ccc", height: "200px", marginBottom: "16px", display: "flex", alignItems: "center", justifyContent: "center", color: "#666", overflow: "hidden" }
+                    },
+                        displayUrl
+                            ? el("img", { src: displayUrl, alt: "", style: { width: "100%", height: "100%", objectFit: "cover" } })
+                            : el(MediaUploadCheck, null,
+                                el(MediaUpload, {
+                                    onSelect: onSelectImage,
+                                    allowedTypes: ["image"],
+                                    value: imageId,
+                                    render: ({ open }) => el(Button, { variant: "secondary", onClick: open, style: { margin: "auto" } }, "Upload section image")
+                                })
+                            )
+                    ),
+                    el("div", { style: { background: "#ff5c00", padding: "24px" } },
+                        el("p", { style: { color: "#fff", fontWeight: 700, fontSize: "16px", margin: "0 0 8px" } }, h3),
+                        [item1, item2, item3, item4].filter(Boolean).map((item, i) =>
+                            el("p", { key: i, style: { color: "#fff", fontSize: "13px", margin: "4px 0" } }, "\u2713 ", item)
+                        )
+                    )
+                )
+            );
+        },
+        save: () => null,
+    });
+})();

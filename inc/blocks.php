@@ -215,6 +215,11 @@ function my_theme_register_blocks(): void
             ['in_footer' => true]
         );
 
+        if ($block_name === 'comp-warranty-overlay') {
+            $fallback_url = my_theme_get_image_url('my_theme_comp_warranty_image', get_theme_file_uri('assets/images/Compliance/waranty-coverage.webp'));
+            wp_add_inline_script($handle, 'window.goliathCompWarrantyFallback=' . wp_json_encode($fallback_url) . ';', 'before');
+        }
+
         // Register the block with the compiled script + PHP render callback.
         register_block_type(
             $block_json,
