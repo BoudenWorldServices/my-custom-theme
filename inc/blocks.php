@@ -175,6 +175,18 @@ function my_theme_register_blocks(): void
         'cs-solution',
         'cs-results',
         'cs-testimonial-cta',
+
+        // ── Case Studies Hub ─────────────────────────────────────────
+        'cs-hub-hero',
+        'cs-hub-list',
+        'cs-hub-cta',
+
+        // ── Video CPT ─────────────────────────────────────────────────
+        'vid-hero',
+        'vid-player',
+        'vid-related',
+        'vid-content',
+        'vid-cta',
     ];
 
     foreach ($block_dirs as $block_name) {

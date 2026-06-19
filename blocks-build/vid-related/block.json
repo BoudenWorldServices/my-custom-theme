@@ -1,0 +1,15 @@
+{
+  "apiVersion": 3,
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "name": "goliath/vid-related",
+  "title": "Video – Related Videos",
+  "category": "theme",
+  "icon": "video-alt3",
+  "description": "Displays related video posts in a grid (auto-populated from Video CPT).",
+  "attributes": {},
+  "supports": {
+    "html": false,
+    "multiple": false
+  },
+  "render": "file:./render.php"
+}

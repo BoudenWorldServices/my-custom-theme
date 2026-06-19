@@ -1,0 +1,30 @@
+{
+  "apiVersion": 3,
+  "name": "goliath/vid-cta",
+  "title": "Video CTA",
+  "category": "goliath",
+  "description": "Orange background call-to-action section for video pages.",
+  "textdomain": "my-custom-theme",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Schedule Live Demo"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "/contact/"
+    }
+  },
+  "supports": {
+    "html": false
+  },
+  "render": "file:./render.php"
+}

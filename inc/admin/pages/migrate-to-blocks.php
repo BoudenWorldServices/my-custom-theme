@@ -713,6 +713,7 @@ function my_theme_migrate_markup_damage_prevention(): string
 
     $m .= my_theme_block('goliath/svc-cards-grid', [
         'heading' => my_theme_opt('my_theme_svc_prevention_costly_h2', 'Prevent Pallet Racking Damage Before It Becomes Costly'),
+        'introSpacing' => '8',
         'introParagraphs' => [
             my_theme_opt('my_theme_svc_prevention_costly_p1', 'Many warehouse supervisors search for racking repairs in the UK after significant damage has already occurred. Every one of these reactive incidents carries direct repair costs and a wider operational impact.'),
             my_theme_opt('my_theme_svc_prevention_costly_p2', 'It is critical to ensure your upright is protected against forklift impacts because even minor collisions can lead to:'),
@@ -955,6 +956,8 @@ function my_theme_migrate_markup_reconfiguration(): string
     ]);
 
     $m .= my_theme_block('goliath/svc-two-articles', [
+        'layout' => 'grid',
+        'introText' => my_theme_opt('my_theme_svc_reconfig_intro', 'Our racking reconfiguration services allow you to change your existing storage system without fully replacing it. Our process minimises disruption and maintains operation.'),
         'article1Icon' => get_theme_file_uri('assets/images/icons/svc-speed-icon.svg'),
         'article1Heading' => my_theme_opt('my_theme_svc_reconfig_flex_h2', 'Flexible Racking Relocation and Redesign'),
         'article1Paragraphs' => [
@@ -977,7 +980,6 @@ function my_theme_migrate_markup_reconfiguration(): string
         'image1Alt' => 'Warehouse aisle after racking reconfiguration',
         'image2' => $img_right,
         'image2Alt' => 'Reconfigured warehouse rack upright with reinforcement',
-        'introText' => my_theme_opt('my_theme_svc_reconfig_intro', 'Our racking reconfiguration services allow you to change your existing storage system without fully replacing it. Our process minimises disruption and maintains operation.'),
     ]);
 
     $m .= my_theme_block('goliath/svc-dark-section', [
@@ -1589,6 +1591,106 @@ function my_theme_migrate_case_studies(): array
 }
 
 /* ================================================================== */
+/*  Video CPT migration                                                */
+/* ================================================================== */
+
+function my_theme_migrate_video_markup(string $slug, array $video): string
+{
+    $title_raw = trim((string) ($video['title'] ?? 'Video'));
+    $parts     = preg_split('/\s+/', $title_raw, 2);
+    $orange    = $parts[0] ?? $title_raw;
+    $white     = $parts[1] ?? '';
+
+    $video_file = $video['file'] ?? '';
+    if (function_exists('my_theme_is_video_url') && my_theme_is_video_url($video_file)) {
+        $video_url = $video_file;
+    } else {
+        $video_url = get_theme_file_uri('assets/videos/' . $video_file);
+    }
+
+    $hero_attrs = wp_json_encode([
+        'label'       => 'Featured Video',
+        'titleOrange' => $orange,
+        'titleWhite'  => $white,
+        'description' => 'Watch Goliath in action and learn everything you need to know about warehouse racking safety, compliance, and cost-effective repair solutions.',
+    ], JSON_UNESCAPED_UNICODE);
+
+    $player_attrs = wp_json_encode([
+        'videoUrl'    => $video_url,
+        'posterUrl'   => '',
+        'heading'     => $video['title'] ?? '',
+        'description' => $video['excerpt'] ?? '',
+    ], JSON_UNESCAPED_UNICODE);
+
+    $tm = "\xe2\x84\xa2"; // UTF-8 trademark symbol ™
+
+    $content_attrs = wp_json_encode([
+        'headingBlack'  => 'What the Goliath' . $tm,
+        'headingOrange' => 'Video Series Covers',
+        'introText'     => 'The Goliath' . $tm . ' videos provide clear, practical insight into:',
+        'bulletPoints'  => [
+            'Why repeated upright replacement leads to ongoing costs and disruption',
+            'How Goliath' . $tm . ' differs from standard pallet racking repair',
+            'The installation process in live warehouse environments',
+            'How damaged uprights are cut, reinforced, and fixed on site',
+            'How Goliath' . $tm . ' supports safety, compliance, and long-term cost control',
+        ],
+        'closingText' => 'Each video is designed to be easy to understand and relevant to real-world warehouse operations.',
+    ], JSON_UNESCAPED_UNICODE);
+
+    $cta_attrs = wp_json_encode([
+        'heading'     => 'Ready to See Goliath in Your Warehouse?',
+        'description' => 'Book a free on-site demonstration and see first-hand how Goliath' . $tm . ' can improve your racking maintenance.',
+        'buttonText'  => 'Schedule Live Demo',
+        'buttonUrl'   => '/contact/',
+    ], JSON_UNESCAPED_UNICODE);
+
+    $markup  = "<!-- wp:goliath/vid-hero " . $hero_attrs . " /-->\n\n";
+    $markup .= "<!-- wp:goliath/vid-player " . $player_attrs . " /-->\n\n";
+    $markup .= "<!-- wp:goliath/vid-related /-->\n\n";
+    $markup .= "<!-- wp:goliath/vid-content " . $content_attrs . " /-->\n\n";
+    $markup .= "<!-- wp:goliath/vid-cta " . $cta_attrs . " /-->";
+
+    return $markup;
+}
+
+function my_theme_migrate_videos(): array
+{
+    $library = my_theme_get_video_library();
+    $results = [];
+
+    foreach ($library as $slug => $video) {
+        $existing = get_page_by_path($slug, OBJECT, 'video');
+        if ($existing) {
+            $results[$slug] = ['success' => false, 'message' => "Video \"{$slug}\" already exists (ID {$existing->ID}) - skipped."];
+            continue;
+        }
+
+        $markup = my_theme_migrate_video_markup($slug, $video);
+
+        $post_id = wp_insert_post([
+            'post_type'    => 'video',
+            'post_title'   => $video['title'] ?? $slug,
+            'post_name'    => $slug,
+            'post_status'  => 'publish',
+            'post_content' => $markup,
+            'post_excerpt' => $video['excerpt'] ?? '',
+            'menu_order'   => 0,
+        ], true);
+
+        if (is_wp_error($post_id)) {
+            $results[$slug] = ['success' => false, 'message' => $post_id->get_error_message()];
+            continue;
+        }
+
+        $title = $video['title'] ?? $slug;
+        $results[$slug] = ['success' => true, 'message' => "Video \"{$title}\" migrated as CPT post (ID {$post_id})."];
+    }
+
+    return $results;
+}
+
+/* ================================================================== */
 /*  AJAX handler for per-page migration                                */
 /* ================================================================== */
 
@@ -1608,6 +1710,15 @@ add_action('admin_post_goliath_migrate_page', function (): void {
 
     if ($page_key === 'case-studies-cpt') {
         $results = my_theme_migrate_case_studies();
+        $all_ok  = !empty($results) && !in_array(false, array_column($results, 'success'), true);
+        $msg     = implode('; ', array_column($results, 'message'));
+        set_transient('goliath_migrate_notice', ['type' => $all_ok ? 'success' : 'warning', 'msg' => $msg], 30);
+        wp_safe_redirect(admin_url('admin.php?page=goliath-migrate-to-blocks'));
+        exit;
+    }
+
+    if ($page_key === 'videos-cpt') {
+        $results = my_theme_migrate_videos();
         $all_ok  = !empty($results) && !in_array(false, array_column($results, 'success'), true);
         $msg     = implode('; ', array_column($results, 'message'));
         set_transient('goliath_migrate_notice', ['type' => $all_ok ? 'success' : 'warning', 'msg' => $msg], 30);
@@ -1719,6 +1830,35 @@ function my_theme_migrate_render_page(): void
             <button type="submit" class="button button-primary"
                 <?php echo ($cpt_count >= $lib_count && $lib_count > 0) ? 'disabled' : ''; ?>>
                 Migrate Case Studies to CPT
+            </button>
+        </form>
+
+        <!-- Videos CPT migration -->
+        <?php
+        $vid_lib_count = count(my_theme_get_video_library());
+        $vid_cpt_count = (int) wp_count_posts('video')->publish;
+        ?>
+        <h2 style="margin-top:2em;">Videos (Custom Post Type)</h2>
+        <p>
+            Migrates all videos from the theme library to individual CPT posts editable in Gutenberg.<br>
+            <?php if ($vid_cpt_count > 0) : ?>
+                <strong style="color:#2271b1;"><?php echo esc_html($vid_cpt_count); ?> video post(s) already exist.</strong>
+                <?php if ($vid_cpt_count >= $vid_lib_count) : ?>
+                    All videos have been migrated.
+                <?php else : ?>
+                    <?php echo esc_html($vid_lib_count - $vid_cpt_count); ?> remaining.
+                <?php endif; ?>
+            <?php else : ?>
+                <strong><?php echo esc_html($vid_lib_count); ?> video(s) in the library ready to migrate.</strong>
+            <?php endif; ?>
+        </p>
+        <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+            <?php wp_nonce_field('goliath_migrate'); ?>
+            <input type="hidden" name="action" value="goliath_migrate_page">
+            <input type="hidden" name="page_key" value="videos-cpt">
+            <button type="submit" class="button button-primary"
+                <?php echo ($vid_cpt_count >= $vid_lib_count && $vid_lib_count > 0) ? 'disabled' : ''; ?>>
+                Migrate Videos to CPT
             </button>
         </form>
 

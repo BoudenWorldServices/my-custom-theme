@@ -1,0 +1,34 @@
+{
+    "apiVersion": 3,
+    "name": "goliath/vid-content",
+    "title": "Video Content",
+    "category": "goliath",
+    "description": "Supporting text section with heading, intro, bullet list, and closing paragraph.",
+    "textdomain": "my-custom-theme",
+    "attributes": {
+        "headingBlack": {
+            "type": "string",
+            "default": ""
+        },
+        "headingOrange": {
+            "type": "string",
+            "default": ""
+        },
+        "introText": {
+            "type": "string",
+            "default": ""
+        },
+        "bulletPoints": {
+            "type": "array",
+            "default": []
+        },
+        "closingText": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "supports": {
+        "html": false
+    },
+    "render": "file:./render.php"
+}

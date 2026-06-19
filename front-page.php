@@ -9,7 +9,7 @@ if ($front_page_id > 0 && has_blocks(get_post($front_page_id))) {
     global $post;
     $post = get_post($front_page_id); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
     setup_postdata($post);
-    echo '<main class="w-full bg-white overflow-x-hidden">';
+    echo '<main class="w-full max-w-[1440px] mx-auto">';
     the_content();
     echo '</main>';
     wp_reset_postdata();

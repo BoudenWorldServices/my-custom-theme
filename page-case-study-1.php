@@ -3,13 +3,19 @@
 Template Name: Case Study 1 Page
 */
 
-// Redirect permanently to the dynamic case study detail page.
-if (!headers_sent()) {
-    wp_redirect(home_url('/case-studies/bm-racking-damage/'), 301);
-    exit;
-}
-
 get_header();
+
+// If this page has Gutenberg blocks, render the block editor content.
+$_current_page = get_queried_object();
+if ($_current_page instanceof WP_Post && has_blocks($_current_page)) {
+    setup_postdata($_current_page);
+    echo "<main class=\"w-full bg-white overflow-x-hidden\">";
+    the_content();
+    echo "</main>";
+    wp_reset_postdata();
+    get_footer();
+    return;
+}
 
 $assets = [
     'warehouse_photo'   => get_theme_file_uri('assets/images/caseStudy/case-study1/B&Mcase.webp'),

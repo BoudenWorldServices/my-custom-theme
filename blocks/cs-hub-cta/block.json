@@ -1,0 +1,30 @@
+{
+  "apiVersion": 3,
+  "name": "goliath/cs-hub-cta",
+  "title": "Case Studies Hub CTA",
+  "category": "goliath",
+  "description": "Orange CTA section for the case studies hub page.",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Ready to Write Your Success Story?"
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaText": {
+      "type": "string",
+      "default": "Book Free Assessment"
+    },
+    "ctaUrl": {
+      "type": "string",
+      "default": "/contact/"
+    }
+  },
+  "supports": {
+    "html": false,
+    "multiple": false
+  }
+}

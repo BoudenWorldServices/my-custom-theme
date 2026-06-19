@@ -1,0 +1,30 @@
+{
+    "apiVersion": 3,
+    "name": "goliath/vid-hero",
+    "title": "Video Hero",
+    "category": "goliath",
+    "description": "Video detail page hero with gradient background, label, title, and description.",
+    "textdomain": "my-custom-theme",
+    "attributes": {
+        "label": {
+            "type": "string",
+            "default": "Featured Video"
+        },
+        "titleOrange": {
+            "type": "string",
+            "default": ""
+        },
+        "titleWhite": {
+            "type": "string",
+            "default": ""
+        },
+        "description": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "supports": {
+        "html": false
+    },
+    "render": "file:./render.php"
+}

@@ -82,9 +82,134 @@ function my_theme_register_case_study_cpt(): void
         'supports'      => ['title', 'editor', 'thumbnail', 'custom-fields', 'page-attributes', 'excerpt'],
         'menu_icon'     => 'dashicons-portfolio',
         'menu_position' => 5,
+        'template'      => [
+            ['goliath/cs-hero', [
+                'client' => '',
+                'intro'  => '',
+            ]],
+            ['goliath/cs-problem', [
+                'title'          => '',
+                'problemText'    => '',
+                'problemCallout' => '',
+                'triedText'      => '',
+                'triedCallout'   => '',
+            ]],
+            ['goliath/cs-solution', [
+                'video'           => '',
+                'solutionText'    => '',
+                'solutionCallout' => '',
+            ]],
+            ['goliath/cs-results', [
+                'resultsImage' => '',
+                'resultsIntro' => '',
+                'result1Title' => '',
+                'result1Text'  => '',
+                'result2Title' => '',
+                'result2Text'  => '',
+                'result3Title' => '',
+                'result3Text'  => '',
+                'result4Title' => '',
+                'result4Text'  => '',
+                'warrantyText' => '',
+            ]],
+            ['goliath/cs-testimonial-cta', [
+                'client'      => '',
+                'quote'       => '',
+                'attribution' => '',
+                'ctaText'     => 'Get Similar Results',
+                'ctaUrl'      => '/contact/',
+            ]],
+        ],
+        'template_lock' => false,
     ]);
 }
 add_action('init', 'my_theme_register_case_study_cpt');
+
+function my_theme_register_case_study_meta(): void
+{
+    $meta_fields = [
+        '_cs_client', '_cs_challenge', '_cs_solution', '_cs_image',
+        '_cs_metric_1_value', '_cs_metric_1_label',
+        '_cs_metric_2_value', '_cs_metric_2_label',
+        '_cs_metric_3_value', '_cs_metric_3_label',
+        '_cs_seo_title', '_cs_seo_desc',
+    ];
+
+    foreach ($meta_fields as $key) {
+        register_post_meta('case-study', $key, [
+            'show_in_rest'  => true,
+            'single'        => true,
+            'type'          => 'string',
+            'auth_callback' => fn() => current_user_can('edit_posts'),
+        ]);
+    }
+}
+add_action('init', 'my_theme_register_case_study_meta');
+
+/* ------------------------------------------------------------------ */
+/*  Video CPT                                                          */
+/* ------------------------------------------------------------------ */
+
+function my_theme_register_video_cpt(): void
+{
+    register_post_type('video', [
+        'labels' => [
+            'name'               => 'Videos',
+            'singular_name'      => 'Video',
+            'add_new'            => 'Add New',
+            'add_new_item'       => 'Add New Video',
+            'edit_item'          => 'Edit Video',
+            'new_item'           => 'New Video',
+            'view_item'          => 'View Video',
+            'search_items'       => 'Search Videos',
+            'not_found'          => 'No videos found',
+            'not_found_in_trash' => 'No videos found in trash',
+        ],
+        'public'        => true,
+        'has_archive'   => false,
+        'rewrite'       => ['slug' => 'videos', 'with_front' => false],
+        'show_in_rest'  => true,
+        'supports'      => ['title', 'editor', 'thumbnail', 'custom-fields', 'excerpt'],
+        'menu_icon'     => 'dashicons-video-alt3',
+        'menu_position' => 6,
+        'template'      => [
+            ['goliath/vid-hero', [
+                'label'       => 'Featured Video',
+                'titleOrange' => '',
+                'titleWhite'  => '',
+                'description' => 'Watch Goliath in action and learn everything you need to know about warehouse racking safety, compliance, and cost-effective repair solutions.',
+            ]],
+            ['goliath/vid-player', [
+                'videoUrl'    => '',
+                'posterUrl'   => '',
+                'heading'     => '',
+                'description' => '',
+            ]],
+            ['goliath/vid-related', []],
+            ['goliath/vid-content', [
+                'headingBlack'  => "What the Goliath\xe2\x84\xa2",
+                'headingOrange' => 'Video Series Covers',
+                'introText'     => "The Goliath\xe2\x84\xa2 videos provide clear, practical insight into:",
+                'bulletPoints'  => [
+                    'Why repeated upright replacement leads to ongoing costs and disruption',
+                    "How Goliath\xe2\x84\xa2 differs from standard pallet racking repair",
+                    'The installation process in live warehouse environments',
+                    'How damaged uprights are cut, reinforced, and fixed on site',
+                    "How Goliath\xe2\x84\xa2 supports safety, compliance, and long-term cost control",
+                ],
+                'closingText' => 'Each video is designed to be easy to understand and relevant to real-world warehouse operations.',
+            ]],
+            ['goliath/vid-cta', [
+                'heading'     => 'Ready to See Goliath in Your Warehouse?',
+                'description' => "Book a free on-site demonstration and see first-hand how Goliath\xe2\x84\xa2 can improve your racking maintenance.",
+                'buttonText'  => 'Schedule Live Demo',
+                'buttonUrl'   => '/contact/',
+            ]],
+        ],
+        'template_lock' => false,
+    ]);
+}
+add_action('init', 'my_theme_register_video_cpt');
 
 /**
  * Flush rewrite rules once after the CPT is registered.
@@ -619,7 +744,12 @@ function my_theme_route_static_pages(): void
     $request_uri_raw = isset($_SERVER['REQUEST_URI']) ? (string) wp_unslash($_SERVER['REQUEST_URI']) : '';
     if (preg_match('#/(?:index\.php/)?(?:videos|video)/([^/?\#]+)/?#', $request_uri_raw, $m)) {
         $video_slug = sanitize_title($m[1]);
-        $library    = my_theme_get_video_library();
+        // If a Video CPT post exists for this slug, let WP handle it via single-video.php.
+        $cpt_post = get_page_by_path($video_slug, OBJECT, 'video');
+        if ($cpt_post) {
+            return;
+        }
+        $library = my_theme_get_video_library();
         if (isset($library[ $video_slug ])) {
             $GLOBALS['my_theme_video_detail_slug'] = $video_slug;
             $template_path = get_theme_file_path('page-video-detail.php');
@@ -641,7 +771,12 @@ function my_theme_route_static_pages(): void
     // Robust dynamic video detail routing (handles index.php-prefixed paths too).
     if (preg_match('#^(?:index\.php/)?(?:videos|video)/([^/]+)$#', $path, $m)) {
         $video_slug = sanitize_title($m[1]);
-        $library    = my_theme_get_video_library();
+        // If a Video CPT post exists, let WP handle it.
+        $cpt_post = get_page_by_path($video_slug, OBJECT, 'video');
+        if ($cpt_post) {
+            return;
+        }
+        $library = my_theme_get_video_library();
         if (isset($library[ $video_slug ])) {
             $GLOBALS['my_theme_video_detail_slug'] = $video_slug;
             $template_path = get_theme_file_path('page-video-detail.php');
@@ -689,6 +824,10 @@ function my_theme_route_static_pages(): void
     ];
 
     foreach (array_keys(my_theme_get_video_library()) as $video_slug) {
+        // Skip if a Video CPT post exists for this slug (handled by WP template hierarchy).
+        if (get_page_by_path($video_slug, OBJECT, 'video')) {
+            continue;
+        }
         $routes[ 'videos/' . $video_slug ] = 'page-video-detail.php';
         $routes[ 'video/' . $video_slug ]  = 'page-video-detail.php';
     }
