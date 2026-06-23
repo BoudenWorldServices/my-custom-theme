@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/cs-image-row",
+  "title": "Case Study – Image Row",
+  "description": "One or two images displayed side by side with optional captions. Use for before/after comparisons, installation shots, or product images within a case study.",
+  "category": "goliath",
+  "icon": "format-image",
+  "keywords": [
+    "case study",
+    "image",
+    "photo",
+    "before after",
+    "gallery"
+  ],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "layout": {
+      "type": "string",
+      "enum": ["single", "two-column"],
+      "default": "single"
+    },
+    "image1Url": {
+      "type": "string",
+      "default": ""
+    },
+    "image1Alt": {
+      "type": "string",
+      "default": ""
+    },
+    "image1Caption": {
+      "type": "string",
+      "default": ""
+    },
+    "image2Url": {
+      "type": "string",
+      "default": ""
+    },
+    "image2Alt": {
+      "type": "string",
+      "default": ""
+    },
+    "image2Caption": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

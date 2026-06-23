@@ -175,6 +175,10 @@ function my_theme_register_blocks(): void
         'cs-solution',
         'cs-results',
         'cs-testimonial-cta',
+        'cs-metrics-row',
+        'cs-content-section',
+        'cs-image-row',
+        'cs-inline-quote',
 
         // ── Case Studies Hub ─────────────────────────────────────────
         'cs-hub-hero',

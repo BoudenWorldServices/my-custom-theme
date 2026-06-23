@@ -5,13 +5,22 @@ import metadata from './block.json';
 
 registerBlockType(metadata.name, {
     edit({ attributes, setAttributes }) {
-        const { video, solutionText, solutionCallout } = attributes;
+        const { sectionTitle, video, solutionText, solutionCallout } = attributes;
         const blockProps = useBlockProps({ style: { background: '#fff', padding: '32px', display: 'flex', gap: '24px', alignItems: 'flex-start' } });
 
         return (
             <>
                 <InspectorControls>
-                    <PanelBody title="Solution Video (optional)" initialOpen={true}>
+                    <PanelBody title="Section Heading" initialOpen={true}>
+                        <TextControl
+                            label="Section title"
+                            value={sectionTitle}
+                            onChange={(val) => setAttributes({ sectionTitle: val })}
+                            placeholder="e.g. The Solution: Goliath™"
+                            help="The orange heading displayed at the top of this section."
+                        />
+                    </PanelBody>
+                    <PanelBody title="Solution Video (optional)" initialOpen={false}>
                         <MediaUploadCheck>
                             <MediaUpload
                                 onSelect={(media) => setAttributes({ video: media.url })}
@@ -62,7 +71,7 @@ registerBlockType(metadata.name, {
                         </div>
                     )}
                     <div style={{ flex: 1 }}>
-                        <p style={{ color: '#ff5c00', fontWeight: 700, fontSize: '22px', margin: '0 0 12px' }}>The Solution: Goliath™</p>
+                        <p style={{ color: '#ff5c00', fontWeight: 700, fontSize: '22px', margin: '0 0 12px' }}>{sectionTitle || 'The Solution: Goliath™'}</p>
                         <p style={{ color: '#555', fontSize: '14px', margin: 0 }}>{solutionText || '(solution text — edit in sidebar)'}</p>
                         {solutionCallout && (
                             <div style={{ marginTop: '16px', background: '#ff6b2c', padding: '16px 24px' }}>

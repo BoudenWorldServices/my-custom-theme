@@ -153,7 +153,7 @@ function my_theme_footer_default_quick_links(): array
         ['label' => 'Compliance',    'url' => '/compliance/'],
         ['label' => 'FAQs',          'url' => '/faq/'],
         ['label' => 'Case Studies',  'url' => '/case-studies/'],
-        ['label' => 'About Us',      'url' => '/about/'],
+        ['label' => 'About',         'url' => '/about/'],
     ];
 }
 

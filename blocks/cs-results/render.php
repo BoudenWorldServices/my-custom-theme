@@ -14,6 +14,7 @@
 
 declare(strict_types=1);
 
+$section_title = (string) ($attributes['sectionTitle'] ?? 'The Results');
 $results_image = (string) ($attributes['resultsImage'] ?? '');
 $results_intro = (string) ($attributes['resultsIntro'] ?? '');
 $warranty_text = (string) ($attributes['warrantyText'] ?? '');
@@ -59,7 +60,7 @@ if ($results_image === '' && $results_intro === '' && empty($result_cards) && $w
         <?php endif; ?>
 
         <div class="mt-10 lg:mt-[60px]">
-            <h2 class="font-montserrat text-[32px] font-bold leading-[40px] text-[#020202] lg:text-[36px] lg:leading-[44px]">The Results</h2>
+            <h2 class="font-montserrat text-[32px] font-bold leading-[40px] text-[#020202] lg:text-[36px] lg:leading-[44px]"><?php echo esc_html($section_title); ?></h2>
 
             <?php if ($results_intro !== '') : ?>
                 <p class="mt-6 max-w-[1024px] font-roboto text-[18px] font-normal leading-[28px] text-[#364153]">

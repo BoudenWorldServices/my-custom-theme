@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/cs-inline-quote",
+  "title": "Case Study – Inline Quote",
+  "description": "A mid-page pull quote with a large orange opening quotation mark. Use to drop a client quote into the narrative without triggering the full closing CTA block.",
+  "category": "goliath",
+  "icon": "format-quote",
+  "keywords": [
+    "case study",
+    "quote",
+    "testimonial",
+    "pull quote"
+  ],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "quote": {
+      "type": "string",
+      "default": ""
+    },
+    "attribution": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

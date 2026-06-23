@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/cs-content-section",
+  "title": "Case Study – Content Section",
+  "description": "Flexible reusable content section with an editable heading, body text, optional orange callout bar, and an optional image (left or right). Use for any narrative section: Challenge, Approach, What We Replaced, etc.",
+  "category": "goliath",
+  "icon": "editor-alignleft",
+  "keywords": [
+    "case study",
+    "content",
+    "section",
+    "text",
+    "image"
+  ],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "body": {
+      "type": "string",
+      "default": ""
+    },
+    "callout": {
+      "type": "string",
+      "default": ""
+    },
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "imagePosition": {
+      "type": "string",
+      "enum": ["none", "left", "right"],
+      "default": "none"
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

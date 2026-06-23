@@ -14,6 +14,10 @@
   "textdomain": "my-custom-theme",
   "render": "file:./render.php",
   "attributes": {
+    "sectionTitle": {
+      "type": "string",
+      "default": "The Solution: Goliath™"
+    },
     "video": {
       "type": "string",
       "default": ""
@@ -29,7 +33,6 @@
   },
   "supports": {
     "html": false,
-    "align": false,
-    "multiple": false
+    "align": false
   }
 }

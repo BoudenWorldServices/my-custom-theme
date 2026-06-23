@@ -94,12 +94,31 @@ function my_theme_register_case_study_cpt(): void
                 'triedText'      => '',
                 'triedCallout'   => '',
             ]],
+            ['goliath/cs-metrics-row', [
+                'metric1Value' => '',
+                'metric1Label' => '',
+                'metric2Value' => '',
+                'metric2Label' => '',
+                'metric3Value' => '',
+                'metric3Label' => '',
+            ]],
+            ['goliath/cs-content-section', [
+                'heading'       => 'The Solution: Goliath™',
+                'body'          => '',
+                'callout'       => '',
+                'imagePosition' => 'none',
+            ]],
+            ['goliath/cs-image-row', [
+                'layout' => 'single',
+            ]],
             ['goliath/cs-solution', [
+                'sectionTitle'    => 'The Solution: Goliath™',
                 'video'           => '',
                 'solutionText'    => '',
                 'solutionCallout' => '',
             ]],
             ['goliath/cs-results', [
+                'sectionTitle' => 'The Results',
                 'resultsImage' => '',
                 'resultsIntro' => '',
                 'result1Title' => '',
@@ -111,6 +130,10 @@ function my_theme_register_case_study_cpt(): void
                 'result4Title' => '',
                 'result4Text'  => '',
                 'warrantyText' => '',
+            ]],
+            ['goliath/cs-inline-quote', [
+                'quote'       => '',
+                'attribution' => '',
             ]],
             ['goliath/cs-testimonial-cta', [
                 'client'      => '',
@@ -507,6 +530,7 @@ function my_theme_resolve_static_document_title(): string
         'videos'                          => 'Videos | ' . $brand,
         'video'                           => 'Videos | ' . $brand,
         'case-studies'                    => 'Case studies | ' . $brand,
+        'about'                           => 'About Goliath™ | ' . $brand,
     ];
 
     if (isset($map[ $path ])) {
@@ -546,6 +570,11 @@ function my_theme_filter_pre_get_document_title(string $title): string
     if (is_front_page()) {
         $brand = function_exists('my_theme_organization_name') ? my_theme_organization_name() : 'Goliath Pallet Racking Repair Ltd';
         return 'Permanent Racking Upright Repair | ' . $brand . ' | UK & EU';
+    }
+
+    if (is_404()) {
+        $brand = function_exists('my_theme_organization_name') ? my_theme_organization_name() : 'Goliath Pallet Racking Repair Ltd';
+        return 'Page not found | ' . $brand;
     }
 
     // Case study CPT single posts: use post title + brand.
@@ -663,6 +692,7 @@ function my_theme_get_seo_context(): array
         'case-studies'                    => 'Real results from UK warehouses using Goliath. See how clients reduced repair costs, eliminated downtime, and improved safety compliance.',
         'privacy-policy'                  => 'Privacy policy for Goliath Pallet Racking Repair Ltd. How we collect, use, and protect your personal information.',
         'terms-of-service'                => 'Terms and conditions for Goliath Pallet Racking Repair Ltd services, quotations, and website usage.',
+        'about'                           => 'Learn about Goliath Pallet Racking Repair Ltd — our mission, leadership team, and commitment to permanent, safety-led racking repair across the UK and EU.',
     ];
 
     $images = [
@@ -710,9 +740,10 @@ function my_theme_output_head_seo_tags(): void
         echo '<meta name="robots" content="index,follow">' . "\n";
     }
 
-    if (my_theme_is_rank_math_active()) {
-        return;
-    }
+    // Always output fallback meta/OG tags from the theme. Most pages on this site are
+    // virtual routes that Rank Math cannot introspect. If Rank Math is later configured,
+    // it fires at wp_head priority 1 (before this hook at priority 5), so its tags
+    // appear first in the <head> and search engines will use those over these fallbacks.
 
     $brand = function_exists('my_theme_organization_name') ? my_theme_organization_name() : 'Goliath Pallet Racking Repair Ltd';
 
@@ -950,18 +981,33 @@ function my_theme_get_sitemap_page_paths(): array
         'compliance',
         'contact',
         'case-studies',
-        'faqs',
+        'faq',
         'videos',
         'about',
         'privacy-policy',
         'terms-of-service',
     ];
 
+    // Legacy case study library (options-based).
     foreach (array_keys(my_theme_get_case_study_library()) as $cs_slug) {
         $paths[] = 'case-studies/' . $cs_slug;
     }
 
-    return $paths;
+    // CPT case study posts.
+    $cpt_posts = get_posts([
+        'post_type'      => 'case-study',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'fields'         => 'ids',
+    ]);
+    foreach ($cpt_posts as $post_id) {
+        $slug = get_post_field('post_name', $post_id);
+        if ($slug !== '') {
+            $paths[] = 'case-studies/' . $slug;
+        }
+    }
+
+    return array_values(array_unique($paths));
 }
 
 /**

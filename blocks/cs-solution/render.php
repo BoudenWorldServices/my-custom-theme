@@ -13,8 +13,9 @@
 
 declare(strict_types=1);
 
-$video_raw       = (string) ($attributes['video']           ?? '');
-$solution_text   = (string) ($attributes['solutionText']    ?? '');
+$section_title    = (string) ($attributes['sectionTitle']    ?? 'The Solution: Goliath™');
+$video_raw        = (string) ($attributes['video']           ?? '');
+$solution_text    = (string) ($attributes['solutionText']    ?? '');
 $solution_callout = (string) ($attributes['solutionCallout'] ?? '');
 
 // Resolve video value to a full URL (mirrors my_theme_resolve_case_study_video).
@@ -56,7 +57,7 @@ if (! $has_video && $solution_text === '' && $solution_callout === '') {
         <?php endif; ?>
 
         <div class="w-full <?php echo $has_video ? 'lg:flex-1' : 'max-w-3xl'; ?>">
-            <h2 class="font-montserrat text-[34px] font-bold leading-[44px] text-[#ff5c00] lg:text-[42px] lg:leading-[52px]">The Solution: Goliath™</h2>
+            <h2 class="font-montserrat text-[34px] font-bold leading-[44px] text-[#ff5c00] lg:text-[42px] lg:leading-[52px]"><?php echo esc_html($section_title); ?></h2>
 
             <?php if ($solution_text !== '') : ?>
                 <?php

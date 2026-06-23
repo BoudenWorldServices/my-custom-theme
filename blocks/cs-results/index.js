@@ -5,13 +5,22 @@ import metadata from './block.json';
 
 registerBlockType(metadata.name, {
     edit({ attributes, setAttributes }) {
-        const { resultsImage, resultsIntro, result1Title, result1Text, result2Title, result2Text, result3Title, result3Text, result4Title, result4Text, warrantyText } = attributes;
+        const { sectionTitle, resultsImage, resultsIntro, result1Title, result1Text, result2Title, result2Text, result3Title, result3Text, result4Title, result4Text, warrantyText } = attributes;
         const blockProps = useBlockProps({ style: { background: '#fff', padding: '32px' } });
 
         return (
             <>
                 <InspectorControls>
-                    <PanelBody title="Results Image & Intro" initialOpen={true}>
+                    <PanelBody title="Section Heading" initialOpen={true}>
+                        <TextControl
+                            label="Section title"
+                            value={sectionTitle}
+                            onChange={(val) => setAttributes({ sectionTitle: val })}
+                            placeholder="e.g. The Results"
+                            help="The heading displayed at the top of this section."
+                        />
+                    </PanelBody>
+                    <PanelBody title="Results Image & Intro" initialOpen={false}>
                         <MediaUploadCheck>
                             <MediaUpload
                                 onSelect={(media) => setAttributes({ resultsImage: media.url })}
@@ -74,7 +83,7 @@ registerBlockType(metadata.name, {
                     {resultsImage && (
                         <img src={resultsImage} alt="Results" style={{ width: '100%', height: '200px', objectFit: 'cover', marginBottom: '24px' }} />
                     )}
-                    <p style={{ fontWeight: 700, fontSize: '22px', color: '#020202', margin: '0 0 12px' }}>The Results</p>
+                    <p style={{ fontWeight: 700, fontSize: '22px', color: '#020202', margin: '0 0 12px' }}>{sectionTitle || 'The Results'}</p>
                     {resultsIntro && <p style={{ color: '#364153', fontSize: '14px', margin: '0 0 16px' }}>{resultsIntro}</p>}
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                         {[1, 2, 3, 4].map((n) => {

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/cs-metrics-row",
+  "title": "Case Study – Metrics Row",
+  "description": "A dark full-width strip displaying 2–4 key performance metrics. Each metric has a large orange value and a white label. Use to highlight headline results.",
+  "category": "goliath",
+  "icon": "chart-bar",
+  "keywords": [
+    "case study",
+    "metrics",
+    "stats",
+    "kpi",
+    "results"
+  ],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "metric1Value": {
+      "type": "string",
+      "default": ""
+    },
+    "metric1Label": {
+      "type": "string",
+      "default": ""
+    },
+    "metric2Value": {
+      "type": "string",
+      "default": ""
+    },
+    "metric2Label": {
+      "type": "string",
+      "default": ""
+    },
+    "metric3Value": {
+      "type": "string",
+      "default": ""
+    },
+    "metric3Label": {
+      "type": "string",
+      "default": ""
+    },
+    "metric4Value": {
+      "type": "string",
+      "default": ""
+    },
+    "metric4Label": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

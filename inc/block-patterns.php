@@ -128,5 +128,32 @@ function my_theme_register_block_patterns(): void
 <!-- wp:goliath/legal-document {"introText":"This Privacy Policy describes how Goliath Racking Repair (\"we\", \"us\", or \"our\") collects, uses, and shares information about you when you use our website or contact us for services.\n\nLast updated: January 2025","section1Heading":"1. Information We Collect","section1Body":"We collect information you provide directly to us, such as your name, company name, email address, and phone number when you fill in our contact form or book an assessment.\n\nWe also collect certain technical information automatically when you visit our website, including your IP address, browser type, and pages visited.","section2Heading":"2. How We Use Your Information","section2Body":"We use the information we collect to respond to your enquiries, arrange site assessments, provide quotes, and send service-related communications.\n\nWe do not sell your personal data to third parties.","section3Heading":"3. Your Rights","section3Body":"You have the right to request access to the personal data we hold about you, to have it corrected or deleted, and to withdraw consent for marketing communications at any time.\n\nTo exercise any of these rights, please contact us at the details below.","section4Heading":"4. Contact","section4Body":"For any questions about this policy or your personal data, please contact us by email or phone as listed on our Contact page."} /-->',
         ]
     );
+
+    /* ------------------------------------------------------------------ */
+    /*  6. Rich Case Study Page                                             */
+    /* ------------------------------------------------------------------ */
+    register_block_pattern(
+        'goliath/case-study-page',
+        [
+            'title'       => __('Rich Case Study Page', 'my-custom-theme'),
+            'description' => __('Full case study layout: hero, problem section, headline metrics strip, solution narrative with image, photo row, results section, mid-page client quote, and closing CTA.', 'my-custom-theme'),
+            'categories'  => ['goliath-page-templates'],
+            'content'     => '<!-- wp:goliath/cs-hero {"client":"Client Name","intro":"A one-sentence summary of the case study and the key outcome achieved."} /-->
+
+<!-- wp:goliath/cs-problem {"title":"Client Name — Case Study","problemText":"Describe the specific problem the client was facing. What was failing, how often, and what impact did it have on operations?\n\nProvide enough context for the reader to understand the scale and urgency of the situation.","problemCallout":"Across 397 damaged uprights, the scale of disruption — and the cost of conventional replacement — would have been substantial.","triedText":"Explain what the client had already tried or considered before finding Goliath. This builds credibility and shows why a specialist solution was needed.\n\nInclude any quotes, figures, or context that illustrates the limitations of those previous approaches.","triedCallout":"Conventional replacement meant sourcing XHD-compatible parts from an increasingly limited UK market — with weeks of lead time and thousands of pounds in costs."} /-->
+
+<!-- wp:goliath/cs-metrics-row {"metric1Value":"397","metric1Label":"Uprights repaired","metric2Value":"30 min","metric2Label":"Per installation","metric3Value":"100%","metric3Label":"Operational uptime maintained","metric4Value":"£380k","metric4Label":"Estimated saving vs replacement"} /-->
+
+<!-- wp:goliath/cs-content-section {"heading":"The Solution: Goliath™","body":"Describe how Goliath solved the problem. What was installed, how was it done, and what made it different from conventional alternatives?\n\nExplain the technical or operational details in plain language. Focus on what the client actually experienced on site.","callout":"Replacing individual uprights within a legacy XHD racking system is not simply a matter of ordering parts. The procurement lead times, import costs, and operational downtime can dwarf the cost of the steel itself. There had to be a better way.","imagePosition":"right"} /-->
+
+<!-- wp:goliath/cs-image-row {"layout":"two-column","image1Caption":"Installation in progress at the client\'s distribution centre.","image2Caption":"Completed repair — zero operational disruption."} /-->
+
+<!-- wp:goliath/cs-inline-quote {"quote":"Replacing individual uprights within a legacy XHD racking system is not simply a matter of ordering parts. The procurement lead times, import costs, and operational downtime can dwarf the cost of the steel itself. There had to be a better way.","attribution":"Warehouse Operations Manager"} /-->
+
+<!-- wp:goliath/cs-results {"sectionTitle":"The Results","resultsIntro":"Describe the measurable outcomes achieved after the Goliath solution was deployed. Focus on the most impactful results the client experienced.","result1Title":"Full Capacity Restored","result1Text":"All 397 damaged uprights repaired and certified — racking returned to full operational capacity.","result2Title":"Zero Downtime","result2Text":"The entire project was completed with no operational disruption to the warehouse during installation.","result3Title":"Cost Savings Realised","result3Text":"Estimated saving of £380,000 compared to a full racking replacement programme.","result4Title":"Compliance Achieved","result4Text":"Full SEMA compliance documentation provided for every repaired upright.","warrantyText":"Every Goliath repair is backed by our lifetime warranty — so the client has ongoing peace of mind long after the job is complete."} /-->
+
+<!-- wp:goliath/cs-testimonial-cta {"quote":"The Goliath team turned around a project that would have cost us weeks of downtime and hundreds of thousands of pounds. The results speak for themselves.","attribution":"Operations Director, Client Name","ctaText":"Get Similar Results","ctaUrl":"/contact/"} /-->',
+        ]
+    );
 }
 add_action('init', 'my_theme_register_block_patterns');
