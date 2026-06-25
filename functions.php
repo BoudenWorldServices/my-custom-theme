@@ -192,7 +192,7 @@ function my_theme_register_video_cpt(): void
         'has_archive'   => false,
         'rewrite'       => ['slug' => 'videos', 'with_front' => false],
         'show_in_rest'  => true,
-        'supports'      => ['title', 'editor', 'thumbnail', 'custom-fields', 'excerpt'],
+        'supports'      => ['title', 'editor', 'thumbnail', 'custom-fields', 'excerpt', 'page-attributes'],
         'menu_icon'     => 'dashicons-video-alt3',
         'menu_position' => 6,
         'template'      => [
@@ -233,6 +233,91 @@ function my_theme_register_video_cpt(): void
     ]);
 }
 add_action('init', 'my_theme_register_video_cpt');
+
+/**
+ * Video post meta for carousel section grouping.
+ */
+function my_theme_register_video_meta(): void
+{
+    register_post_meta('video', '_video_section', [
+        'show_in_rest'  => true,
+        'single'        => true,
+        'type'          => 'string',
+        'default'       => 'installation',
+        'auth_callback' => static fn (): bool => current_user_can('edit_posts'),
+    ]);
+}
+add_action('init', 'my_theme_register_video_meta');
+
+/**
+ * Sidebar control: which carousel section this video appears in on /videos/.
+ */
+function my_theme_video_section_meta_box(): void
+{
+    add_meta_box(
+        'my_theme_video_section',
+        'Videos Page Carousel',
+        'my_theme_render_video_section_meta_box',
+        'video',
+        'side',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'my_theme_video_section_meta_box');
+
+/**
+ * @param WP_Post $post Current video post.
+ */
+function my_theme_render_video_section_meta_box(WP_Post $post): void
+{
+    wp_nonce_field('my_theme_video_section_save', 'my_theme_video_section_nonce');
+    $current = my_theme_get_video_post_section($post->ID);
+    ?>
+    <p>
+        <label for="my_theme_video_section_field"><strong>Carousel section</strong></label>
+    </p>
+    <select name="my_theme_video_section_field" id="my_theme_video_section_field" class="widefat">
+        <option value="installation" <?php selected($current, 'installation'); ?>>Installation &amp; Product Demos</option>
+        <option value="safety" <?php selected($current, 'safety'); ?>>Safety &amp; Compliance</option>
+    </select>
+    <p class="description">Published videos appear automatically in the matching carousel on the Videos page.</p>
+    <?php
+}
+
+/**
+ * @param int $post_id Saved post ID.
+ */
+function my_theme_save_video_section_meta(int $post_id): void
+{
+    if (! isset($_POST['my_theme_video_section_nonce'])) {
+        return;
+    }
+
+    $nonce = sanitize_text_field(wp_unslash((string) $_POST['my_theme_video_section_nonce']));
+    if (! wp_verify_nonce($nonce, 'my_theme_video_section_save')) {
+        return;
+    }
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    if (! current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    if (get_post_type($post_id) !== 'video') {
+        return;
+    }
+
+    $section = sanitize_key((string) wp_unslash($_POST['my_theme_video_section_field'] ?? 'installation'));
+    if (! in_array($section, ['installation', 'safety'], true)) {
+        $section = 'installation';
+    }
+
+    update_post_meta($post_id, '_video_section', $section);
+}
+add_action('save_post_video', 'my_theme_save_video_section_meta');
 
 /**
  * Flush rewrite rules once after the CPT is registered.
@@ -1244,3 +1329,112 @@ function my_theme_provision_pages(): void
 }
 add_action('after_switch_theme', 'my_theme_provision_pages');
 add_action('admin_init', 'my_theme_provision_pages');
+
+/* ------------------------------------------------------------------ */
+/*  Auto-provision GXO case study CPT posts                            */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Create CPT posts for GXO case studies if they do not already exist.
+ *
+ * Version-gated so it only runs once per environment. Bump the version
+ * string when new case studies need seeding.
+ *
+ * Safe to re-run: existing posts are never overwritten.
+ */
+function my_theme_provision_case_studies(): void
+{
+    $version = '1.2';
+    if (get_option('my_theme_case_studies_version') === $version) {
+        return;
+    }
+
+    if (! function_exists('my_theme_get_case_study_defaults')) {
+        return;
+    }
+
+    if (! function_exists('my_theme_migrate_case_study_markup')) {
+        return;
+    }
+
+    $slugs_to_provision = [
+        'gxo-lowestoft-xhd-redirack',
+        'gxo-thrapston-primark-pss',
+    ];
+
+    // Use hardcoded defaults directly so GXO entries are always available,
+    // even if wp_options has a saved library that predates them.
+    $library   = my_theme_get_case_study_defaults();
+    $menu_order = 10;
+
+    foreach ($slugs_to_provision as $slug) {
+        if (! isset($library[$slug])) {
+            continue;
+        }
+
+        $cs = $library[$slug];
+
+        $existing = get_page_by_path($slug, OBJECT, 'case-study');
+        if ($existing) {
+            $menu_order++;
+            continue;
+        }
+
+        $markup  = my_theme_migrate_case_study_markup($slug, $cs);
+
+        $post_id = wp_insert_post([
+            'post_type'    => 'case-study',
+            'post_title'   => $cs['title'] ?? $slug,
+            'post_name'    => $slug,
+            'post_status'  => 'publish',
+            'post_content' => $markup,
+            'post_excerpt' => $cs['seo_desc'] ?? '',
+            'menu_order'   => $menu_order,
+        ], true);
+
+        if (is_wp_error($post_id)) {
+            $menu_order++;
+            continue;
+        }
+
+        // Derive listing card summaries from the first paragraphs of narrative fields.
+        $problem_paras  = array_filter(array_map('trim', explode("\n\n", $cs['problem_text'] ?? '')));
+        $solution_paras = array_filter(array_map('trim', explode("\n\n", $cs['solution_text'] ?? '')));
+        $challenge_summary = reset($problem_paras)  ?: ($cs['challenge'] ?? '');
+        $solution_summary  = reset($solution_paras) ?: ($cs['solution'] ?? '');
+
+        $default_card_image = get_theme_file_uri('assets/images/caseStudy/B&M.webp');
+        $card_image = function_exists('my_theme_resolve_case_study_image')
+            ? my_theme_resolve_case_study_image($cs['image'] ?? '', $default_card_image)
+            : ($cs['image'] ?? $default_card_image);
+
+        $meta_map = [
+            '_cs_client'         => $cs['client'] ?? '',
+            '_cs_challenge'      => $challenge_summary,
+            '_cs_solution'       => $solution_summary,
+            '_cs_image'          => $card_image,
+            '_cs_metric_1_value' => $cs['metric1_value'] ?? '',
+            '_cs_metric_1_label' => $cs['metric1_label'] ?? '',
+            '_cs_metric_2_value' => $cs['metric2_value'] ?? '',
+            '_cs_metric_2_label' => $cs['metric2_label'] ?? '',
+            '_cs_metric_3_value' => $cs['metric3_value'] ?? '',
+            '_cs_metric_3_label' => $cs['metric3_label'] ?? '',
+            '_cs_metric_4_value' => $cs['metric4_value'] ?? '',
+            '_cs_metric_4_label' => $cs['metric4_label'] ?? '',
+            '_cs_seo_title'      => $cs['seo_title'] ?? '',
+            '_cs_seo_desc'       => $cs['seo_desc'] ?? '',
+        ];
+
+        foreach ($meta_map as $meta_key => $meta_value) {
+            if ($meta_value !== '') {
+                update_post_meta($post_id, $meta_key, $meta_value);
+            }
+        }
+
+        $menu_order++;
+    }
+
+    update_option('my_theme_case_studies_version', $version, false);
+}
+add_action('after_switch_theme', 'my_theme_provision_case_studies');
+add_action('admin_init', 'my_theme_provision_case_studies');

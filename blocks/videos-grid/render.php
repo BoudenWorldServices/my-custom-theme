@@ -2,7 +2,7 @@
 /**
  * Block render: goliath/videos-grid
  *
- * Shows ALL videos from the library in each section using a carousel
+ * Shows ALL published Video posts in each section using a carousel
  * with prev/next arrows when there are more than 3 videos.
  *
  * @var array $attributes Block attributes.
@@ -16,18 +16,14 @@ $safety_subtitle  = $attributes['safetySubtitle']  ?? 'Understanding warehouse r
 $installation_videos = [];
 $safety_videos = [];
 
-if (function_exists('my_theme_get_videos_by_section') && function_exists('my_theme_video_file_is_readable')) {
+if (function_exists('my_theme_get_videos_by_section')) {
     $installation_videos = array_filter(
         my_theme_get_videos_by_section('installation'),
-        static function (array $row): bool {
-            return my_theme_video_file_is_readable($row['file']);
-        }
+        'my_theme_video_row_is_displayable'
     );
     $safety_videos = array_filter(
         my_theme_get_videos_by_section('safety'),
-        static function (array $row): bool {
-            return my_theme_video_file_is_readable($row['file']);
-        }
+        'my_theme_video_row_is_displayable'
     );
 }
 
@@ -65,34 +61,7 @@ $carousel_id = 'videos-carousel-' . wp_unique_id();
                 <div class="overflow-hidden">
                     <div class="videos-carousel__track flex transition-transform duration-300 ease-in-out" data-carousel-track="<?php echo esc_attr($install_id); ?>">
                         <?php foreach ($installation_videos as $slug => $row) : ?>
-                            <a href="<?php echo esc_url(home_url('/videos/' . $slug . '/')); ?>" class="videos-carousel__slide group w-full flex-shrink-0 border-t border-[#faf5ff] px-[13px] py-[10px] md:w-1/2 lg:w-1/3">
-                                <div class="relative flex h-[206px] w-full overflow-hidden bg-black">
-                                    <?php if (function_exists('my_theme_video_thumbnail_is_readable') && my_theme_video_thumbnail_is_readable($row['file'])) : ?>
-                                        <img
-                                            src="<?php echo esc_url(my_theme_get_video_thumbnail_uri($row['file'])); ?>"
-                                            alt="<?php echo esc_attr($row['title']); ?>"
-                                            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                                            loading="lazy"
-                                            decoding="async"
-                                            width="640"
-                                            height="360"
-                                        >
-                                    <?php else : ?>
-                                        <video
-                                            class="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
-                                            src="<?php echo esc_url(my_theme_get_video_file_uri($row['file'])); ?>"
-                                            muted
-                                            playsinline
-                                            preload="metadata"
-                                            aria-hidden="true"
-                                        ></video>
-                                    <?php endif; ?>
-                                </div>
-                                <div class="mt-[10px]">
-                                    <p class="font-montserrat text-[16px] font-bold leading-[23px] text-[#ff5c00]"><?php echo esc_html($row['title']); ?></p>
-                                    <p class="mt-1 font-montserrat text-[12px] font-medium leading-[23px] text-[#364153]"><?php echo esc_html($row['excerpt']); ?></p>
-                                </div>
-                            </a>
+                            <?php my_theme_render_video_carousel_card($slug, $row); ?>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -143,34 +112,7 @@ $carousel_id = 'videos-carousel-' . wp_unique_id();
                 <div class="overflow-hidden">
                     <div class="videos-carousel__track flex transition-transform duration-300 ease-in-out" data-carousel-track="<?php echo esc_attr($safety_id); ?>">
                         <?php foreach ($safety_videos as $slug => $row) : ?>
-                            <a href="<?php echo esc_url(home_url('/videos/' . $slug . '/')); ?>" class="videos-carousel__slide group w-full flex-shrink-0 border-t border-[#faf5ff] px-[13px] py-[10px] md:w-1/2 lg:w-1/3">
-                                <div class="relative flex h-[206px] w-full overflow-hidden bg-black">
-                                    <?php if (function_exists('my_theme_video_thumbnail_is_readable') && my_theme_video_thumbnail_is_readable($row['file'])) : ?>
-                                        <img
-                                            src="<?php echo esc_url(my_theme_get_video_thumbnail_uri($row['file'])); ?>"
-                                            alt="<?php echo esc_attr($row['title']); ?>"
-                                            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                                            loading="lazy"
-                                            decoding="async"
-                                            width="640"
-                                            height="360"
-                                        >
-                                    <?php else : ?>
-                                        <video
-                                            class="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
-                                            src="<?php echo esc_url(my_theme_get_video_file_uri($row['file'])); ?>"
-                                            muted
-                                            playsinline
-                                            preload="metadata"
-                                            aria-hidden="true"
-                                        ></video>
-                                    <?php endif; ?>
-                                </div>
-                                <div class="mt-[10px]">
-                                    <p class="font-montserrat text-[16px] font-bold leading-[23px] text-[#ff5c00]"><?php echo esc_html($row['title']); ?></p>
-                                    <p class="mt-1 font-montserrat text-[12px] font-medium leading-[23px] text-[#364153]"><?php echo esc_html($row['excerpt']); ?></p>
-                                </div>
-                            </a>
+                            <?php my_theme_render_video_carousel_card($slug, $row); ?>
                         <?php endforeach; ?>
                     </div>
                 </div>

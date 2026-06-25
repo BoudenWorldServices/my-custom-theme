@@ -47,7 +47,7 @@ function my_theme_admin_render_videos(): void
 {
     my_theme_admin_page_open('Video Library', 'goliath-videos');
 
-    my_theme_admin_section_open('Videos', 'Manage the video catalogue. Use "Choose Video" to upload or select MP4 files from the media library. Slug is used in the URL (e.g. /videos/explanation-video/).');
+    my_theme_admin_section_open('Videos', 'Legacy video catalogue used as a fallback when no Video posts exist. The /videos/ page carousel reads published Video posts automatically — use Videos → Add New in the sidebar to manage them.');
 
     $library = my_theme_get_video_library();
     $items = [];
@@ -122,7 +122,7 @@ function my_theme_admin_render_videos(): void
 
     my_theme_admin_section_close();
 
-    my_theme_admin_section_open('Videos Hub Display Order', 'Comma-separated slugs controlling which videos appear on the /videos/ page and in what order.');
+    my_theme_admin_section_open('Videos Hub Display Order', 'Legacy setting for related videos on old video detail templates. The Videos page carousel uses published Video posts instead.');
     my_theme_admin_text_field('my_theme_videos_hub_order', 'Hub Slug Order', 'explanation-video,carousel-video1,corporate-crash-test');
     my_theme_admin_section_close();
 

@@ -1443,9 +1443,15 @@ function my_theme_migrate_markup_terms_of_service(): string
 /**
  * Generate Gutenberg block markup for a case study using the dedicated cs-* blocks.
  *
- * Uses goliath/cs-hero, goliath/cs-problem, goliath/cs-solution,
- * goliath/cs-results, and goliath/cs-testimonial-cta — each of which
- * faithfully renders the matching section from page-case-study-detail.php.
+ * Block order:
+ *   goliath/cs-hero
+ *   goliath/cs-metrics-row      (when any metric value is present)
+ *   goliath/cs-problem
+ *   goliath/cs-inline-quote     (when problem_callout is a long quote, i.e. > 80 chars)
+ *   goliath/cs-solution
+ *   goliath/cs-content-section  (one per entry in optional content_sections key)
+ *   goliath/cs-results
+ *   goliath/cs-testimonial-cta
  *
  * @param string               $slug Slug used for the CPT post_name.
  * @param array<string, mixed> $cs   Case study data from the library.
@@ -1460,14 +1466,40 @@ function my_theme_migrate_case_study_markup(string $slug, array $cs): string
         'intro'  => $cs['hero_intro'] ?? '',
     ]);
 
+    // ── Metrics row (headline KPIs) ───────────────────────────────────
+    $metric_attrs = [];
+    for ($n = 1; $n <= 4; $n++) {
+        $val = (string) ($cs["metric{$n}_value"] ?? '');
+        $lbl = (string) ($cs["metric{$n}_label"] ?? '');
+        if ($val !== '') {
+            $metric_attrs["metric{$n}Value"] = $val;
+            $metric_attrs["metric{$n}Label"] = $lbl;
+        }
+    }
+    if (! empty($metric_attrs)) {
+        $m .= my_theme_block('goliath/cs-metrics-row', $metric_attrs);
+    }
+
     // ── Problem & Tried ───────────────────────────────────────────────
+    // When problem_callout is a long attribution quote (> 80 chars), render it
+    // as a standalone cs-inline-quote block instead of the short callout bar.
+    $problem_callout_raw = (string) ($cs['problem_callout'] ?? '');
+    $use_inline_quote    = strlen($problem_callout_raw) > 80;
+
     $m .= my_theme_block('goliath/cs-problem', [
         'title'          => $cs['title'] ?? '',
         'problemText'    => $cs['problem_text'] ?? '',
-        'problemCallout' => $cs['problem_callout'] ?? '',
+        'problemCallout' => $use_inline_quote ? '' : $problem_callout_raw,
         'triedText'      => $cs['tried_text'] ?? '',
         'triedCallout'   => $cs['tried_callout'] ?? '',
     ]);
+
+    if ($use_inline_quote && $problem_callout_raw !== '') {
+        $m .= my_theme_block('goliath/cs-inline-quote', [
+            'quote'       => $problem_callout_raw,
+            'attribution' => '',
+        ]);
+    }
 
     // ── Solution ──────────────────────────────────────────────────────
     $m .= my_theme_block('goliath/cs-solution', [
@@ -1476,8 +1508,28 @@ function my_theme_migrate_case_study_markup(string $slug, array $cs): string
         'solutionCallout' => $cs['solution_callout'] ?? '',
     ]);
 
+    // ── Optional extra narrative sections (e.g. phases, tech specs) ───
+    $content_sections = $cs['content_sections'] ?? [];
+    if (is_array($content_sections)) {
+        foreach ($content_sections as $section) {
+            if (! is_array($section)) {
+                continue;
+            }
+            $sec_heading = (string) ($section['heading'] ?? '');
+            $sec_body    = (string) ($section['body']    ?? '');
+            $sec_callout = (string) ($section['callout'] ?? '');
+            if ($sec_heading !== '' || $sec_body !== '') {
+                $m .= my_theme_block('goliath/cs-content-section', [
+                    'heading'       => $sec_heading,
+                    'body'          => $sec_body,
+                    'callout'       => $sec_callout,
+                    'imagePosition' => 'none',
+                ]);
+            }
+        }
+    }
+
     // ── Results ───────────────────────────────────────────────────────
-    // Resolve the results image to a URL (supports attachment IDs and direct URLs).
     $default_image = get_theme_file_uri('assets/images/caseStudy/B&M.webp');
     $results_image_raw = $cs['results_image'] ?? '';
     $results_image = function_exists('my_theme_resolve_case_study_image')

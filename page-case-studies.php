@@ -77,7 +77,7 @@ $legacy_case_studies = $use_legacy ? my_theme_get_case_study_library() : [];
                     $challenge  = get_post_meta($cs_post->ID, '_cs_challenge', true);
                     $solution   = get_post_meta($cs_post->ID, '_cs_solution', true);
                     $metrics    = [];
-                    for ($n = 1; $n <= 3; $n++) {
+                    for ($n = 1; $n <= 4; $n++) {
                         $val = get_post_meta($cs_post->ID, "_cs_metric_{$n}_value", true);
                         $lbl = get_post_meta($cs_post->ID, "_cs_metric_{$n}_label", true);
                         if ($val || $lbl) {
@@ -117,7 +117,8 @@ $legacy_case_studies = $use_legacy ? my_theme_get_case_study_library() : [];
                                     </div>
                                 <?php endif; ?>
                                 <?php if (!empty($metrics)) : ?>
-                                    <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-4">
+                                    <?php $col_class = count($metrics) >= 4 ? 'grid-cols-2 sm:grid-cols-4' : 'grid-cols-1 sm:grid-cols-3'; ?>
+                                    <div class="mt-6 grid <?php echo esc_attr($col_class); ?> gap-4">
                                         <?php foreach ($metrics as $metric) : ?>
                                             <div class="bg-[#f9fafb] px-4 py-4 text-center">
                                                 <p class="font-roboto text-[24px] font-normal leading-[32px] text-[#ff5c00]"><?php echo esc_html($metric['value']); ?></p>
@@ -145,12 +146,14 @@ $legacy_case_studies = $use_legacy ? my_theme_get_case_study_library() : [];
                         get_theme_file_uri('assets/images/caseStudy/B&M.webp')
                     );
                     $cs_href  = home_url('/case-studies/' . $slug . '/');
-                    $metrics  = [
-                        ['value' => $cs['metric1_value'] ?? '', 'label' => $cs['metric1_label'] ?? ''],
-                        ['value' => $cs['metric2_value'] ?? '', 'label' => $cs['metric2_label'] ?? ''],
-                        ['value' => $cs['metric3_value'] ?? '', 'label' => $cs['metric3_label'] ?? ''],
-                    ];
-                    $metrics = array_filter($metrics, fn($m) => $m['value'] !== '' || $m['label'] !== '');
+                    $raw_metrics = [];
+                    for ($n = 1; $n <= 4; $n++) {
+                        $raw_metrics[] = [
+                            'value' => $cs["metric{$n}_value"] ?? '',
+                            'label' => $cs["metric{$n}_label"] ?? '',
+                        ];
+                    }
+                    $metrics = array_filter($raw_metrics, fn($m) => $m['value'] !== '' || $m['label'] !== '');
                     ?>
                     <article class="border-b border-[#dedfe0] py-8">
                         <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-6">
@@ -184,7 +187,8 @@ $legacy_case_studies = $use_legacy ? my_theme_get_case_study_library() : [];
                                     </div>
                                 <?php endif; ?>
                                 <?php if (!empty($metrics)) : ?>
-                                    <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-4">
+                                    <?php $col_class = count($metrics) >= 4 ? 'grid-cols-2 sm:grid-cols-4' : 'grid-cols-1 sm:grid-cols-3'; ?>
+                                    <div class="mt-6 grid <?php echo esc_attr($col_class); ?> gap-4">
                                         <?php foreach ($metrics as $metric) : ?>
                                             <div class="bg-[#f9fafb] px-4 py-4 text-center">
                                                 <p class="font-roboto text-[24px] font-normal leading-[32px] text-[#ff5c00]"><?php echo esc_html($metric['value']); ?></p>
