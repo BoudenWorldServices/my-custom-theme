@@ -9,6 +9,14 @@
  * @package MyCustomTheme
  */
 
+/*
+ * Override the default WordPress FROM address and sender name for all outgoing
+ * mail on this site. These filters run site-wide, so every wp_mail() call —
+ * contact form, auto-reply, admin notifications — uses the business address.
+ */
+add_filter('wp_mail_from',      fn() => 'sales@goliathrepair.co.uk');
+add_filter('wp_mail_from_name', fn() => 'Goliath Repair');
+
 /**
  * Shared email wrapper: opens the outer table, renders the header, and returns
  * a string that must be closed with {@see my_theme_email_footer()}.
