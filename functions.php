@@ -15,6 +15,7 @@ require_once __DIR__ . '/inc/contact-details.php';
 require_once __DIR__ . '/inc/faq-data.php';
 require_once __DIR__ . '/inc/schema.php';
 require_once __DIR__ . '/inc/form-protection.php';
+require_once __DIR__ . '/inc/email-templates.php';
 require_once __DIR__ . '/inc/admin/bootstrap.php';
 require_once __DIR__ . '/inc/blocks.php';
 require_once __DIR__ . '/inc/block-patterns.php';
@@ -514,6 +515,22 @@ function my_theme_handle_contact_form_submission(): void
         exit;
     }
 
+    if ($phone !== '') {
+        $digits = preg_replace('/[^\d]/', '', $phone);
+        $digit_count = strlen($digits);
+        if (
+            $digit_count < 7 ||
+            $digit_count > 15 ||
+            ! preg_match('/^[\+]?[\d\s\-\(\)\.]{7,20}$/', $phone)
+        ) {
+            wp_safe_redirect(add_query_arg([
+                'form_status' => 'error',
+                'form_error'  => 'phone_invalid',
+            ], $redirect_url));
+            exit;
+        }
+    }
+
     // Run protection stack: rate limit, time trap, Turnstile, content filtering.
     $protection_error = my_theme_run_form_protection($name, $company, $email, $message);
     if ($protection_error !== '') {
@@ -525,27 +542,33 @@ function my_theme_handle_contact_form_submission(): void
         exit;
     }
 
-    $to = function_exists('my_theme_contact_email') ? my_theme_contact_email() : get_option('admin_email');
+    $to      = function_exists('my_theme_contact_email') ? my_theme_contact_email() : get_option('admin_email');
     $subject = sprintf('New assessment request from %s', $name);
-    $email_body = implode("\n", [
-        'New assessment request received:',
-        '',
-        'Name: ' . $name,
-        'Company: ' . $company,
-        'Email: ' . $email,
-        'Phone: ' . ($phone !== '' ? $phone : 'Not provided'),
-        'Number of Damaged Uprights: ' . ($uprights !== '' ? $uprights : 'Not provided'),
-        '',
-        'Additional Information:',
-        $message !== '' ? $message : 'Not provided',
+
+    $email_body = my_theme_notification_email_html([
+        'name'     => $name,
+        'company'  => $company,
+        'email'    => $email,
+        'phone'    => $phone,
+        'uprights' => $uprights,
+        'message'  => $message,
     ]);
 
-    $headers = ['Content-Type: text/plain; charset=UTF-8'];
+    $headers = ['Content-Type: text/html; charset=UTF-8'];
     if (is_email($email)) {
         $headers[] = 'Reply-To: ' . $name . ' <' . $email . '>';
     }
 
     $sent = wp_mail($to, $subject, $email_body, $headers);
+
+    if ($sent && is_email($email)) {
+        wp_mail(
+            $email,
+            my_theme_autoreply_email_subject(),
+            my_theme_autoreply_email_html($name),
+            ['Content-Type: text/html; charset=UTF-8']
+        );
+    }
 
     wp_safe_redirect(add_query_arg([
         'form_status' => $sent ? 'success' : 'error',

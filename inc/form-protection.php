@@ -295,6 +295,7 @@ function my_theme_get_protection_error_message(string $error_code): string
         'spam_email'   => 'Please use a valid business email address.',
         'security'     => 'Security verification failed. Please reload the page and try again.',
         'validation'   => 'Please fill in all required fields with valid information.',
+        'phone_invalid' => 'Please enter a valid phone number.',
         'send'         => 'We could not send your message. Please try again or contact us directly.',
     ];
 

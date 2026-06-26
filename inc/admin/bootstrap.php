@@ -52,6 +52,7 @@ function my_theme_admin_menu(): void
         ['goliath-faq-page',          'FAQ Page',        'my_theme_admin_render_faq_page'],
         ['goliath-videos-page',       'Videos Page',     'my_theme_admin_render_videos_page'],
         ['goliath-about-page',        'About / Team',    'my_theme_admin_render_about_page'],
+        ['goliath-email-templates',   'Email Templates', 'my_theme_admin_render_email_templates'],
         ['goliath-migrate-to-blocks', 'Migrate to Blocks', 'my_theme_migrate_render_page'],
     ];
 

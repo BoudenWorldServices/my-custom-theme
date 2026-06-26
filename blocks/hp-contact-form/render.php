@@ -127,6 +127,7 @@ $contact_items = [
                             <div class="flex-1">
                                 <label for="hp-phone" class="block font-roboto font-semibold text-[14px] text-noir uppercase tracking-[0.35px] mb-[12px]">Phone Number</label>
                                 <input type="tel" id="hp-phone" name="phone" autocomplete="tel" placeholder="07XXX XXXXXX"
+                                       pattern="[\+]?[\d\s\-\(\)\.]{7,20}" title="Please enter a valid phone number"
                                        class="w-full border-b-2 border-black/8 h-[58px] p-[16px] text-[16px] focus:border-[#ff5c00] focus:outline-none transition-colors">
                             </div>
                         </div>
