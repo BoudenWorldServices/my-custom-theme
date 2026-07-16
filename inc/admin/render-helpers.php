@@ -216,6 +216,30 @@ function my_theme_admin_repeater_open(string $option_key, string $label, array $
         $items = $default;
     }
 
+    // Repeater rows need numeric indexes. Slug-keyed libraries (case studies,
+    // videos) and WP option arrays with string keys ("0","1") must be lists,
+    // otherwise my_theme_admin_repeater_row(int $index) fatals under strict_types.
+    if (! array_is_list($items)) {
+        if ($default !== [] && array_is_list($default)) {
+            // Prefer the caller-prepared list (already includes slug + defaults merge).
+            $items = $default;
+        } else {
+            $normalized = [];
+            foreach ($items as $key => $row) {
+                if (! is_array($row)) {
+                    continue;
+                }
+                if (! isset($row['slug']) && is_string($key) && $key !== '' && ! is_numeric($key)) {
+                    $row['slug'] = $key;
+                }
+                $normalized[] = $row;
+            }
+            $items = $normalized;
+        }
+    } else {
+        $items = array_values($items);
+    }
+
     echo '<tr>';
     echo '<th scope="row" colspan="2"><h3 class="goliath-repeater-label">' . esc_html($label) . '</h3></th>';
     echo '</tr>';
@@ -229,12 +253,14 @@ function my_theme_admin_repeater_open(string $option_key, string $label, array $
 /**
  * Render a single repeater row with named sub-fields.
  *
- * @param string $option_key  Parent option key.
- * @param int    $index       Row index.
- * @param array  $fields      field_name => ['label' => string, 'type' => 'text'|'textarea'|'image', 'value' => string]
+ * @param string     $option_key  Parent option key.
+ * @param int|string $index       Row index (cast to int; callers should pass list indexes).
+ * @param array      $fields      field_name => ['label' => string, 'type' => 'text'|'textarea'|'image', 'value' => string]
  */
-function my_theme_admin_repeater_row(string $option_key, int $index, array $fields): void
+function my_theme_admin_repeater_row(string $option_key, int|string $index, array $fields): void
 {
+    $index = (int) $index;
+
     echo '<div class="goliath-repeater-row" data-index="' . $index . '">';
     echo '<div class="goliath-repeater-row-header">';
     echo '<span class="goliath-repeater-row-number">#' . ($index + 1) . '</span>';
