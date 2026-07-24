@@ -171,6 +171,278 @@ function my_theme_register_case_study_meta(): void
 add_action('init', 'my_theme_register_case_study_meta');
 
 /* ------------------------------------------------------------------ */
+/*  News Custom Post Type                                              */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Register the 'news' Custom Post Type.
+ *
+ * Posts are served at /news/{slug}/ by WordPress native routing.
+ * The listing at /news/ is handled by a WordPress Page (slug: news)
+ * and page-news.php template, using goliath/news-hub-* blocks.
+ */
+function my_theme_register_news_cpt(): void
+{
+    register_post_type('news', [
+        'labels' => [
+            'name'               => 'News',
+            'singular_name'      => 'News Article',
+            'add_new'            => 'Add New',
+            'add_new_item'       => 'Add New News Article',
+            'edit_item'          => 'Edit News Article',
+            'new_item'           => 'New News Article',
+            'view_item'          => 'View News Article',
+            'search_items'       => 'Search News Articles',
+            'not_found'          => 'No news articles found',
+            'not_found_in_trash' => 'No news articles found in trash',
+        ],
+        'public'        => true,
+        'has_archive'   => false,
+        'rewrite'       => ['slug' => 'news', 'with_front' => false],
+        'show_in_rest'  => true,
+        'supports'      => ['title', 'editor', 'thumbnail', 'custom-fields', 'page-attributes', 'excerpt'],
+        'menu_icon'     => 'dashicons-megaphone',
+        'menu_position' => 7,
+        'template'      => [
+            ['goliath/news-article-hero', []],
+            ['goliath/cs-content-section', [
+                'heading'       => 'Why This Matters',
+                'body'          => 'Add your summary or analysis of the coverage here. Explain the context, what was said, and why it is significant for Goliath and the racking safety industry.',
+                'imagePosition' => 'none',
+            ]],
+            ['goliath/cs-inline-quote', [
+                'quote'       => 'Add a key quote from the article here.',
+                'attribution' => 'Source name, Publication',
+            ]],
+            ['goliath/news-hub-cta', [
+                'heading'     => 'Want to See Goliath in Action?',
+                'description' => 'Book a free on-site assessment and discover how we can permanently solve your racking damage problems.',
+                'ctaText'     => 'Book Free Assessment',
+                'ctaUrl'      => '/contact/',
+            ]],
+        ],
+        'template_lock' => false,
+    ]);
+}
+add_action('init', 'my_theme_register_news_cpt');
+
+/**
+ * Register post meta fields for the news CPT.
+ * Used by the news-hub-list block to populate listing cards.
+ */
+function my_theme_register_news_meta(): void
+{
+    $meta_fields = [
+        '_news_source',
+        '_news_source_url',
+        '_news_publication_date',
+        '_news_seo_title',
+        '_news_seo_desc',
+    ];
+
+    foreach ($meta_fields as $key) {
+        register_post_meta('news', $key, [
+            'show_in_rest'  => true,
+            'single'        => true,
+            'type'          => 'string',
+            'auth_callback' => fn() => current_user_can('edit_posts'),
+        ]);
+    }
+}
+add_action('init', 'my_theme_register_news_meta');
+
+/**
+ * Add sidebar meta box for the news listing card fields.
+ */
+function my_theme_news_listing_meta_box(): void
+{
+    add_meta_box(
+        'my_theme_news_listing',
+        'News Listing Card',
+        'my_theme_render_news_listing_meta_box',
+        'news',
+        'side',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'my_theme_news_listing_meta_box');
+
+/**
+ * Render the news listing card meta box.
+ *
+ * @param WP_Post $post Current news post.
+ */
+function my_theme_render_news_listing_meta_box(WP_Post $post): void
+{
+    wp_nonce_field('my_theme_news_listing_save', 'my_theme_news_listing_nonce');
+    $source     = get_post_meta($post->ID, '_news_source', true);
+    $source_url = get_post_meta($post->ID, '_news_source_url', true);
+    $pub_date   = get_post_meta($post->ID, '_news_publication_date', true);
+    $seo_title  = get_post_meta($post->ID, '_news_seo_title', true);
+    $seo_desc   = get_post_meta($post->ID, '_news_seo_desc', true);
+    ?>
+    <p>
+        <label for="my_theme_news_source_field"><strong>Publication / outlet</strong></label>
+        <input type="text" id="my_theme_news_source_field" name="my_theme_news_source_field" value="<?php echo esc_attr($source); ?>" class="widefat" placeholder="e.g. Logistics Manager">
+    </p>
+    <p>
+        <label for="my_theme_news_source_url_field"><strong>Original article URL</strong></label>
+        <input type="url" id="my_theme_news_source_url_field" name="my_theme_news_source_url_field" value="<?php echo esc_attr($source_url); ?>" class="widefat" placeholder="https://...">
+    </p>
+    <p>
+        <label for="my_theme_news_pub_date_field"><strong>Publication date</strong></label>
+        <input type="text" id="my_theme_news_pub_date_field" name="my_theme_news_pub_date_field" value="<?php echo esc_attr($pub_date); ?>" class="widefat" placeholder="e.g. 23 July 2026">
+        <span class="description">Shown on listing cards and the article page.</span>
+    </p>
+    <hr style="margin:12px 0">
+    <p>
+        <label for="my_theme_news_seo_title_field"><strong>SEO title</strong> <em style="font-weight:normal">(optional)</em></label>
+        <input type="text" id="my_theme_news_seo_title_field" name="my_theme_news_seo_title_field" value="<?php echo esc_attr($seo_title); ?>" class="widefat" placeholder="Leave blank to use article title">
+    </p>
+    <p>
+        <label for="my_theme_news_seo_desc_field"><strong>SEO description</strong> <em style="font-weight:normal">(optional)</em></label>
+        <textarea id="my_theme_news_seo_desc_field" name="my_theme_news_seo_desc_field" class="widefat" rows="3" placeholder="Leave blank to use excerpt"><?php echo esc_textarea($seo_desc); ?></textarea>
+    </p>
+    <?php
+}
+
+/**
+ * Save news listing meta box values.
+ *
+ * @param int $post_id Saved post ID.
+ */
+function my_theme_save_news_listing_meta(int $post_id): void
+{
+    if (! isset($_POST['my_theme_news_listing_nonce'])) {
+        return;
+    }
+
+    $nonce = sanitize_text_field(wp_unslash((string) $_POST['my_theme_news_listing_nonce']));
+    if (! wp_verify_nonce($nonce, 'my_theme_news_listing_save')) {
+        return;
+    }
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    if (! current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    if (get_post_type($post_id) !== 'news') {
+        return;
+    }
+
+    $source     = sanitize_text_field(wp_unslash((string) ($_POST['my_theme_news_source_field'] ?? '')));
+    $source_url = esc_url_raw(wp_unslash((string) ($_POST['my_theme_news_source_url_field'] ?? '')));
+    $pub_date   = sanitize_text_field(wp_unslash((string) ($_POST['my_theme_news_pub_date_field'] ?? '')));
+    $seo_title  = sanitize_text_field(wp_unslash((string) ($_POST['my_theme_news_seo_title_field'] ?? '')));
+    $seo_desc   = sanitize_textarea_field(wp_unslash((string) ($_POST['my_theme_news_seo_desc_field'] ?? '')));
+
+    update_post_meta($post_id, '_news_source', $source);
+    update_post_meta($post_id, '_news_source_url', $source_url);
+    update_post_meta($post_id, '_news_publication_date', $pub_date);
+    update_post_meta($post_id, '_news_seo_title', $seo_title);
+    update_post_meta($post_id, '_news_seo_desc', $seo_desc);
+}
+add_action('save_post_news', 'my_theme_save_news_listing_meta');
+
+/**
+ * Register the four news Gutenberg blocks directly.
+ *
+ * Runs at priority 15 (after the main my_theme_register_blocks at priority 10)
+ * so it only registers blocks that weren't already picked up by that function.
+ * This is a safety net in case inc/blocks.php is served from a PHP opcache
+ * that pre-dates the addition of the news blocks.
+ */
+function my_theme_register_news_blocks(): void
+{
+    $registry  = WP_Block_Type_Registry::get_instance();
+    $build_dir = get_theme_file_path('blocks-build');
+    $src_dir   = get_theme_file_path('blocks');
+
+    $news_blocks = [
+        'news-hub-hero',
+        'news-hub-list',
+        'news-hub-cta',
+        'news-article-hero',
+    ];
+
+    foreach ($news_blocks as $block_name) {
+        if ($registry->is_registered('goliath/' . $block_name)) {
+            continue;
+        }
+
+        $block_json = $src_dir . '/' . $block_name . '/block.json';
+        $asset_file = $build_dir . '/' . $block_name . '/index.asset.php';
+        $script_src = get_theme_file_uri('blocks-build/' . $block_name . '/index.js');
+
+        if (! file_exists($block_json) || ! file_exists($asset_file)) {
+            continue;
+        }
+
+        $asset  = require $asset_file;
+        $handle = 'goliath-block-' . $block_name;
+
+        if (! wp_script_is($handle, 'registered')) {
+            wp_register_script(
+                $handle,
+                $script_src,
+                $asset['dependencies'] ?? [],
+                $asset['version'] ?? '1',
+                ['in_footer' => true]
+            );
+        }
+
+        register_block_type($block_json, [
+            'editor_script_handles' => [$handle],
+        ]);
+    }
+}
+add_action('init', 'my_theme_register_news_blocks', 15);
+
+/**
+ * Ensure the News link appears in the site navigation.
+ *
+ * Runs once on admin_init. If the client has saved custom nav links via the
+ * Goliath Content Editor (stored in my_theme_header_nav_links), this injects
+ * News after Case Studies so the nav reflects the new section automatically.
+ * Safe to re-run — exits immediately if News is already present.
+ */
+function my_theme_ensure_news_nav_link(): void
+{
+    $nav_links = get_option('my_theme_header_nav_links');
+
+    if (! is_array($nav_links) || empty($nav_links)) {
+        return;
+    }
+
+    foreach ($nav_links as $item) {
+        if (strtolower(trim((string) ($item['label'] ?? ''))) === 'news') {
+            return;
+        }
+    }
+
+    $new_links = [];
+    $inserted  = false;
+    foreach ($nav_links as $item) {
+        $new_links[] = $item;
+        if (! $inserted && strtolower(trim((string) ($item['label'] ?? ''))) === 'case studies') {
+            $new_links[] = ['label' => 'News', 'url' => '/news/'];
+            $inserted = true;
+        }
+    }
+
+    if (! $inserted) {
+        $new_links[] = ['label' => 'News', 'url' => '/news/'];
+    }
+
+    update_option('my_theme_header_nav_links', $new_links, false);
+}
+add_action('admin_init', 'my_theme_ensure_news_nav_link');
+
+/* ------------------------------------------------------------------ */
 /*  Video CPT                                                          */
 /* ------------------------------------------------------------------ */
 
@@ -328,9 +600,9 @@ add_action('save_post_video', 'my_theme_save_video_section_meta');
  */
 function my_theme_flush_rewrite_once(): void
 {
-    if (get_option('my_theme_cpt_rewrite_flushed') !== 'yes') {
+    if (get_option('my_theme_cpt_rewrite_flushed') !== '2') {
         flush_rewrite_rules(false);
-        update_option('my_theme_cpt_rewrite_flushed', 'yes', false);
+        update_option('my_theme_cpt_rewrite_flushed', '2', false);
     }
 }
 add_action('admin_init', 'my_theme_flush_rewrite_once');
@@ -459,6 +731,7 @@ function my_theme_get_primary_nav_items(): array
         ],
         'Compliance' => home_url('/compliance/'),
         'Case Studies' => home_url('/case-studies/'),
+        'News' => home_url('/news/'),
     ];
 }
 
@@ -638,6 +911,7 @@ function my_theme_resolve_static_document_title(): string
         'videos'                          => 'Videos | ' . $brand,
         'video'                           => 'Videos | ' . $brand,
         'case-studies'                    => 'Case studies | ' . $brand,
+        'news'                            => 'Industry news & press coverage | ' . $brand,
         'about'                           => 'About Goliath™ | ' . $brand,
     ];
 
@@ -689,6 +963,14 @@ function my_theme_filter_pre_get_document_title(string $title): string
     if (is_singular('case-study')) {
         $brand = function_exists('my_theme_organization_name') ? my_theme_organization_name() : 'Goliath Pallet Racking Repair Ltd';
         $seo_title = get_post_meta(get_the_ID(), '_cs_seo_title', true);
+        $post_title = $seo_title ?: get_the_title();
+        return $post_title . ' | ' . $brand;
+    }
+
+    // News CPT single posts: use post title + brand.
+    if (is_singular('news')) {
+        $brand = function_exists('my_theme_organization_name') ? my_theme_organization_name() : 'Goliath Pallet Racking Repair Ltd';
+        $seo_title = get_post_meta(get_the_ID(), '_news_seo_title', true);
         $post_title = $seo_title ?: get_the_title();
         return $post_title . ' | ' . $brand;
     }
@@ -759,6 +1041,25 @@ function my_theme_get_seo_context(): array
         }
     }
 
+    // News CPT single posts.
+    if (is_singular('news')) {
+        $post = get_queried_object();
+        if ($post instanceof WP_Post) {
+            $seo_title = get_post_meta($post->ID, '_news_seo_title', true) ?: $post->post_title;
+            $seo_desc  = get_post_meta($post->ID, '_news_seo_desc', true)
+                ?: ($post->post_excerpt ?: sprintf(
+                    'Read how Goliath has been featured in %s — industry coverage of our innovative pallet racking repair and warehouse safety solutions.',
+                    get_post_meta($post->ID, '_news_source', true) ?: 'the trade press'
+                ));
+            $thumb = get_the_post_thumbnail_url($post->ID, 'full');
+            return [
+                'title'       => $seo_title . ' | ' . $brand,
+                'description' => $seo_desc,
+                'image'       => $thumb ?: $default_image,
+            ];
+        }
+    }
+
     // Legacy library fallback (for slugs not yet migrated to CPT).
     if (preg_match('#^case-studies/([^/]+)$#', $path, $match)) {
         $slug   = sanitize_title($match[1]);
@@ -798,6 +1099,7 @@ function my_theme_get_seo_context(): array
         'videos'                          => 'Watch Goliath racking repair in action. Installation demos, crash tests, and product walkthroughs showing the 30-minute permanent repair process.',
         'video'                           => 'Watch Goliath racking repair in action. Installation demos, crash tests, and product walkthroughs showing the 30-minute permanent repair process.',
         'case-studies'                    => 'Real results from UK warehouses using Goliath. See how clients reduced repair costs, eliminated downtime, and improved safety compliance.',
+        'news'                            => 'Goliath Pallet Racking Repair features in leading industry publications. Read the latest coverage of our innovative safety solutions across UK warehouses.',
         'privacy-policy'                  => 'Privacy policy for Goliath Pallet Racking Repair Ltd. How we collect, use, and protect your personal information.',
         'terms-of-service'                => 'Terms and conditions for Goliath Pallet Racking Repair Ltd services, quotations, and website usage.',
         'about'                           => 'Learn about Goliath Pallet Racking Repair Ltd — our mission, leadership team, and commitment to permanent, safety-led racking repair across the UK and EU.',
@@ -960,6 +1262,7 @@ function my_theme_route_static_pages(): void
         'videos'       => 'page-videos.php',
         'video'        => 'page-videos.php',
         'case-studies' => 'page-case-studies.php',
+        'news'         => 'page-news.php',
     ];
 
     foreach (array_keys(my_theme_get_video_library()) as $video_slug) {
@@ -1264,7 +1567,7 @@ function my_theme_get_image_url(string $option_key, string $default = '', string
  */
 function my_theme_provision_pages(): void
 {
-    $version = '1.2';
+    $version = '1.3';
     if (get_option('my_theme_pages_version') === $version) {
         return;
     }
@@ -1276,6 +1579,7 @@ function my_theme_provision_pages(): void
         ['title' => 'Services',                          'slug' => 'services',                'template' => 'page-services.php',               'parent' => ''],
         ['title' => 'Compliance',                        'slug' => 'compliance',              'template' => 'page-compliance.php',             'parent' => ''],
         ['title' => 'Case Studies',                      'slug' => 'case-studies',            'template' => 'page-case-studies.php',           'parent' => ''],
+        ['title' => 'News',                              'slug' => 'news',                    'template' => 'page-news.php',                   'parent' => ''],
         ['title' => 'Videos',                            'slug' => 'videos',                  'template' => 'page-videos.php',                 'parent' => ''],
         ['title' => 'FAQs',                              'slug' => 'faq',                     'template' => 'page-faq.php',                    'parent' => ''],
         ['title' => 'Contact',                           'slug' => 'contact',                 'template' => 'page-contact.php',                'parent' => ''],

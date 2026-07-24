@@ -47,6 +47,7 @@ function my_theme_get_breadcrumb_items(): array
         'faq'                             => 'FAQs',
         'videos'                          => 'Videos',
         'case-studies'                    => 'Case Studies',
+        'news'                            => 'News',
         'privacy-policy'                  => 'Privacy Policy',
         'terms-of-service'                => 'Terms and Conditions',
     ];
@@ -91,6 +92,19 @@ function my_theme_get_breadcrumb_items(): array
                 'url'   => home_url('/case-studies/' . $slug . '/'),
             ];
         }
+
+        return $items;
+    }
+
+    if (is_singular('news')) {
+        $items[] = [
+            'label' => 'News',
+            'url'   => home_url('/news/'),
+        ];
+        $items[] = [
+            'label' => get_the_title() ?: 'News Article',
+            'url'   => get_permalink() ?: home_url('/news/'),
+        ];
 
         return $items;
     }

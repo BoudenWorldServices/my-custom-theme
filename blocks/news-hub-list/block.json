@@ -1,0 +1,13 @@
+{
+  "apiVersion": 3,
+  "name": "goliath/news-hub-list",
+  "title": "News Listing",
+  "category": "goliath",
+  "description": "Dynamically lists all published news articles as cards with image, source, date, excerpt, and a link to the full article.",
+  "render": "file:./render.php",
+  "attributes": {},
+  "supports": {
+    "html": false,
+    "multiple": false
+  }
+}

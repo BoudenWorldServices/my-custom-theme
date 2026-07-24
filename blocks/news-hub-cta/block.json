@@ -1,0 +1,30 @@
+{
+  "apiVersion": 3,
+  "name": "goliath/news-hub-cta",
+  "title": "News Hub CTA",
+  "category": "goliath",
+  "description": "Orange CTA section for the news hub page and news article detail pages.",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Want to See Goliath in Action?"
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaText": {
+      "type": "string",
+      "default": "Book Free Assessment"
+    },
+    "ctaUrl": {
+      "type": "string",
+      "default": "/contact/"
+    }
+  },
+  "supports": {
+    "html": false,
+    "multiple": false
+  }
+}

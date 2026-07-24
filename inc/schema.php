@@ -351,6 +351,94 @@ function my_theme_build_schema_graph(): array
         ];
     }
 
+    // News hub page.
+    if ($path === 'news') {
+        $news_posts = get_posts([
+            'post_type'      => 'news',
+            'posts_per_page' => -1,
+            'post_status'    => 'publish',
+            'orderby'        => 'date',
+            'order'          => 'DESC',
+        ]);
+
+        $list_items = [];
+        foreach ($news_posts as $idx => $np) {
+            $list_items[] = [
+                '@type'    => 'ListItem',
+                'position' => $idx + 1,
+                'name'     => $np->post_title,
+                'url'      => get_permalink($np->ID),
+            ];
+        }
+
+        $graph[] = [
+            '@context'    => 'https://schema.org',
+            '@type'       => 'CollectionPage',
+            'name'        => 'Industry News & Press Coverage — Goliath Racking Repair',
+            'description' => 'Goliath Pallet Racking Repair features in leading industry publications. Read the latest news about our innovative safety solutions and impact across UK warehouses.',
+            'url'         => $current,
+            'mainEntity'  => [
+                '@type'           => 'ItemList',
+                'itemListElement' => $list_items,
+            ],
+        ];
+    }
+
+    // Individual news article pages (CPT).
+    if (is_singular('news')) {
+        $post = get_queried_object();
+        if ($post instanceof WP_Post) {
+            $source    = get_post_meta($post->ID, '_news_source', true);
+            $pub_date  = get_post_meta($post->ID, '_news_publication_date', true);
+            $thumb     = get_the_post_thumbnail_url($post->ID, 'full');
+            $excerpt   = get_the_excerpt($post->ID);
+
+            // Attempt to parse a Y-m-d or recognisable date from the stored string.
+            $date_published = '';
+            if ($pub_date !== '') {
+                $ts = strtotime($pub_date);
+                if ($ts !== false) {
+                    $date_published = gmdate('Y-m-d', $ts);
+                }
+            }
+            if ($date_published === '') {
+                $date_published = gmdate('Y-m-d', (int) strtotime((string) $post->post_date));
+            }
+
+            $article = [
+                '@context'      => 'https://schema.org',
+                '@type'         => 'NewsArticle',
+                'headline'      => $post->post_title,
+                'datePublished' => $date_published,
+                'author'        => [
+                    '@type' => 'Organization',
+                    'name'  => $org_name,
+                ],
+                'publisher'     => [
+                    '@id' => trailingslashit($site_url) . '#organization',
+                ],
+                'url'           => $current,
+                'description'   => $excerpt,
+            ];
+
+            if ($thumb) {
+                $article['image'] = [
+                    '@type' => 'ImageObject',
+                    'url'   => $thumb,
+                ];
+            }
+
+            if ($source !== '') {
+                $article['sourceOrganization'] = [
+                    '@type' => 'Organization',
+                    'name'  => $source,
+                ];
+            }
+
+            $graph[] = $article;
+        }
+    }
+
     if ($path === 'about') {
         $graph[] = [
             '@context'    => 'https://schema.org',

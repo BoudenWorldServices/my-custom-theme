@@ -191,6 +191,14 @@ function my_theme_register_blocks(): void
         'vid-related',
         'vid-content',
         'vid-cta',
+
+        // ── News Hub ──────────────────────────────────────────────────
+        'news-hub-hero',
+        'news-hub-list',
+        'news-hub-cta',
+
+        // ── News CPT ──────────────────────────────────────────────────
+        'news-article-hero',
     ];
 
     foreach ($block_dirs as $block_name) {

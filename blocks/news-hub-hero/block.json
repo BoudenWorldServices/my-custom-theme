@@ -1,0 +1,22 @@
+{
+  "apiVersion": 3,
+  "name": "goliath/news-hub-hero",
+  "title": "News Hub Hero",
+  "category": "goliath",
+  "description": "Hero section for the News listing page.",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Industry News"
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "multiple": false
+  }
+}

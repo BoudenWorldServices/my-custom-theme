@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/news-article-hero",
+  "title": "News Article Hero",
+  "category": "goliath",
+  "description": "Hero section for an individual news article page. Displays the title, publication source, date, featured image, excerpt, and a link to the original article.",
+  "render": "file:./render.php",
+  "attributes": {
+    "externalLinkText": {
+      "type": "string",
+      "default": "Read the original article"
+    }
+  },
+  "supports": {
+    "html": false,
+    "multiple": false
+  }
+}
