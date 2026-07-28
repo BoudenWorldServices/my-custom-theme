@@ -10,6 +10,11 @@
     "externalLinkText": {
       "type": "string",
       "default": "Read the original article"
+    },
+    "imageColumnSize": {
+      "type": "string",
+      "enum": ["small", "medium", "large"],
+      "default": "medium"
     }
   },
   "supports": {

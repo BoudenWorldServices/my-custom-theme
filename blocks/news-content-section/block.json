@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "goliath/news-content-section",
+  "title": "News – Content Section",
+  "description": "Full-width content section for news articles. Editable heading, body paragraphs, optional callout bar, and optional image. Uses the full content-area width — no narrow reading-column cap.",
+  "category": "goliath",
+  "icon": "text",
+  "keywords": [
+    "news",
+    "content",
+    "section",
+    "text",
+    "article"
+  ],
+  "textdomain": "my-custom-theme",
+  "render": "file:./render.php",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "body": {
+      "type": "string",
+      "default": ""
+    },
+    "callout": {
+      "type": "string",
+      "default": ""
+    },
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "imagePosition": {
+      "type": "string",
+      "enum": ["none", "left", "right"],
+      "default": "none"
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  }
+}

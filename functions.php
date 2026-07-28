@@ -205,12 +205,12 @@ function my_theme_register_news_cpt(): void
         'menu_position' => 7,
         'template'      => [
             ['goliath/news-article-hero', []],
-            ['goliath/cs-content-section', [
+            ['goliath/news-content-section', [
                 'heading'       => 'Why This Matters',
                 'body'          => 'Add your summary or analysis of the coverage here. Explain the context, what was said, and why it is significant for Goliath and the racking safety industry.',
                 'imagePosition' => 'none',
             ]],
-            ['goliath/cs-inline-quote', [
+            ['goliath/news-inline-quote', [
                 'quote'       => 'Add a key quote from the article here.',
                 'attribution' => 'Source name, Publication',
             ]],
@@ -238,6 +238,7 @@ function my_theme_register_news_meta(): void
         '_news_publication_date',
         '_news_seo_title',
         '_news_seo_desc',
+        '_news_press_links',
     ];
 
     foreach ($meta_fields as $key) {
@@ -252,14 +253,26 @@ function my_theme_register_news_meta(): void
 add_action('init', 'my_theme_register_news_meta');
 
 /**
- * Add sidebar meta box for the news listing card fields.
+ * Register meta boxes for the news CPT.
+ *
+ * - "Press coverage links" (normal context): repeater for up to 10 outlets.
+ * - "Article details" (side context): publication date + SEO overrides.
  */
 function my_theme_news_listing_meta_box(): void
 {
     add_meta_box(
-        'my_theme_news_listing',
-        'News Listing Card',
-        'my_theme_render_news_listing_meta_box',
+        'my_theme_news_press_links',
+        'Press coverage links',
+        'my_theme_render_news_press_links_meta_box',
+        'news',
+        'normal',
+        'high'
+    );
+
+    add_meta_box(
+        'my_theme_news_details',
+        'Article details',
+        'my_theme_render_news_details_meta_box',
         'news',
         'side',
         'default'
@@ -268,30 +281,128 @@ function my_theme_news_listing_meta_box(): void
 add_action('add_meta_boxes', 'my_theme_news_listing_meta_box');
 
 /**
- * Render the news listing card meta box.
+ * Render the "Press coverage links" repeater meta box (up to 10 outlets).
+ *
+ * Stores links as JSON in _news_press_links.
+ * Row 1 is also synced to the legacy _news_source / _news_source_url fields
+ * so hub cards, schema, and other existing code continue to work unchanged.
  *
  * @param WP_Post $post Current news post.
  */
-function my_theme_render_news_listing_meta_box(WP_Post $post): void
+function my_theme_render_news_press_links_meta_box(WP_Post $post): void
 {
-    wp_nonce_field('my_theme_news_listing_save', 'my_theme_news_listing_nonce');
-    $source     = get_post_meta($post->ID, '_news_source', true);
-    $source_url = get_post_meta($post->ID, '_news_source_url', true);
-    $pub_date   = get_post_meta($post->ID, '_news_publication_date', true);
-    $seo_title  = get_post_meta($post->ID, '_news_seo_title', true);
-    $seo_desc   = get_post_meta($post->ID, '_news_seo_desc', true);
+    wp_nonce_field('my_theme_news_press_links_save', 'my_theme_news_press_links_nonce');
+
+    // Load existing links; fall back to the legacy single-link fields if none stored yet.
+    $raw_links = get_post_meta($post->ID, '_news_press_links', true);
+    $links     = [];
+
+    if ($raw_links !== '') {
+        $decoded = json_decode($raw_links, true);
+        if (is_array($decoded)) {
+            $links = $decoded;
+        }
+    }
+
+    if (empty($links)) {
+        $legacy_name = get_post_meta($post->ID, '_news_source', true);
+        $legacy_url  = get_post_meta($post->ID, '_news_source_url', true);
+        if ($legacy_name !== '' || $legacy_url !== '') {
+            $links = [['name' => $legacy_name, 'url' => $legacy_url]];
+        }
+    }
+
+    // Always show at least one empty row.
+    if (empty($links)) {
+        $links = [['name' => '', 'url' => '']];
+    }
+    ?>
+    <p style="color:#555;font-size:13px;margin:0 0 12px">
+        Add up to 10 outlets that have covered this story. The first row is used on listing cards and as the primary "Read the original article" button.
+    </p>
+    <div id="my_theme_press_links_wrap">
+        <?php foreach ($links as $i => $link) : ?>
+            <div class="my-theme-press-link-row" style="display:flex;gap:8px;align-items:center;margin-bottom:8px;">
+                <input
+                    type="text"
+                    name="my_theme_press_link_name[]"
+                    value="<?php echo esc_attr($link['name'] ?? ''); ?>"
+                    placeholder="Publication name"
+                    style="flex:1;min-width:0;"
+                    class="widefat"
+                >
+                <input
+                    type="url"
+                    name="my_theme_press_link_url[]"
+                    value="<?php echo esc_attr($link['url'] ?? ''); ?>"
+                    placeholder="https://..."
+                    style="flex:2;min-width:0;"
+                    class="widefat"
+                >
+                <?php if ($i > 0) : ?>
+                    <button type="button" class="button my-theme-remove-row" aria-label="Remove row" style="flex-shrink:0;">&times;</button>
+                <?php else : ?>
+                    <span style="width:30px;flex-shrink:0;"></span>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <p>
+        <button type="button" id="my_theme_add_press_link" class="button">+ Add outlet</button>
+        <span style="margin-left:8px;color:#888;font-size:12px;">Maximum 10 outlets.</span>
+    </p>
+    <script>
+    (function () {
+        var wrap  = document.getElementById('my_theme_press_links_wrap');
+        var addBtn = document.getElementById('my_theme_add_press_link');
+
+        function updateButtons() {
+            var rows = wrap.querySelectorAll('.my-theme-press-link-row');
+            addBtn.disabled = rows.length >= 10;
+        }
+
+        wrap.addEventListener('click', function (e) {
+            if (e.target.classList.contains('my-theme-remove-row')) {
+                e.target.closest('.my-theme-press-link-row').remove();
+                updateButtons();
+            }
+        });
+
+        addBtn.addEventListener('click', function () {
+            var rows = wrap.querySelectorAll('.my-theme-press-link-row');
+            if (rows.length >= 10) return;
+
+            var row = document.createElement('div');
+            row.className = 'my-theme-press-link-row';
+            row.style.cssText = 'display:flex;gap:8px;align-items:center;margin-bottom:8px;';
+            row.innerHTML =
+                '<input type="text" name="my_theme_press_link_name[]" placeholder="Publication name" style="flex:1;min-width:0;" class="widefat">' +
+                '<input type="url" name="my_theme_press_link_url[]" placeholder="https://..." style="flex:2;min-width:0;" class="widefat">' +
+                '<button type="button" class="button my-theme-remove-row" aria-label="Remove row" style="flex-shrink:0;">&times;</button>';
+            wrap.appendChild(row);
+            updateButtons();
+        });
+
+        updateButtons();
+    }());
+    </script>
+    <?php
+}
+
+/**
+ * Render the "Article details" side meta box (publication date + SEO overrides).
+ *
+ * @param WP_Post $post Current news post.
+ */
+function my_theme_render_news_details_meta_box(WP_Post $post): void
+{
+    $pub_date  = get_post_meta($post->ID, '_news_publication_date', true);
+    $seo_title = get_post_meta($post->ID, '_news_seo_title', true);
+    $seo_desc  = get_post_meta($post->ID, '_news_seo_desc', true);
     ?>
     <p>
-        <label for="my_theme_news_source_field"><strong>Publication / outlet</strong></label>
-        <input type="text" id="my_theme_news_source_field" name="my_theme_news_source_field" value="<?php echo esc_attr($source); ?>" class="widefat" placeholder="e.g. Logistics Manager">
-    </p>
-    <p>
-        <label for="my_theme_news_source_url_field"><strong>Original article URL</strong></label>
-        <input type="url" id="my_theme_news_source_url_field" name="my_theme_news_source_url_field" value="<?php echo esc_attr($source_url); ?>" class="widefat" placeholder="https://...">
-    </p>
-    <p>
         <label for="my_theme_news_pub_date_field"><strong>Publication date</strong></label>
-        <input type="text" id="my_theme_news_pub_date_field" name="my_theme_news_pub_date_field" value="<?php echo esc_attr($pub_date); ?>" class="widefat" placeholder="e.g. 23 July 2026">
+        <input type="text" id="my_theme_news_pub_date_field" name="my_theme_news_pub_date_field" value="<?php echo esc_attr($pub_date); ?>" class="widefat" placeholder="e.g. 25 June 2026">
         <span class="description">Shown on listing cards and the article page.</span>
     </p>
     <hr style="margin:12px 0">
@@ -307,18 +418,18 @@ function my_theme_render_news_listing_meta_box(WP_Post $post): void
 }
 
 /**
- * Save news listing meta box values.
+ * Save all news meta box values (press links + article details).
  *
  * @param int $post_id Saved post ID.
  */
 function my_theme_save_news_listing_meta(int $post_id): void
 {
-    if (! isset($_POST['my_theme_news_listing_nonce'])) {
+    if (! isset($_POST['my_theme_news_press_links_nonce'])) {
         return;
     }
 
-    $nonce = sanitize_text_field(wp_unslash((string) $_POST['my_theme_news_listing_nonce']));
-    if (! wp_verify_nonce($nonce, 'my_theme_news_listing_save')) {
+    $nonce = sanitize_text_field(wp_unslash((string) $_POST['my_theme_news_press_links_nonce']));
+    if (! wp_verify_nonce($nonce, 'my_theme_news_press_links_save')) {
         return;
     }
 
@@ -334,14 +445,36 @@ function my_theme_save_news_listing_meta(int $post_id): void
         return;
     }
 
-    $source     = sanitize_text_field(wp_unslash((string) ($_POST['my_theme_news_source_field'] ?? '')));
-    $source_url = esc_url_raw(wp_unslash((string) ($_POST['my_theme_news_source_url_field'] ?? '')));
-    $pub_date   = sanitize_text_field(wp_unslash((string) ($_POST['my_theme_news_pub_date_field'] ?? '')));
-    $seo_title  = sanitize_text_field(wp_unslash((string) ($_POST['my_theme_news_seo_title_field'] ?? '')));
-    $seo_desc   = sanitize_textarea_field(wp_unslash((string) ($_POST['my_theme_news_seo_desc_field'] ?? '')));
+    // ── Press links repeater ─────────────────────────────────────────
+    $raw_names = isset($_POST['my_theme_press_link_name']) ? (array) $_POST['my_theme_press_link_name'] : [];
+    $raw_urls  = isset($_POST['my_theme_press_link_url'])  ? (array) $_POST['my_theme_press_link_url']  : [];
 
-    update_post_meta($post_id, '_news_source', $source);
-    update_post_meta($post_id, '_news_source_url', $source_url);
+    $links = [];
+    $count = min(count($raw_names), count($raw_urls), 10);
+
+    for ($i = 0; $i < $count; $i++) {
+        $name = sanitize_text_field(wp_unslash((string) $raw_names[$i]));
+        $url  = esc_url_raw(wp_unslash((string) $raw_urls[$i]));
+        // Drop rows where both fields are empty.
+        if ($name === '' && $url === '') {
+            continue;
+        }
+        $links[] = ['name' => $name, 'url' => $url];
+    }
+
+    update_post_meta($post_id, '_news_press_links', wp_json_encode($links));
+
+    // Sync row 1 to the legacy primary fields used by hub cards and schema.
+    $primary_name = $links[0]['name'] ?? '';
+    $primary_url  = $links[0]['url']  ?? '';
+    update_post_meta($post_id, '_news_source', $primary_name);
+    update_post_meta($post_id, '_news_source_url', $primary_url);
+
+    // ── Article details ──────────────────────────────────────────────
+    $pub_date  = sanitize_text_field(wp_unslash((string) ($_POST['my_theme_news_pub_date_field']  ?? '')));
+    $seo_title = sanitize_text_field(wp_unslash((string) ($_POST['my_theme_news_seo_title_field'] ?? '')));
+    $seo_desc  = sanitize_textarea_field(wp_unslash((string) ($_POST['my_theme_news_seo_desc_field'] ?? '')));
+
     update_post_meta($post_id, '_news_publication_date', $pub_date);
     update_post_meta($post_id, '_news_seo_title', $seo_title);
     update_post_meta($post_id, '_news_seo_desc', $seo_desc);
@@ -367,6 +500,8 @@ function my_theme_register_news_blocks(): void
         'news-hub-list',
         'news-hub-cta',
         'news-article-hero',
+        'news-content-section',
+        'news-inline-quote',
     ];
 
     foreach ($news_blocks as $block_name) {
@@ -401,6 +536,53 @@ function my_theme_register_news_blocks(): void
     }
 }
 add_action('init', 'my_theme_register_news_blocks', 15);
+
+/**
+ * One-time migration: replace cs-content-section / cs-inline-quote block
+ * names in news post content with the new news-specific equivalents.
+ *
+ * Runs once on admin_init. Tracks completion via an option so it never
+ * runs twice. Safe to deploy — posts that have already been migrated are
+ * unaffected because the strings to find will not be present.
+ */
+function my_theme_migrate_news_blocks(): void
+{
+    if (get_option('my_theme_news_blocks_migrated_v1')) {
+        return;
+    }
+
+    $posts = get_posts([
+        'post_type'      => 'news',
+        'posts_per_page' => -1,
+        'post_status'    => 'any',
+        'fields'         => 'ids',
+    ]);
+
+    foreach ($posts as $post_id) {
+        $content = get_post_field('post_content', $post_id, 'raw');
+
+        if (
+            strpos($content, 'goliath/cs-content-section') === false &&
+            strpos($content, 'goliath/cs-inline-quote') === false
+        ) {
+            continue;
+        }
+
+        $updated = str_replace(
+            ['goliath/cs-content-section', 'goliath/cs-inline-quote'],
+            ['goliath/news-content-section', 'goliath/news-inline-quote'],
+            $content
+        );
+
+        wp_update_post([
+            'ID'           => $post_id,
+            'post_content' => $updated,
+        ]);
+    }
+
+    update_option('my_theme_news_blocks_migrated_v1', true);
+}
+add_action('admin_init', 'my_theme_migrate_news_blocks');
 
 /**
  * Ensure the News link appears in the site navigation.

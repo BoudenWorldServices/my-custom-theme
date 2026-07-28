@@ -199,6 +199,8 @@ function my_theme_register_blocks(): void
 
         // ── News CPT ──────────────────────────────────────────────────
         'news-article-hero',
+        'news-content-section',
+        'news-inline-quote',
     ];
 
     foreach ($block_dirs as $block_name) {

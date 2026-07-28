@@ -37,11 +37,30 @@ if (empty($news_posts)) {
         <?php foreach ($news_posts as $news_post) : ?>
             <?php
             $thumb_url   = get_the_post_thumbnail_url($news_post->ID, 'large');
-            $source      = get_post_meta($news_post->ID, '_news_source', true);
-            $source_url  = get_post_meta($news_post->ID, '_news_source_url', true);
             $pub_date    = get_post_meta($news_post->ID, '_news_publication_date', true);
             $excerpt     = $news_post->post_excerpt;
             $article_url = get_permalink($news_post->ID);
+
+            // Resolve all press links; fall back to legacy single-link fields.
+            $raw_links   = get_post_meta($news_post->ID, '_news_press_links', true);
+            $press_links = [];
+            if ($raw_links !== '') {
+                $decoded = json_decode($raw_links, true);
+                if (is_array($decoded)) {
+                    $press_links = array_values(array_filter($decoded, static function (array $l): bool {
+                        return ! empty($l['url']);
+                    }));
+                }
+            }
+            if (empty($press_links)) {
+                $legacy_name = (string) get_post_meta($news_post->ID, '_news_source', true);
+                $legacy_url  = (string) get_post_meta($news_post->ID, '_news_source_url', true);
+                if ($legacy_url !== '') {
+                    $press_links = [['name' => $legacy_name, 'url' => $legacy_url]];
+                }
+            }
+            // Legacy variables kept for the outlet badge above the title.
+            $source = $press_links[0]['name'] ?? (string) get_post_meta($news_post->ID, '_news_source', true);
             ?>
             <article class="border-b border-[#dedfe0] py-8">
                 <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-8">
@@ -90,16 +109,16 @@ if (empty($news_posts)) {
                                 <span>Read article</span>
                                 <img src="<?php echo esc_url($arrow); ?>" alt="" class="size-5 sm:ml-10">
                             </a>
-                            <?php if ($source_url) : ?>
+                            <?php foreach ($press_links as $pl) : ?>
                                 <a
-                                    href="<?php echo esc_url($source_url); ?>"
+                                    href="<?php echo esc_url($pl['url']); ?>"
                                     class="inline-flex items-center gap-1 font-montserrat text-[14px] font-semibold text-[#ff5c00] underline underline-offset-2 hover:no-underline"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    Read on <?php echo esc_html($source ?: 'the original outlet'); ?> ↗
+                                    Read on <?php echo esc_html($pl['name'] ?: 'the original outlet'); ?>
                                 </a>
-                            <?php endif; ?>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
