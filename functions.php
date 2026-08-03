@@ -19,6 +19,7 @@ require_once __DIR__ . '/inc/email-templates.php';
 require_once __DIR__ . '/inc/admin/bootstrap.php';
 require_once __DIR__ . '/inc/blocks.php';
 require_once __DIR__ . '/inc/block-patterns.php';
+require_once __DIR__ . '/inc/media-urls.php';
 
 /**
  * Theme setup: register support for WordPress features.
@@ -1705,36 +1706,6 @@ function my_theme_filter_robots_txt(string $output, bool $public): string
     return implode("\n", $lines) . "\n";
 }
 add_filter('robots_txt', 'my_theme_filter_robots_txt', 10, 2);
-
-/* ------------------------------------------------------------------ */
-/*  Image option resolver for templates                               */
-/* ------------------------------------------------------------------ */
-
-/**
- * Resolve an image option value to a URL.
- *
- * Supports WP attachment IDs and direct URLs; falls back to the
- * provided default (typically a get_theme_file_uri() path).
- *
- * @param string $option_key WP option name.
- * @param string $default    Default URL if option is empty.
- * @param string $size       WP image size for attachment IDs.
- */
-function my_theme_get_image_url(string $option_key, string $default = '', string $size = 'full'): string
-{
-    $value = get_option($option_key, '');
-
-    if ($value === '' || $value === false) {
-        return $default;
-    }
-
-    if (is_numeric($value) && (int) $value > 0) {
-        $url = wp_get_attachment_image_url((int) $value, $size);
-        return $url ? $url : $default;
-    }
-
-    return (string) $value;
-}
 
 /* ------------------------------------------------------------------ */
 /*  Auto-provision required pages on fresh deployments                 */
