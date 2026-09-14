@@ -920,7 +920,7 @@ function my_theme_get_primary_nav_items(): array
 
 /**
  * Handle contact/assessment form submissions with full protection stack:
- * nonce, honeypot, rate limiting, time trap, Turnstile CAPTCHA, and content filtering.
+ * CSRF token, honeypot, rate limiting, time trap, Turnstile CAPTCHA, and content filtering.
  */
 function my_theme_handle_contact_form_submission(): void
 {
@@ -930,11 +930,7 @@ function my_theme_handle_contact_form_submission(): void
     }
     $redirect_url = remove_query_arg(['form_status', 'form_error'], $redirect_url);
 
-    $nonce = isset($_POST['my_theme_contact_nonce'])
-        ? sanitize_text_field(wp_unslash((string) $_POST['my_theme_contact_nonce']))
-        : '';
-
-    if (! wp_verify_nonce($nonce, 'my_theme_contact_form_submit')) {
+    if (! my_theme_contact_form_verify_security()) {
         wp_safe_redirect(add_query_arg([
             'form_status' => 'error',
             'form_error'  => 'security',

@@ -79,6 +79,13 @@ if (! defined('MY_THEME_FORM_MAX_AGE')) {
 }
 
 /**
+ * Contact form anti-CSRF token bucket length (seconds). Cached pages may reuse the same token until this elapses.
+ */
+if (! defined('MY_THEME_CONTACT_FORM_TOKEN_TTL')) {
+    define('MY_THEME_CONTACT_FORM_TOKEN_TTL', 86400);
+}
+
+/**
  * Check whether Turnstile is configured (both keys present).
  */
 function my_theme_turnstile_enabled(): bool
@@ -463,6 +470,128 @@ function my_theme_is_contact_page(): bool
     $path = isset($_SERVER['REQUEST_URI']) ? trim(parse_url((string) $_SERVER['REQUEST_URI'], PHP_URL_PATH), '/') : '';
     return $path === 'contact' || $path === 'contact/';
 }
+
+/**
+ * Whether the current front-end request renders a contact / assessment form.
+ */
+function my_theme_page_has_contact_form(): bool
+{
+    if (is_front_page() || my_theme_is_contact_page()) {
+        return true;
+    }
+
+    if (! is_singular()) {
+        return false;
+    }
+
+    $post = get_queried_object();
+    if (! $post instanceof WP_Post) {
+        return false;
+    }
+
+    return has_block('goliath/contact-form', $post)
+        || has_block('goliath/hp-contact-form', $post);
+}
+
+/**
+ * Create a time-bucket HMAC token (safe to reuse on full-page cached HTML for all visitors).
+ */
+function my_theme_contact_form_create_token(): string
+{
+    $ttl    = max(3600, (int) MY_THEME_CONTACT_FORM_TOKEN_TTL);
+    $bucket = (int) floor(time() / $ttl);
+    $sig    = hash_hmac('sha256', 'my_theme_contact_form_submit|' . $bucket, wp_salt('auth'));
+
+    return wp_hash($bucket . '|' . $sig);
+}
+
+/**
+ * Verify contact form token (accepts current and previous time bucket).
+ */
+function my_theme_contact_form_verify_token(string $token): bool
+{
+    $token = trim($token);
+    if ($token === '') {
+        return false;
+    }
+
+    $ttl         = max(3600, (int) MY_THEME_CONTACT_FORM_TOKEN_TTL);
+    $now_bucket  = (int) floor(time() / $ttl);
+
+    for ($bucket = $now_bucket - 1; $bucket <= $now_bucket; $bucket++) {
+        if ($bucket < 0) {
+            continue;
+        }
+
+        $sig      = hash_hmac('sha256', 'my_theme_contact_form_submit|' . $bucket, wp_salt('auth'));
+        $expected = wp_hash($bucket . '|' . $sig);
+
+        if (hash_equals($expected, $token)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
+ * Verify contact form security token (cache-safe) with legacy WordPress nonce fallback.
+ */
+function my_theme_contact_form_verify_security(): bool
+{
+    $token = isset($_POST['my_theme_contact_token'])
+        ? sanitize_text_field(wp_unslash((string) $_POST['my_theme_contact_token']))
+        : '';
+
+    if ($token !== '' && my_theme_contact_form_verify_token($token)) {
+        return true;
+    }
+
+    $nonce = isset($_POST['my_theme_contact_nonce'])
+        ? sanitize_text_field(wp_unslash((string) $_POST['my_theme_contact_nonce']))
+        : '';
+
+    if ($nonce === '') {
+        return false;
+    }
+
+    return (bool) wp_verify_nonce($nonce, 'my_theme_contact_form_submit');
+}
+
+/**
+ * Hidden field for contact form CSRF protection (use instead of wp_nonce_field on public forms).
+ */
+function my_theme_render_contact_form_token_field(): void
+{
+    ?>
+    <input type="hidden" name="my_theme_contact_token" value="<?php echo esc_attr(my_theme_contact_form_create_token()); ?>">
+    <?php
+}
+
+/**
+ * Tell caches not to store HTML for pages that contain the contact form.
+ */
+function my_theme_contact_form_send_nocache_headers(): void
+{
+    if (is_admin() || ! my_theme_page_has_contact_form()) {
+        return;
+    }
+
+    if (! defined('DONOTCACHEPAGE')) {
+        define('DONOTCACHEPAGE', true);
+    }
+
+    if (headers_sent()) {
+        return;
+    }
+
+    header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+    header('Pragma: no-cache');
+    header('CDN-Cache-Control: no-store');
+    header('Cloudflare-CDN-Cache-Control: no-store');
+}
+
+add_action('template_redirect', 'my_theme_contact_form_send_nocache_headers', 0);
 
 /**
  * Render the Turnstile widget markup (place inside form).

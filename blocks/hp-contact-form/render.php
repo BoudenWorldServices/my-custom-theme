@@ -98,7 +98,7 @@ $contact_items = [
                     <?php endif; ?>
                     <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post" class="pt-[8px]">
                         <input type="hidden" name="action" value="my_theme_contact_form">
-                        <?php wp_nonce_field('my_theme_contact_form_submit', 'my_theme_contact_nonce'); ?>
+                        <?php my_theme_render_contact_form_token_field(); ?>
                         <?php my_theme_render_time_trap(); ?>
                         <div class="hidden" aria-hidden="true">
                             <label>Leave this field blank<input type="text" name="website" tabindex="-1" autocomplete="off"></label>

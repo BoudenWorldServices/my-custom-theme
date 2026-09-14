@@ -83,7 +83,7 @@ $form_error  = isset( $_GET['form_error'] )  ? sanitize_key( wp_unslash( (string
                 <?php endif; ?>
                 <form class="bg-white px-4 py-2 lg:px-[30px] lg:py-[40px]" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
                     <input type="hidden" name="action" value="my_theme_contact_form">
-                    <?php wp_nonce_field( 'my_theme_contact_form_submit', 'my_theme_contact_nonce' ); ?>
+                    <?php my_theme_render_contact_form_token_field(); ?>
                     <?php my_theme_render_time_trap(); ?>
                     <div class="hidden" aria-hidden="true">
                         <label>Leave this field blank
