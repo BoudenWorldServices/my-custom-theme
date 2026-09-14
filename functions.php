@@ -988,9 +988,9 @@ function my_theme_handle_contact_form_submission(): void
     }
 
     // Run protection stack: rate limit, time trap, Turnstile, content filtering.
-    $protection_error = my_theme_run_form_protection($name, $company, $email, $message);
+    $protection_error = my_theme_run_form_protection($name, $company, $email, $message, $phone);
     if ($protection_error !== '') {
-        $fake_success = in_array($protection_error, ['spam_content', 'spam_bot'], true);
+        $fake_success = in_array($protection_error, ['spam_content', 'spam_bot', 'duplicate', 'rate_limit'], true);
         wp_safe_redirect(add_query_arg([
             'form_status' => $fake_success ? 'success' : 'error',
             'form_error'  => $fake_success ? null : $protection_error,
