@@ -47,14 +47,14 @@ if (! defined('MY_THEME_RATE_BURST_WINDOW')) {
  * Max submissions per email address within MY_THEME_RATE_EMAIL_WINDOW.
  */
 if (! defined('MY_THEME_RATE_EMAIL_MAX')) {
-    define('MY_THEME_RATE_EMAIL_MAX', 1);
+    define('MY_THEME_RATE_EMAIL_MAX', 3);
 }
 
 /**
- * Per-email rate limit window in seconds (default: 1 hour).
+ * Per-email rate limit window in seconds (default: 15 minutes).
  */
 if (! defined('MY_THEME_RATE_EMAIL_WINDOW')) {
-    define('MY_THEME_RATE_EMAIL_WINDOW', 3600);
+    define('MY_THEME_RATE_EMAIL_WINDOW', 900);
 }
 
 /**
