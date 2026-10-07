@@ -54,6 +54,13 @@ function my_theme_sanitize_restricted_claims_string(string $text): string
         return $text;
     }
 
+    // Repair common escaped-entity artefacts that can leak into visible copy.
+    $text = str_replace(
+        ['\\u0026amp;', 'u0026amp;', '\\u0026', 'u0026', '&amp;'],
+        ['&', '&', '&', '&', '&'],
+        $text
+    );
+
     $replacements = [
         'SEMA Approved Racking Inspector' => 'Experienced racking specialist',
         'SEMA-approved racking inspector qualifications' => 'extensive warehouse racking experience',
@@ -262,7 +269,7 @@ function my_theme_strip_inspection_blocks_from_content(string $content): string
  */
 function my_theme_apply_restricted_copy_scrub(): void
 {
-    if (get_option('my_theme_restricted_claims_scrub') === '1.4') {
+    if (get_option('my_theme_restricted_claims_scrub') === '1.5') {
         return;
     }
 
@@ -300,6 +307,7 @@ function my_theme_apply_restricted_copy_scrub(): void
         'my_theme_comp_std_card4_title' => 'Lifetime warranty',
         'my_theme_comp_std_card4_body' => 'Every repair is backed by a warranty that lasts a lifetime.',
         'my_theme_comp_hero_desc' => 'Warehouse racking safety depends on strong structural integrity and reliable long-term performance. Goliath™ supports both by reinforcing damaged uprights with a permanent repair.',
+        'my_theme_comp_hero_h1' => 'Compliance & Safety Standards',
         'my_theme_hiw_standards_h2' => 'Independently Tested and Verified',
         'my_theme_hiw_standards_intro1' => 'Goliath™ is independently tested and verified by Bureau Veritas. It is certified not to alter the original racking bay design.',
         'my_theme_hiw_standards_intro2' => 'What that means for your warehouse:',
@@ -326,6 +334,10 @@ function my_theme_apply_restricted_copy_scrub(): void
         'my_theme_comp_only_right_h3' => 'From a Warehouse Safety Perspective',
         'my_theme_comp_only_right_p1' => 'Continuous damage causes structural weaknesses over time. A system that prevents that damage, like Goliath™, provides a more stable and consistent outcome.',
         'my_theme_comp_proven_p2' => 'Once installed, it provides continuous protection in the same location without the need to change your uprights regularly. This reduces the frequency of repairs and keeps your uprights in good condition over the long term.',
+        'my_theme_comp_proven_case_h3' => 'Case Study: B&M',
+        'my_theme_comp_proven_case_p' => 'Our client, B&M, reduced racking repair costs by over 30% within the first 12 months of installation. This was achieved by preventing repeat damage to the uprights in their warehouse.',
+        'my_theme_svc_upright_case_h3' => 'Case Study: B&M',
+        'my_theme_svc_prevention_case_h3' => 'Case Study: B&M',
         'my_theme_comp_doc_subtitle' => 'Goliath™ provides access to clear technical and installation documentation for operators and procurement teams.',
         'my_theme_comp_doc_closing' => 'Downloadable PDFs are available to support internal reviews, safety records, and procurement decisions. Our resources make it easier to document due diligence and explain clearly how Goliath™ protects upright structures.',
         'my_theme_prevention_cta_btn2' => 'View Compliance Info',
@@ -371,7 +383,7 @@ function my_theme_apply_restricted_copy_scrub(): void
         ]);
     }
 
-    update_option('my_theme_restricted_claims_scrub', '1.4');
+    update_option('my_theme_restricted_claims_scrub', '1.5');
 }
 add_action('init', 'my_theme_apply_restricted_copy_scrub', 20);
 
