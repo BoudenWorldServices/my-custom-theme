@@ -222,36 +222,37 @@ $has_crash_test_mp4 = function_exists('my_theme_video_file_is_readable')
         <div class="mx-auto w-full max-w-[1440px] px-5 py-10 lg:px-[68px] lg:pt-[80px] lg:pb-[60px]">
             <div class="flex flex-col gap-6 lg:gap-8">
                 <h2 id="uk-standards-heading" class="font-montserrat text-[28px] font-bold leading-[40px] text-[#020202] lg:text-[36px]">
-                    <?php echo esc_html(get_option('my_theme_hiw_standards_h2', 'Designed to Meet UK Standards')); ?>
+                    <?php echo esc_html(get_option('my_theme_hiw_standards_h2', 'Independently Tested and Verified')); ?>
                 </h2>
                 <p class="max-w-[896px] font-roboto text-[18px] font-normal leading-[28px] text-[#364153]">
-                    <?php echo esc_html(get_option('my_theme_hiw_standards_intro1', 'Goliath™ is developed to meet the UK\'s racking regulations and industry best practices. This ensures every repair supports both safety and compliance.')); ?>
+                    <?php echo esc_html(get_option('my_theme_hiw_standards_intro1', 'Goliath™ is independently tested and verified by Bureau Veritas. It is certified not to alter the original racking bay design.')); ?>
                 </p>
                 <p class="max-w-[896px] font-roboto text-[18px] font-normal leading-[28px] text-[#364153]">
-                    <?php echo esc_html(get_option('my_theme_hiw_standards_intro2', 'It aligns with key standards, including:')); ?>
+                    <?php echo esc_html(get_option('my_theme_hiw_standards_intro2', 'What that means for your warehouse:')); ?>
                 </p>
                 <?php
                 $standards_cards = [
                     [
-                        'title' => get_option('my_theme_hiw_standards_card1_title', 'BS EN 15512:2020 + A1:2022'),
-                        'body'  => get_option('my_theme_hiw_standards_card1_body', 'Regulations for steel storage systems for adjustable pallet racking-principles for structural design'),
+                        'title' => get_option('my_theme_hiw_standards_card1_title', 'Bureau Veritas certified'),
+                        'body'  => get_option('my_theme_hiw_standards_card1_body', 'Independently tested and verified by Bureau Veritas.'),
                     ],
                     [
-                        'title' => get_option('my_theme_hiw_standards_card2_title', 'BS EN 15635:2008'),
-                        'body'  => get_option('my_theme_hiw_standards_card2_body', 'Regulations for steel static storage systems application and maintenance of storage equipment'),
+                        'title' => get_option('my_theme_hiw_standards_card2_title', 'Original bay design protected'),
+                        'body'  => get_option('my_theme_hiw_standards_card2_body', 'Certified not to alter the original racking bay design.'),
                     ],
                     [
-                        'title' => get_option('my_theme_hiw_standards_card3_title', 'SEMA code of practice'),
-                        'body'  => get_option('my_theme_hiw_standards_card3_body', 'for the design of adjustable pallet racking'),
+                        'title' => get_option('my_theme_hiw_standards_card3_title', 'Fully insured'),
+                        'body'  => get_option('my_theme_hiw_standards_card3_body', 'Installations are fully insured for warehouse operations.'),
                     ],
                     [
-                        'title' => get_option('my_theme_hiw_standards_card4_title', 'SEMA code of practice'),
-                        'body'  => get_option('my_theme_hiw_standards_card4_body', 'for the design and use of racking protection'),
+                        'title' => get_option('my_theme_hiw_standards_card4_title', 'Lifetime warranty'),
+                        'body'  => get_option('my_theme_hiw_standards_card4_body', 'Every repair is backed by a warranty that lasts a lifetime.'),
                     ],
                 ];
+                $standards_cards      = my_theme_filter_standards_cards($standards_cards);
                 $standards_check_icon = get_theme_file_uri('assets/images/icons/why-goliath-bullet-dark.svg');
                 ?>
-                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+                <div class="<?php echo esc_attr(my_theme_standards_cards_grid_class(count($standards_cards))); ?>">
                     <?php foreach ($standards_cards as $card) : ?>
                         <div class="flex min-h-0 min-w-0 flex-col rounded-lg bg-[#f9fafb] p-6">
                             <img
@@ -272,7 +273,7 @@ $has_crash_test_mp4 = function_exists('my_theme_video_file_is_readable')
                     <?php endforeach; ?>
                 </div>
                 <p class="max-w-[896px] font-roboto text-[18px] font-normal leading-[28px] text-[#364153]">
-                    <?php echo esc_html(get_option('my_theme_hiw_standards_closing', 'We\'re proud that Goliath™ is reinforced in a way that supports ongoing safety, reduces risk, and meets the expectations of UK regulatory bodies. Our upright repair solution was built according to UK H&S specifications, making it a trusted solution for warehouses in the UK.')); ?>
+                    <?php echo esc_html(get_option('my_theme_hiw_standards_closing', 'Every Goliath™ installation is fully insured and backed by a lifetime warranty, giving operators long-term confidence in the repair.')); ?>
                 </p>
             </div>
         </div>
@@ -482,13 +483,13 @@ $has_crash_test_mp4 = function_exists('my_theme_video_file_is_readable')
                     <?php echo esc_html(get_option('my_theme_hiw_compliance_h2', 'Built to Support Compliance')); ?>
                 </h2>
                 <div class="max-w-[525px] font-roboto text-[18px] font-normal leading-[28px] text-[#364153]">
-                    <p>Goliath™ aligns with recognised UK standards:</p>
+                    <p><?php echo esc_html(get_option('my_theme_hiw_compliance_intro', 'Goliath™ is independently tested and verified:')); ?></p>
                     <ul class="mt-1 list-none">
-                        <li><span aria-hidden="true">+</span> BS EN 15512</li>
-                        <li><span aria-hidden="true">+</span> BS EN 15635</li>
-                        <li><span aria-hidden="true">+</span> SEMA guidelines</li>
+                        <li><span aria-hidden="true">+</span> Bureau Veritas certified</li>
+                        <li><span aria-hidden="true">+</span> Fully insured</li>
+                        <li><span aria-hidden="true">+</span> Lifetime warranty</li>
                     </ul>
-                    <p class="mt-2">By reinforcing damaged uprights, our permanent upright repair helps maintain structural integrity and supports ongoing inspection requirements.</p>
+                    <p class="mt-2"><?php echo esc_html(get_option('my_theme_hiw_compliance_closing', 'By reinforcing damaged uprights, our permanent upright repair helps maintain structural integrity without altering the original racking bay design.')); ?></p>
                 </div>
             </div>
         </div>

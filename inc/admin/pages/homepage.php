@@ -242,7 +242,7 @@ function my_theme_admin_render_homepage(): void
 
     // Expert CTA
     my_theme_admin_section_open('Expert Assessment CTA');
-    my_theme_admin_textarea_field('my_theme_hp_expert_headline', 'Headline', 'Our SEMA qualified inspectors will assess your warehouse and demonstrate how Goliath can help you');
+    my_theme_admin_textarea_field('my_theme_hp_expert_headline', 'Headline', 'Our experts will assess your warehouse and demonstrate how Goliath can help you');
     my_theme_admin_text_field('my_theme_hp_expert_badge', 'Badge', 'Free Audit');
     my_theme_admin_text_field('my_theme_hp_expert_cta_1_text', 'CTA Button 1', 'Interested in GOLIATH™?');
     my_theme_admin_text_field('my_theme_hp_expert_cta_2_text', 'CTA Button 2', 'Book My Free Site Survey');

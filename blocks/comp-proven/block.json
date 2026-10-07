@@ -24,7 +24,7 @@
     },
     "p2": {
       "type": "string",
-      "default": "Once installed, it provides continuous protection in the same location without the need to change your uprights regularly. This reduces the frequency of repairs and keeps your uprights in good condition, through inspection cycles."
+      "default": "Once installed, it provides continuous protection in the same location without the need to change your uprights regularly. This reduces the frequency of repairs and keeps your uprights in good condition over the long term."
     },
     "caseH3": {
       "type": "string",

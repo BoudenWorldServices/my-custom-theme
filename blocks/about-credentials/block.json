@@ -6,12 +6,12 @@
   "description": "Dark four-column credentials grid with editable credential cards.",
   "category": "goliath",
   "icon": "awards",
-  "keywords": [
+    "keywords": [
     "about",
     "credentials",
-    "sema",
+    "bureau veritas",
     "qualifications",
-    "standards"
+    "warranty"
   ],
   "textdomain": "my-custom-theme",
   "render": "file:./render.php",
@@ -24,16 +24,16 @@
       "type": "array",
       "default": [
         {
-          "title": "SEMA Approved",
-          "desc": "Our repair system is approved by the Storage Equipment Manufacturers’ Association, the UK’s leading authority on storage systems."
+          "title": "Bureau Veritas certified",
+          "desc": "Independently tested and verified by Bureau Veritas. Certified not to alter the original racking bay design."
         },
         {
-          "title": "BS EN 15512",
-          "desc": "Goliath™ meets the structural design requirements for adjustable pallet racking systems as defined by this European standard."
+          "title": "Fully insured",
+          "desc": "Installations are fully insured, giving warehouse operators additional peace of mind."
         },
         {
-          "title": "BS EN 15635",
-          "desc": "Our solution aligns with the application and maintenance requirements for steel static storage systems."
+          "title": "Lifetime warranty",
+          "desc": "Every repair is backed by a warranty that lasts a lifetime."
         },
         {
           "title": "Registered Design",

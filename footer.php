@@ -43,6 +43,9 @@
                     if (! is_array($service_links) || $service_links === []) {
                         $service_links = function_exists('my_theme_footer_default_service_links') ? my_theme_footer_default_service_links() : [];
                     }
+                    if (function_exists('my_theme_filter_out_inspection_links')) {
+                        $service_links = my_theme_filter_out_inspection_links($service_links);
+                    }
                     foreach ($service_links as $link) :
                         $href = $link['url'] ?? '';
                         if ($href === '') { continue; }

@@ -25,11 +25,11 @@
     },
     "p2": {
       "type": "string",
-      "default": "Working closely with structural engineers and guided by UK safety standards including BS EN 15512 and BS EN 15635, we created a repair solution that does not just restore uprights to their original strength but reinforces them against future impact."
+      "default": "Working closely with structural engineers, we created a repair solution that does not just restore uprights to their original strength but reinforces them against future impact. Goliath™ is independently tested and verified by Bureau Veritas and certified not to alter the original racking bay design."
     },
     "p3": {
       "type": "string",
-      "default": "Every member of our installation team holds SEMA-approved racking inspector qualifications. We believe that the people who repair your racking should be qualified to inspect it first, ensuring every repair meets the highest safety standards."
+      "default": "Our installation team brings extensive warehouse racking experience to every job. We believe the people who repair your racking should understand how it is used, so every repair is carried out to a high safety standard."
     },
     "p4": {
       "type": "string",

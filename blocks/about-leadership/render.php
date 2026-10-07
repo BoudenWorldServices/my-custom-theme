@@ -9,7 +9,7 @@ $heading               = $attributes['heading']              ?? 'Leadership';
 $subtitle              = $attributes['subtitle']             ?? 'Qualified professionals with deep expertise in warehouse racking safety and structural engineering.';
 $leader_name           = $attributes['leaderName']           ?? 'Managing Director';
 $leader_role           = $attributes['leaderRole']           ?? 'Founder & Managing Director';
-$leader_qualifications = $attributes['leaderQualifications'] ?? 'SEMA Approved Racking Inspector';
+$leader_qualifications = $attributes['leaderQualifications'] ?? 'Experienced racking specialist';
 $bio_p1                = $attributes['bioP1']                ?? 'With extensive experience in warehouse racking safety and structural repair, our managing director identified a fundamental flaw in the traditional approach to racking maintenance: the endless cycle of damage, replacement, and repeat damage.';
 $bio_p2                = $attributes['bioP2']                ?? 'This insight led to the development of the Goliath repair system, engineered to not only restore damaged uprights but to reinforce them against future impact. Every installation is backed by a lifetime warranty because we stand behind the quality of our work.';
 

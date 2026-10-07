@@ -52,7 +52,7 @@ function my_theme_admin_render_contact_page(): void
 
     my_theme_admin_section_open('Hero Section', 'Page heading and introduction.');
     my_theme_admin_text_field('my_theme_cp_hero_h1', 'Heading (H1)', 'Get in Touch');
-    my_theme_admin_textarea_field('my_theme_cp_hero_desc', 'Description', 'Request a free warehouse racking assessment from our SEMA-qualified team. We respond within one working day and provide transparent, no-obligation pricing.', 3);
+    my_theme_admin_textarea_field('my_theme_cp_hero_desc', 'Description', 'Request a free warehouse racking assessment from our experienced team. We respond within one working day and provide transparent, no-obligation pricing.', 3);
     my_theme_admin_section_close();
 
     my_theme_admin_section_open('Quick Contact Cards', 'Subtitles shown beneath phone and email cards.');

@@ -41,7 +41,7 @@ $assets = [
     <section class="w-full bg-white">
         <div class="mx-auto w-full max-w-[1440px] px-5 py-12 sm:px-6 lg:px-[68px] lg:py-[80px]">
             <p class="font-montserrat text-[16px] font-medium leading-[24px] text-[#364153]">
-                <?php echo esc_html(get_option('my_theme_svc_inspections_intro', 'Annual inspections are a structured way for warehouse owners and operators to assess the condition of pallet racking systems. These inspections identify damage, monitor wear and tear, and ensure that your storage systems meet the required safety standards, including SEMA racking inspection guidelines.')); ?>
+                <?php echo esc_html(get_option('my_theme_svc_inspections_intro', 'This service is not currently advertised.')); ?>
             </p>
             <div class="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-8">
                 <article class="bg-[#f9fafb] p-8">
@@ -73,7 +73,7 @@ $assets = [
         <div class="mx-auto w-full max-w-[1440px] px-5 py-10 sm:px-6 lg:px-[75px] lg:py-[64px]">
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-8">
                 <div class="h-[280px] overflow-hidden lg:h-[384px]">
-                    <img src="<?php echo esc_url(my_theme_get_image_url('my_theme_svc_inspections_img1', get_theme_file_uri('assets/images/Services/inspection/inspection1.webp'))); ?>" alt="SEMA inspection recording in warehouse aisle" class="h-full w-full object-cover">
+                    <img src="<?php echo esc_url(my_theme_get_image_url('my_theme_svc_inspections_img1', get_theme_file_uri('assets/images/Services/inspection/inspection1.webp'))); ?>" alt="Warehouse racking recording in aisle" class="h-full w-full object-cover">
                 </div>
                 <div class="h-[280px] overflow-hidden lg:h-[384px]">
                     <img src="<?php echo esc_url(my_theme_get_image_url('my_theme_svc_inspections_img2', get_theme_file_uri('assets/images/Services/inspection/inspection2.webp'))); ?>" alt="Technician performing annual racking inspection" class="h-full w-full object-cover">
@@ -95,7 +95,7 @@ $assets = [
                     <img src="<?php echo esc_url($assets['icon_reduce_risk']); ?>" alt="" class="block size-18 shrink-0 object-contain" width="40" height="40">
                     <h2 class="mt-8 font-montserrat text-[36px] font-bold leading-[40px] text-[#020202]"><?php echo esc_html(get_option('my_theme_svc_inspections_reduce_h2', 'Reduce Risk with Goliath™')); ?></h2>
                     <p class="mt-6 max-w-[534px] font-roboto text-[18px] leading-[28px] text-[#364153]"><?php echo esc_html(get_option('my_theme_svc_inspections_reduce_p1', 'Inspections only identify the issues in your warehouse, but prevention reduces how often they occur.')); ?></p>
-                    <p class="mt-4 font-roboto text-[18px] leading-[28px] text-[#364153]"><?php echo esc_html(get_option('my_theme_svc_inspections_reduce_p2', 'Installing a highly durable pallet rack protection system like Goliath™ helps minimise damage between inspection cycles.')); ?></p>
+                    <p class="mt-4 font-roboto text-[18px] leading-[28px] text-[#364153]"><?php echo esc_html(get_option('my_theme_svc_inspections_reduce_p2', 'Installing a highly durable pallet rack protection system like Goliath™ helps minimise recurring upright damage over the long term.')); ?></p>
                 </article>
             </div>
             <div class="mt-12 bg-[#ff5c00] px-8 py-8">

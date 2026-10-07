@@ -6,7 +6,13 @@
  */
 
 $heading  = $attributes['heading']  ?? 'Our Team';
-$subtitle = $attributes['subtitle'] ?? 'SEMA-qualified inspectors and engineers delivering safe, permanent racking repairs across the UK.';
+$subtitle = $attributes['subtitle'] ?? 'Experts delivering safe, permanent racking repairs across the UK.';
+if (function_exists('my_theme_sanitize_restricted_claims_string')) {
+    $subtitle = my_theme_sanitize_restricted_claims_string((string) $subtitle);
+}
+if (stripos((string) $subtitle, 'engineer') !== false) {
+    $subtitle = 'Experts delivering safe, permanent racking repairs across the UK.';
+}
 
 $members = $attributes['members'] ?? [];
 

@@ -80,7 +80,7 @@
                             Services
                         </h3>
                         <p class="font-montserrat text-[14px] leading-[22px] text-[#6b7280]">
-                            Repair, damage prevention, annual inspections, and racking installations.
+                            Repair, damage prevention, and racking installations.
                         </p>
                     </div>
                     <span class="mt-auto font-montserrat text-[13px] font-semibold text-[#ff5c00]">View services &rarr;</span>
@@ -159,7 +159,7 @@
                             Contact us
                         </h3>
                         <p class="font-montserrat text-[14px] leading-[22px] text-[#6b7280]">
-                            Request a free racking assessment — SEMA-qualified team, one working day response.
+                            Request a free racking assessment — experienced team, one working day response.
                         </p>
                     </div>
                     <span class="mt-auto font-montserrat text-[13px] font-semibold text-[#ff5c00]">Get in touch &rarr;</span>

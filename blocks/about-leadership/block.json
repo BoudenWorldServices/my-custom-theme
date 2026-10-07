@@ -34,7 +34,7 @@
     },
     "leaderQualifications": {
       "type": "string",
-      "default": "SEMA Approved Racking Inspector"
+      "default": "Experienced racking specialist"
     },
     "bioP1": {
       "type": "string",

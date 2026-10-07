@@ -442,7 +442,7 @@ $has_timer_install_video = ($timer_video_url !== '');
                 <div class="w-full flex flex-col gap-5">
                     <?php
                     $right_advantages = [
-                        ['num' => '04', 'title' => 'Fully UK Compliant', 'desc' => 'Meets all UK warehouse safety regulations. HSE approved and certified.', 'highlight' => true],
+                        ['num' => '04', 'title' => 'Independently Verified', 'desc' => 'Independently tested and verified by Bureau Veritas. Certified not to alter the original racking bay design.', 'highlight' => true],
                         ['num' => '05', 'title' => '70% Cost Reduction', 'desc' => '£350 vs £2,025 for traditional replacement. Save thousands without compromising safety.', 'highlight' => false],
                         ['num' => '06', 'title' => 'Universal Compatibility', 'desc' => 'Adapts to all major UK and EU racking brands. One solution fits all.', 'highlight' => false],
                     ];
@@ -593,13 +593,13 @@ $has_timer_install_video = ($timer_video_url !== '');
                             <span class="font-montserrat font-bold text-[20px] text-white uppercase leading-[44px]">A Goliath expert</span>
                             <span class="inline-block bg-[#ff5c00] text-white text-[12px] font-bold px-[10px] py-[4px] rounded-[2px]"><?php echo esc_html(get_option('my_theme_hp_expert_badge', 'Free Audit')); ?></span>
                         </div>
-                        <p class="font-montserrat font-bold text-[24px] lg:text-[36px] text-white uppercase leading-[34px] lg:leading-[44px] mb-8 max-w-[820px]"><?php echo esc_html(get_option('my_theme_hp_expert_headline', 'Our SEMA qualified inspectors will assess your warehouse and demonstrate how Goliath can help you')); ?></p>
+                        <p class="font-montserrat font-bold text-[24px] lg:text-[36px] text-white uppercase leading-[34px] lg:leading-[44px] mb-8 max-w-[820px]"><?php echo esc_html(get_option('my_theme_hp_expert_headline', 'Our experts will assess your warehouse and demonstrate how Goliath can help you')); ?></p>
                     </div>
 
                     <div class="flex flex-wrap gap-[30px] mb-8">
                         <?php
                         $features = [
-                            ['top' => 'Qualified', 'bottom' => 'inspectors'],
+                            ['top' => 'Experienced', 'bottom' => 'experts'],
                             ['top' => 'Tailored', 'bottom' => 'Solution'],
                             ['top' => 'Analysis', 'bottom' => 'Report'],
                         ];

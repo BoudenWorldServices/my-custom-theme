@@ -83,51 +83,52 @@ $assets = [
                 </h2>
                 <div class="font-montserrat text-[18px] font-normal leading-[28px] text-[#666]">
                     <p><?php echo esc_html(get_option('my_theme_comp_reg_p1', 'For warehouse owners and operators, compliance is more than just about meeting the laid-out standards. When followed properly, it helps reduce risk, protect people, and ensure that work is carried out without interrupting operations.')); ?></p>
-                    <p><?php echo esc_html(get_option('my_theme_comp_reg_p2', 'Goliath™ supports these requirements directly. Our permanent upright repair solution is tested and certified. Our product aligns with recognised UK and European standards, which address one of the most common causes of non-compliance in warehouses: impact damage to uprights.')); ?></p>
+                    <p><?php echo esc_html(get_option('my_theme_comp_reg_p2', 'Goliath™ supports warehouse safety by reinforcing the part of the upright most susceptible to impact. The system is independently tested and verified by Bureau Veritas and certified not to alter the original racking bay design.')); ?></p>
                 </div>
                 <div class="flex w-full items-start gap-5 bg-[#020202] px-[24px] py-[24px] lg:h-[156px] lg:px-[33px] lg:pt-[33px]">
                     <div class="flex h-[90px] w-[89px] shrink-0 items-center justify-center bg-[#ff5c00]">
                         <img src="<?php echo esc_url($assets['shield']); ?>" alt="" class="size-14 brightness-0">
                     </div>
                     <div class="flex flex-col gap-2">
-                        <h3 class="font-montserrat text-[20px] font-bold leading-[30px] text-white"><?php echo esc_html(get_option('my_theme_comp_reg_box_h3', '100% UK Compliance Guaranteed')); ?></h3>
-                        <p class="max-w-[1056px] font-montserrat text-[16px] font-normal leading-[26px] text-white"><?php echo esc_html(get_option('my_theme_comp_reg_box_p', 'Every GOLIATH™ installation is fully compliant with UK Health & Safety regulations. We provide complete documentation and certification for your records and inspections.')); ?></p>
+                        <h3 class="font-montserrat text-[20px] font-bold leading-[30px] text-white"><?php echo esc_html(get_option('my_theme_comp_reg_box_h3', 'Independently verified')); ?></h3>
+                        <p class="max-w-[1056px] font-montserrat text-[16px] font-normal leading-[26px] text-white"><?php echo esc_html(get_option('my_theme_comp_reg_box_p', 'Every GOLIATH™ installation is independently tested and verified by Bureau Veritas. Work is fully insured and backed by a lifetime warranty.')); ?></p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- HSE EN SEMA -->
+    <!-- Independent verification -->
     <section class="w-full bg-white">
         <div class="mx-auto w-full max-w-[1440px] px-5 pb-10 sm:px-6 lg:px-[59px] lg:pb-[80px]">
             <div class="flex flex-col gap-[37px]">
-                <h2 class="font-montserrat text-[30px] font-bold leading-[40px] text-[#020202] lg:text-[36px]"><?php echo esc_html(get_option('my_theme_comp_std_h2', 'Built to Align with HSE, EN and SEMA Guidelines')); ?></h2>
+                <h2 class="font-montserrat text-[30px] font-bold leading-[40px] text-[#020202] lg:text-[36px]"><?php echo esc_html(get_option('my_theme_comp_std_h2', 'Independently Tested and Verified')); ?></h2>
                 <div class="font-montserrat text-[18px] font-normal leading-[28px] text-[#364153]">
-                    <p><?php echo esc_html(get_option('my_theme_comp_std_p1', 'Racking systems in the UK are assessed against guidelines from the HSE, EN standards, and industry best practice supported by SEMA.')); ?></p>
-                    <p><?php echo esc_html(get_option('my_theme_comp_std_p2', 'Goliath™ has been tested to comply with these expectations. It reinforces the part of the upright most susceptible to impact, helping maintain structural integrity and reduce the likelihood of damage being flagged during warehouse inspections.')); ?></p>
+                    <p><?php echo esc_html(get_option('my_theme_comp_std_p1', 'Goliath™ has been independently tested and verified by Bureau Veritas. It is certified not to alter the original racking bay design.')); ?></p>
+                    <p><?php echo esc_html(get_option('my_theme_comp_std_p2', 'Every installation is fully insured and backed by a warranty that lasts a lifetime.')); ?></p>
                 </div>
                 <?php
                 $standards_cards = [
                     [
-                        'title' => get_option('my_theme_comp_std_card1_title', 'BS EN 15512:2020 + A1:2022'),
-                        'body'  => get_option('my_theme_comp_std_card1_body', 'Regulations for steel storage systems for adjustable pallet racking-principles for structural design'),
+                        'title' => get_option('my_theme_comp_std_card1_title', 'Bureau Veritas certified'),
+                        'body'  => get_option('my_theme_comp_std_card1_body', 'Independently tested and verified by Bureau Veritas.'),
                     ],
                     [
-                        'title' => get_option('my_theme_comp_std_card2_title', 'BS EN 15635:2008'),
-                        'body'  => get_option('my_theme_comp_std_card2_body', 'Regulations for steel static storage systems application and maintenance of storage equipment'),
+                        'title' => get_option('my_theme_comp_std_card2_title', 'Original bay design protected'),
+                        'body'  => get_option('my_theme_comp_std_card2_body', 'Certified not to alter the original racking bay design.'),
                     ],
                     [
-                        'title' => get_option('my_theme_comp_std_card3_title', 'SEMA code of practice'),
-                        'body'  => get_option('my_theme_comp_std_card3_body', 'for the design of adjustable pallet racking'),
+                        'title' => get_option('my_theme_comp_std_card3_title', 'Fully insured'),
+                        'body'  => get_option('my_theme_comp_std_card3_body', 'Installations are fully insured for warehouse operations.'),
                     ],
                     [
-                        'title' => get_option('my_theme_comp_std_card4_title', 'SEMA code of practice'),
-                        'body'  => get_option('my_theme_comp_std_card4_body', 'for the design and use of racking protection'),
+                        'title' => get_option('my_theme_comp_std_card4_title', 'Lifetime warranty'),
+                        'body'  => get_option('my_theme_comp_std_card4_body', 'Every repair is backed by a warranty that lasts a lifetime.'),
                     ],
                 ];
+                $standards_cards = my_theme_filter_standards_cards($standards_cards);
                 ?>
-                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+                <div class="<?php echo esc_attr(my_theme_standards_cards_grid_class(count($standards_cards))); ?>">
                     <?php foreach ($standards_cards as $card) : ?>
                         <article class="flex min-h-0 min-w-0 flex-col rounded-lg bg-[#f9fafb] p-6">
                             <img
@@ -156,7 +157,7 @@ $assets = [
         <div class="mx-auto w-full max-w-[1440px] px-5 sm:px-6 lg:px-[59px]">
             <div class="relative">
                 <div class="w-full overflow-hidden">
-                    <img src="<?php echo esc_url(my_theme_get_image_url('my_theme_comp_warranty_image', get_theme_file_uri('assets/images/Compliance/waranty-coverage.webp'))); ?>" alt="Warehouse racking upright protected by Goliath during compliance inspection" class="h-auto w-full object-cover" loading="lazy" decoding="async">
+                    <img src="<?php echo esc_url(my_theme_get_image_url('my_theme_comp_warranty_image', get_theme_file_uri('assets/images/Compliance/waranty-coverage.webp'))); ?>" alt="Warehouse racking upright protected by Goliath in operation" class="h-auto w-full object-cover" loading="lazy" decoding="async">
                 </div>
                 <div class="mt-6 bg-[#ff5c00] p-8 lg:absolute lg:-right-[130px] lg:top-[48%] lg:w-[532px] lg:-translate-y-1/2 lg:px-[42px] lg:py-[42px]">
                     <h3 class="font-montserrat text-[24px] font-bold leading-[36px] text-white"><?php echo esc_html(get_option('my_theme_comp_warranty_h3', 'Warranty Coverage Includes:')); ?></h3>
@@ -218,8 +219,8 @@ $assets = [
                     <p class="mt-4 font-montserrat text-[18px] font-normal leading-[28px] text-white"><?php echo esc_html(get_option('my_theme_comp_only_left_p2', 'Unlike traditional repair methods, Goliath™ is a permanent solution for the most common racking problems in warehouses. It stops the cycle of damage during facility usage and replacement.')); ?></p>
                 </div>
                 <div class="flex min-w-0 flex-1 flex-col bg-[#ff8f66] px-8 py-8 lg:basis-0 lg:px-[32px] lg:py-[32px]">
-                    <h3 class="font-montserrat text-[24px] font-bold leading-[32px] text-white"><?php echo esc_html(get_option('my_theme_comp_only_right_h3', 'From a Compliance Perspective')); ?></h3>
-                    <p class="mt-4 font-montserrat text-[18px] font-normal leading-[28px] text-white"><?php echo esc_html(get_option('my_theme_comp_only_right_p1', 'Continuous damage causes structural weaknesses, which raises concerns during inspections. A system that prevents that damage, like Goliath™, provides a more stable, consistent outcome.')); ?></p>
+                    <h3 class="font-montserrat text-[24px] font-bold leading-[32px] text-white"><?php echo esc_html(get_option('my_theme_comp_only_right_h3', 'From a Warehouse Safety Perspective')); ?></h3>
+                    <p class="mt-4 font-montserrat text-[18px] font-normal leading-[28px] text-white"><?php echo esc_html(get_option('my_theme_comp_only_right_p1', 'Continuous damage causes structural weaknesses over time. A system that prevents that damage, like Goliath™, provides a more stable and consistent outcome.')); ?></p>
                     <p class="mt-3 font-montserrat text-[18px] font-normal leading-[28px] text-white"><?php echo esc_html(get_option('my_theme_comp_only_right_p2', 'Goliath™ has also been independently tested and verified to perform excellently under real-world impact conditions. This provides additional assurance to our clients that the system is effective and suitable for long-term use in demanding warehouse environments.')); ?></p>
                 </div>
             </div>
@@ -233,7 +234,7 @@ $assets = [
                 <h2 class="font-montserrat text-[30px] font-bold leading-[40px] text-[#020202] lg:text-[36px]"><?php echo esc_html(get_option('my_theme_comp_proven_h2', 'Proven Performance Backed by Lifetime Warranty')); ?></h2>
                 <div class="mt-6 font-montserrat text-[18px] font-normal leading-[28px] text-[#364153]">
                     <p><?php echo esc_html(get_option('my_theme_comp_proven_p1', 'Goliath™ is supported by a lifetime impact warranty, reflecting our confidence in its durability and long-term performance.')); ?></p>
-                    <p><?php echo esc_html(get_option('my_theme_comp_proven_p2', 'Once installed, it provides continuous protection in the same location without the need to change your uprights regularly. This reduces the frequency of repairs and keeps your uprights in good condition, through inspection cycles.')); ?></p>
+                    <p><?php echo esc_html(get_option('my_theme_comp_proven_p2', 'Once installed, it provides continuous protection in the same location without the need to change your uprights regularly. This reduces the frequency of repairs and keeps your uprights in good condition over the long term.')); ?></p>
                 </div>
             </div>
             <aside class="w-full bg-[#020202] px-[32px] py-[32px] text-white lg:h-[248px] lg:w-[640px]">
@@ -313,23 +314,6 @@ $assets = [
                 </article>
             </div>
             <p class="mt-8 max-w-[1284px] font-montserrat text-[18px] font-normal leading-[28px] text-white"><?php echo esc_html(get_option('my_theme_comp_doc_closing', 'Downloadable PDFs are also available to support internal reviews, safety documentation, and procurement decisions. Our resources make it easier to show due diligence in the process and to explain clearly how Goliath™ contributes to safety and compliance.')); ?></p>
-        </div>
-    </section>
-
-    <!-- Audit readiness -->
-    <section class="w-full bg-[#fafafa]">
-        <div class="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-5 py-10 sm:px-6 lg:flex-row lg:items-start lg:justify-between lg:px-[68px] lg:py-[80px]">
-            <div class="w-full lg:w-[794px]">
-                <h2 class="max-w-[758px] font-montserrat text-[32px] font-bold leading-[40px] text-[#020202] lg:text-[36px]"><?php echo esc_html(get_option('my_theme_comp_audit_h2', 'Supporting Inspection Outcomes and Audit Readiness')); ?></h2>
-                <div class="mt-6 font-montserrat text-[18px] font-normal leading-[28px] text-[#364153]">
-                    <p><?php echo esc_html(get_option('my_theme_comp_audit_p1', 'Regular inspections are an important part of ensuring compliance. A SEMA racking inspection or internal audit will assess the visible damage, structural condition, and overall system safety.')); ?></p>
-                    <p><?php echo esc_html(get_option('my_theme_comp_audit_p2', 'By reducing impact damage, Goliath™ improves your inspection outcomes. Fewer damaged uprights in your reports mean fewer red or amber risk classifications and little to no need for urgent corrective action.')); ?></p>
-                </div>
-            </div>
-            <aside class="w-full border-2 border-[#ff5c00] bg-[#ff5c00] px-[42px] py-[42px] text-white lg:h-[302px] lg:w-[458px]">
-                <h3 class="font-montserrat text-[24px] font-bold leading-[32px]"><?php echo esc_html(get_option('my_theme_comp_audit_aside_h3', 'Digital Racking Management')); ?></h3>
-                <p class="mt-6 max-w-[306px] font-montserrat text-[16px] font-normal leading-[24px]"><?php echo esc_html(get_option('my_theme_comp_audit_aside_p', 'When combined with our digital racking management system, Goliath™ operators gain additional visibility through recorded inspection data and reports, proper risk categorisation, and repair documentation.')); ?></p>
-            </aside>
         </div>
     </section>
 

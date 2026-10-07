@@ -355,11 +355,11 @@ function my_theme_admin_render_services(): void
 
     my_theme_admin_section_open('Services Overview — UK Regulation', 'UK regulation compliant section.');
     my_theme_admin_text_field('my_theme_svc_reg_h2', 'H2 Heading', 'UK Regulation Compliant');
-    my_theme_admin_textarea_field('my_theme_svc_reg_desc', 'Description', 'GOLIATH™ meets all UK and EU safety standards for new installations. Your project will pass inspections with complete compliance documentation.', 3);
-    my_theme_admin_text_field('my_theme_svc_reg_item1', 'Compliance Item 1', 'BS EN 15512:2020 + A1:2022 compliant');
-    my_theme_admin_text_field('my_theme_svc_reg_item2', 'Compliance Item 2', 'BS EN 15635:2008 certified');
-    my_theme_admin_text_field('my_theme_svc_reg_item3', 'Compliance Item 3', 'SEMA codes of practice adherence');
-    my_theme_admin_text_field('my_theme_svc_reg_item4', 'Compliance Item 4', 'Full compliance documentation provided');
+    my_theme_admin_textarea_field('my_theme_svc_reg_desc', 'Description', 'GOLIATH™ is independently tested and verified by Bureau Veritas and certified not to alter the original racking bay design. Work is fully insured and backed by a lifetime warranty.', 3);
+    my_theme_admin_text_field('my_theme_svc_reg_item1', 'Compliance Item 1', 'Independently tested and verified by Bureau Veritas');
+    my_theme_admin_text_field('my_theme_svc_reg_item2', 'Compliance Item 2', 'Certified not to alter the original racking bay design');
+    my_theme_admin_text_field('my_theme_svc_reg_item3', 'Compliance Item 3', 'Fully insured');
+    my_theme_admin_text_field('my_theme_svc_reg_item4', 'Compliance Item 4', 'Lifetime warranty on every repair');
     my_theme_admin_text_field('my_theme_svc_reg_cert_h3', 'Certification Box H3', 'Certified Protection');
     my_theme_admin_text_field('my_theme_svc_reg_cert_line1', 'Registration Line 1', 'UK Registered Design No. 6410620');
     my_theme_admin_text_field('my_theme_svc_reg_cert_line2', 'Registration Line 2', 'EU Design Registration No. DM/244641');
@@ -516,13 +516,6 @@ function my_theme_admin_render_services(): void
     my_theme_admin_textarea_field('my_theme_svc_prevention_new_desc', 'New Installations Description', 'For new installations, it can serve as part of your original warehouse design as a complete pallet racking damage prevention strategy. This ensures protection is in place before any damage occurs.', 3);
     my_theme_admin_section_close();
 
-    my_theme_admin_section_open('Damage Prevention — SEMA Compliance', 'SEMA racking inspection section.');
-    my_theme_admin_text_field('my_theme_svc_prevention_sema_h2', 'H2 Heading', 'Support SEMA Racking Inspection and Compliance');
-    my_theme_admin_textarea_field('my_theme_svc_prevention_sema_p1', 'Paragraph 1', 'Safety compliance is important in warehouse operations. An annual SEMA racking inspection is crucial for identifying risks and maintaining safe load conditions.', 3);
-    my_theme_admin_textarea_field('my_theme_svc_prevention_sema_p2', 'Paragraph 2', 'Damaged uprights are one of the most common issues identified during inspections. By installing Goliath™, you reduce the likelihood of damage being flagged at all. This supports ongoing compliance while reducing the need for corrective action between inspections.', 4);
-    my_theme_admin_image_field('my_theme_svc_prevention_sema_img', 'Section Image', get_theme_file_uri('assets/images/Services/damage/support.webp'));
-    my_theme_admin_section_close();
-
     my_theme_admin_section_open('Damage Prevention — Risk Management', 'Smarter racking management section.');
     my_theme_admin_text_field('my_theme_svc_prevention_risk_h3', 'H3 Heading', 'Smarter Racking Management and Risk Visibility');
     my_theme_admin_text_field('my_theme_svc_prevention_risk_bold', 'Bold Intro', 'Effective pallet racking damage prevention also requires visibility across your warehouse.');
@@ -538,7 +531,7 @@ function my_theme_admin_render_services(): void
     my_theme_admin_text_field('my_theme_svc_prevention_stop_h2', 'H2 Heading', 'Stop Damage Before It Starts');
     my_theme_admin_textarea_field('my_theme_svc_prevention_stop_desc', 'Description', 'There\'s no need to search for a pallet racking repair kit or racking upright repair. Goliath™ addresses repeated impact damage before the worst happens. Our superior upright repair solution allows you to prevent pallet racking damage rather than respond to it. This results in fewer repairs, reduced downtime, and a safer, more efficient warehouse operation.', 5);
     my_theme_admin_text_field('my_theme_svc_prevention_cta_btn1', 'Primary CTA Text', 'Get Free Site Survey');
-    my_theme_admin_text_field('my_theme_svc_prevention_cta_btn2', 'Secondary CTA Text', 'Annual Inspections');
+    my_theme_admin_text_field('my_theme_svc_prevention_cta_btn2', 'Secondary CTA Text', 'View Compliance Info');
     my_theme_admin_section_close();
 
     // ═══════════════════════════════════════════════════════════════════
@@ -551,7 +544,7 @@ function my_theme_admin_render_services(): void
     my_theme_admin_section_close();
 
     my_theme_admin_section_open('Annual Inspections — Introduction', 'Introductory content and inspection coverage.');
-    my_theme_admin_textarea_field('my_theme_svc_inspections_intro', 'Introduction Paragraph', 'Annual inspections are a structured way for warehouse owners and operators to assess the condition of pallet racking systems. These inspections identify damage, monitor wear and tear, and ensure that your storage systems meet the required safety standards, including SEMA racking inspection guidelines.', 4);
+    my_theme_admin_textarea_field('my_theme_svc_inspections_intro', 'Introduction Paragraph', 'This service is not currently advertised.', 4);
     my_theme_admin_text_field('my_theme_svc_inspections_covers_h2', 'Covers H2', 'A typical inspection covers:');
     my_theme_admin_text_field('my_theme_svc_inspections_covers_item1', 'Covers Item 1', 'The condition of your uprights and any impact damage');
     my_theme_admin_text_field('my_theme_svc_inspections_covers_item2', 'Covers Item 2', 'Beam integrity and load performance');
@@ -571,7 +564,7 @@ function my_theme_admin_render_services(): void
     my_theme_admin_text_field('my_theme_svc_inspections_smarter_p2', 'Smarter Paragraph 2', 'It creates a clear audit trail and helps prioritise repairs based on risk level.');
     my_theme_admin_text_field('my_theme_svc_inspections_reduce_h2', 'Reduce Risk H2', 'Reduce Risk with Goliath™');
     my_theme_admin_textarea_field('my_theme_svc_inspections_reduce_p1', 'Reduce Paragraph 1', 'Inspections only identify the issues in your warehouse, but prevention reduces how often they occur.', 2);
-    my_theme_admin_textarea_field('my_theme_svc_inspections_reduce_p2', 'Reduce Paragraph 2', 'Installing a highly durable pallet rack protection system like Goliath™ helps minimise damage between inspection cycles.', 2);
+    my_theme_admin_textarea_field('my_theme_svc_inspections_reduce_p2', 'Reduce Paragraph 2', 'Installing a highly durable pallet rack protection system like Goliath™ helps minimise recurring upright damage over the long term.', 2);
     my_theme_admin_textarea_field('my_theme_svc_inspections_banner', 'Orange Banner Text', 'By combining annual inspections with long-term racking upright protection, your warehouse becomes a more controlled, lower-risk environment.', 3);
     my_theme_admin_section_close();
 

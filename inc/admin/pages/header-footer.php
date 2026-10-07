@@ -167,7 +167,6 @@ function my_theme_footer_default_service_links(): array
     return [
         ['label' => 'Racking Upright Repair', 'url' => '/services/racking-upright-repair/'],
         ['label' => 'Damage Prevention',      'url' => '/services/damage-prevention/'],
-        ['label' => 'Annual Inspections',     'url' => '/services/annual-inspections/'],
         ['label' => 'Installations & CDM',    'url' => '/services/installations-cdm/'],
         ['label' => 'Reconfiguration',        'url' => '/services/reconfiguration/'],
     ];

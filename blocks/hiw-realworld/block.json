@@ -48,19 +48,19 @@
     },
     "complianceIntro": {
       "type": "string",
-      "default": "Goliath™ aligns with recognised UK standards:"
+      "default": "Goliath™ is independently tested and verified:"
     },
     "complianceItems": {
       "type": "array",
       "default": [
-        "BS EN 15512",
-        "BS EN 15635",
-        "SEMA guidelines"
+        "Bureau Veritas certified",
+        "Fully insured",
+        "Lifetime warranty"
       ]
     },
     "complianceClosing": {
       "type": "string",
-      "default": "By reinforcing damaged uprights, our permanent upright repair helps maintain structural integrity and supports ongoing inspection requirements."
+      "default": "By reinforcing damaged uprights, our permanent upright repair helps maintain structural integrity without altering the original racking bay design."
     }
   },
   "supports": {

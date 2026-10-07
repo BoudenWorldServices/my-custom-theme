@@ -24,15 +24,15 @@
     },
     "p2": {
       "type": "string",
-      "default": "Goliath™ supports these requirements directly. Our permanent upright repair solution is tested and certified. Our product aligns with recognised UK and European standards, which address one of the most common causes of non-compliance in warehouses: impact damage to uprights."
+      "default": "Goliath™ supports warehouse safety by reinforcing the part of the upright most susceptible to impact. The system is independently tested and verified by Bureau Veritas and certified not to alter the original racking bay design."
     },
     "boxH3": {
       "type": "string",
-      "default": "100% UK Compliance Guaranteed"
+      "default": "Independently verified"
     },
     "boxP": {
       "type": "string",
-      "default": "Every GOLIATH™ installation is fully compliant with UK Health & Safety regulations. We provide complete documentation and certification for your records and inspections."
+      "default": "Every GOLIATH™ installation is independently tested and verified by Bureau Veritas. Work is fully insured and backed by a lifetime warranty."
     }
   },
   "supports": {

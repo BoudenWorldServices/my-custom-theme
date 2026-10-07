@@ -75,7 +75,7 @@ function my_theme_admin_render_contact_details(): void
     my_theme_admin_text_field('my_theme_contact_opening_hours_display', 'Display Format', 'Mon–Fri, 8am–6pm', 'Mon–Fri, 8am–6pm');
     my_theme_admin_section_close();
 
-    my_theme_admin_section_open('SEO — Social & Directory Links (sameAs)', 'One URL per line. These are added to the Organisation and LocalBusiness schema to tell Google all these profiles belong to the same business. Add your LinkedIn page, Companies House listing, SEMA directory page, and any press coverage (e.g. Warehouse & Logistics News).');
+    my_theme_admin_section_open('SEO — Social & Directory Links (sameAs)', 'One URL per line. These are added to the Organisation and LocalBusiness schema to tell Google all these profiles belong to the same business. Add your LinkedIn page, Companies House listing, and any press coverage (e.g. Warehouse & Logistics News).');
     my_theme_admin_textarea_field('my_theme_schema_same_as', 'sameAs URLs (one per line)', "https://www.linkedin.com/company/YOUR-LINKEDIN-SLUG\nhttps://find-and-update.company-information.service.gov.uk/company/YOUR-COMPANY-NUMBER\nhttps://www.sema.org.uk/\nhttps://www.warehousenews.co.uk/YOUR-ARTICLE-URL", 6);
     my_theme_admin_section_close();
 

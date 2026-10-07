@@ -5,17 +5,18 @@
  * @var array $attributes
  */
 
-$heading    = $attributes['heading'] ?? 'Designed to Meet UK Standards';
+$heading    = $attributes['heading'] ?? 'Independently Tested and Verified';
 $intro1     = $attributes['intro1']  ?? '';
 $intro2     = $attributes['intro2']  ?? '';
 $closing    = $attributes['closing'] ?? '';
 
-$cards = [
-    [ 'title' => $attributes['card1Title'] ?? 'BS EN 15512:2020 + A1:2022', 'body' => $attributes['card1Body'] ?? '' ],
-    [ 'title' => $attributes['card2Title'] ?? 'BS EN 15635:2008',           'body' => $attributes['card2Body'] ?? '' ],
-    [ 'title' => $attributes['card3Title'] ?? 'SEMA code of practice',      'body' => $attributes['card3Body'] ?? '' ],
-    [ 'title' => $attributes['card4Title'] ?? 'SEMA code of practice',      'body' => $attributes['card4Body'] ?? '' ],
-];
+$cards = my_theme_filter_standards_cards([
+    [ 'title' => $attributes['card1Title'] ?? 'Bureau Veritas certified', 'body' => $attributes['card1Body'] ?? '' ],
+    [ 'title' => $attributes['card2Title'] ?? 'Original bay design protected', 'body' => $attributes['card2Body'] ?? '' ],
+    [ 'title' => $attributes['card3Title'] ?? 'Fully insured', 'body' => $attributes['card3Body'] ?? '' ],
+    [ 'title' => $attributes['card4Title'] ?? 'Lifetime warranty', 'body' => $attributes['card4Body'] ?? '' ],
+]);
+$grid_class = my_theme_standards_cards_grid_class(count($cards));
 
 $check_icon = get_theme_file_uri( 'assets/images/icons/why-goliath-bullet-dark.svg' );
 ?>
@@ -35,7 +36,7 @@ $check_icon = get_theme_file_uri( 'assets/images/icons/why-goliath-bullet-dark.s
                     <?php echo esc_html( $intro2 ); ?>
                 </p>
             <?php endif; ?>
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            <div class="<?php echo esc_attr($grid_class); ?>">
                 <?php foreach ( $cards as $card ) : ?>
                     <div class="flex min-h-0 min-w-0 flex-col rounded-lg bg-[#f9fafb] p-6">
                         <img

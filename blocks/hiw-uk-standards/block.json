@@ -18,51 +18,51 @@
   "attributes": {
     "heading": {
       "type": "string",
-      "default": "Designed to Meet UK Standards"
+      "default": "Independently Tested and Verified"
     },
     "intro1": {
       "type": "string",
-      "default": "Goliath™ is developed to meet the UK's racking regulations and industry best practices. This ensures every repair supports both safety and compliance."
+      "default": "Goliath™ is independently tested and verified by Bureau Veritas. It is certified not to alter the original racking bay design."
     },
     "intro2": {
       "type": "string",
-      "default": "It aligns with key standards, including:"
+      "default": "What that means for your warehouse:"
     },
     "card1Title": {
       "type": "string",
-      "default": "BS EN 15512:2020 + A1:2022"
+      "default": "Bureau Veritas certified"
     },
     "card1Body": {
       "type": "string",
-      "default": "Regulations for steel storage systems for adjustable pallet racking-principles for structural design"
+      "default": "Independently tested and verified by Bureau Veritas."
     },
     "card2Title": {
       "type": "string",
-      "default": "BS EN 15635:2008"
+      "default": "Original bay design protected"
     },
     "card2Body": {
       "type": "string",
-      "default": "Regulations for steel static storage systems application and maintenance of storage equipment"
+      "default": "Certified not to alter the original racking bay design."
     },
     "card3Title": {
       "type": "string",
-      "default": "SEMA code of practice"
+      "default": "Fully insured"
     },
     "card3Body": {
       "type": "string",
-      "default": "for the design of adjustable pallet racking"
+      "default": "Installations are fully insured for warehouse operations."
     },
     "card4Title": {
       "type": "string",
-      "default": "SEMA code of practice"
+      "default": "Lifetime warranty"
     },
     "card4Body": {
       "type": "string",
-      "default": "for the design and use of racking protection"
+      "default": "Every repair is backed by a warranty that lasts a lifetime."
     },
     "closing": {
       "type": "string",
-      "default": "We're proud that Goliath™ is reinforced in a way that supports ongoing safety, reduces risk, and meets the expectations of UK regulatory bodies. Our upright repair solution was built according to UK H&S specifications, making it a trusted solution for warehouses in the UK."
+      "default": "Every Goliath™ installation is fully insured and backed by a lifetime warranty, giving operators long-term confidence in the repair."
     }
   },
   "supports": {

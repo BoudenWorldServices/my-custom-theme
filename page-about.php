@@ -26,19 +26,23 @@ if (! is_array($team_members) || $team_members === []) {
         [
             'name'           => 'Company Director',
             'role'           => 'Managing Director',
-            'qualifications' => 'SEMA Approved Racking Inspector',
+            'qualifications' => 'Experienced racking specialist',
             'bio'            => 'With extensive experience in warehouse racking safety and repair, our managing director founded Goliath with a mission to end the costly cycle of upright replacement.',
             'photo'          => '',
         ],
     ];
 }
 
-$credentials = [
-    ['title' => 'SEMA Approved', 'desc' => 'Qualified racking inspectors registered with the Storage Equipment Manufacturers\' Association'],
-    ['title' => 'BS EN 15512', 'desc' => 'Steel static storage systems — Adjustable pallet racking principles for structural design'],
-    ['title' => 'BS EN 15635', 'desc' => 'Steel static storage systems — Application and maintenance of storage equipment'],
+$credentials = my_theme_filter_standards_cards([
+    ['title' => 'Bureau Veritas certified', 'desc' => 'Independently tested and verified by Bureau Veritas. Certified not to alter the original racking bay design.'],
+    ['title' => 'Fully insured', 'desc' => 'Installations are fully insured, giving warehouse operators additional peace of mind.'],
+    ['title' => 'Lifetime warranty', 'desc' => 'Every repair is backed by a warranty that lasts a lifetime.'],
     ['title' => 'Registered Design', 'desc' => 'Design registration protected — available exclusively through Goliath in the UK and EU'],
-];
+]);
+$cred_count = count($credentials);
+$cred_grid  = $cred_count <= 2
+    ? 'grid grid-cols-1 gap-6 sm:grid-cols-2'
+    : ($cred_count === 3 ? 'grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3' : 'grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4');
 ?>
 
 <main class="w-full bg-white overflow-x-hidden">
@@ -54,7 +58,7 @@ $credentials = [
                     <?php echo esc_html(get_option('my_theme_about_hero_h1', 'About Goliath™')); ?>
                 </h1>
                 <p class="max-w-[1291px] font-montserrat text-[17px] font-normal leading-[28px] text-white/90 lg:text-[20px] lg:leading-[32px]">
-                    <?php echo esc_html(get_option('my_theme_about_hero_desc', 'The team behind the UK\'s only permanent pallet racking upright repair system. SEMA-qualified engineers dedicated to ending the cycle of costly racking replacement.')); ?>
+                    <?php echo esc_html(get_option('my_theme_about_hero_desc', 'The team behind the UK\'s only permanent pallet racking upright repair system. Experts dedicated to ending the cycle of costly racking replacement.')); ?>
                 </p>
             </div>
         </div>
@@ -71,10 +75,10 @@ $credentials = [
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-[60px]">
                 <div class="space-y-5 font-roboto text-[18px] font-normal leading-[28px] text-[#4a5565]">
                     <p><?php echo esc_html(get_option('my_theme_about_story_p1', 'Goliath was founded with a clear mission: to provide warehouse operators with a permanent, cost-effective alternative to repeated racking upright replacement. Our engineered steel repair system was developed to address one of the most persistent problems in warehouse maintenance.')); ?></p>
-                    <p><?php echo esc_html(get_option('my_theme_about_story_p2', 'Working closely with structural engineers and guided by UK safety standards including BS EN 15512 and BS EN 15635, we created a repair solution that does not just restore uprights to their original strength but reinforces them against future impact.')); ?></p>
+                    <p><?php echo esc_html(get_option('my_theme_about_story_p2', 'Working closely with structural engineers, we created a repair solution that does not just restore uprights to their original strength but reinforces them against future impact. Goliath™ is independently tested and verified by Bureau Veritas and certified not to alter the original racking bay design.')); ?></p>
                 </div>
                 <div class="space-y-5 font-roboto text-[18px] font-normal leading-[28px] text-[#4a5565]">
-                    <p><?php echo esc_html(get_option('my_theme_about_story_p3', 'Every member of our installation team holds SEMA-approved racking inspector qualifications. We believe that the people who repair your racking should be qualified to inspect it first, ensuring every repair meets the highest safety standards.')); ?></p>
+                    <p><?php echo esc_html(get_option('my_theme_about_story_p3', 'Our installation team brings extensive warehouse racking experience to every job. We believe the people who repair your racking should understand how it is used, so every repair is carried out to a high safety standard.')); ?></p>
                     <p><?php echo esc_html(get_option('my_theme_about_story_p4', 'Today, Goliath is trusted by leading UK retailers and logistics operators. Our system is being rolled out across hundreds of warehouse sites, protecting the racking infrastructure that businesses depend on every day.')); ?></p>
                 </div>
             </div>
@@ -128,7 +132,7 @@ $credentials = [
                         <?php echo esc_html(get_option('my_theme_about_leader_role', 'Founder & Managing Director')); ?>
                     </p>
                     <p class="font-roboto text-[14px] font-medium leading-[22px] text-[#364153]">
-                        <?php echo esc_html(get_option('my_theme_about_leader_qualifications', 'SEMA Approved Racking Inspector')); ?>
+                        <?php echo esc_html(get_option('my_theme_about_leader_qualifications', 'Experienced racking specialist')); ?>
                     </p>
                     <div class="space-y-4 font-roboto text-[18px] font-normal leading-[28px] text-[#4a5565]">
                         <p><?php echo esc_html(get_option('my_theme_about_leader_bio_p1', 'With extensive experience in warehouse racking safety and structural repair, our managing director identified a fundamental flaw in the traditional approach to racking maintenance: the endless cycle of damage, replacement, and repeat damage.')); ?></p>
@@ -148,7 +152,7 @@ $credentials = [
                     <?php echo esc_html(get_option('my_theme_about_team_h2', 'Our Team')); ?>
                 </h2>
                 <p class="mt-3 font-roboto text-[18px] font-normal leading-[28px] text-[#4a5565]">
-                    <?php echo esc_html(get_option('my_theme_about_team_subtitle', 'SEMA-qualified inspectors and engineers delivering safe, permanent racking repairs across the UK.')); ?>
+                    <?php echo esc_html(get_option('my_theme_about_team_subtitle', 'Experts delivering safe, permanent racking repairs across the UK.')); ?>
                 </p>
             </div>
 
@@ -207,7 +211,7 @@ $credentials = [
             <h2 class="text-center font-montserrat text-[28px] font-bold leading-[40px] text-white lg:text-[36px]">
                 <?php echo esc_html(get_option('my_theme_about_creds_h2', 'Our Credentials')); ?>
             </h2>
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="<?php echo esc_attr($cred_grid); ?>">
                 <?php foreach ($credentials as $cred) : ?>
                     <div class="flex flex-col gap-3 border-l-2 border-[#ff5c00] pl-5">
                         <h3 class="font-montserrat text-[18px] font-bold leading-[26px] text-white">
@@ -229,7 +233,7 @@ $credentials = [
                 <?php echo esc_html(get_option('my_theme_about_cta_h2', 'Work with a team you can trust')); ?>
             </h2>
             <p class="max-w-[800px] font-montserrat text-[18px] font-normal leading-[28px] text-white">
-                <?php echo esc_html(get_option('my_theme_about_cta_desc', 'Our SEMA-qualified team is ready to assess your warehouse racking and provide a permanent repair solution backed by a lifetime warranty.')); ?>
+                <?php echo esc_html(get_option('my_theme_about_cta_desc', 'Our experts are ready to assess your warehouse racking and provide a permanent repair solution backed by a lifetime warranty.')); ?>
             </p>
             <div class="flex flex-col gap-4 sm:flex-row sm:gap-[16px]">
                 <a

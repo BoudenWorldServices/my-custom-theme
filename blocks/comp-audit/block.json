@@ -20,7 +20,7 @@
     },
     "p1": {
       "type": "string",
-      "default": "Regular inspections are an important part of ensuring compliance. A SEMA racking inspection or internal audit will assess the visible damage, structural condition, and overall system safety."
+      "default": ""
     },
     "p2": {
       "type": "string",

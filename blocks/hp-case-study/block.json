@@ -89,15 +89,15 @@
     },
     "expertHeadline": {
       "type": "string",
-      "default": "Our SEMA qualified inspectors will assess your warehouse and demonstrate how Goliath can help you"
+      "default": "Our experts will assess your warehouse and demonstrate how Goliath can help you"
     },
     "expertFeature1Title": {
       "type": "string",
-      "default": "Qualified"
+      "default": "Experienced"
     },
     "expertFeature1Sub": {
       "type": "string",
-      "default": "inspectors"
+      "default": "experts"
     },
     "expertFeature2Title": {
       "type": "string",

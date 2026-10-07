@@ -2,62 +2,62 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "goliath/comp-standards",
-  "title": "Compliance – HSE/EN/SEMA Standards",
-  "description": "4-column card grid listing the compliance standards.",
+  "title": "Compliance – Independent Verification",
+  "description": "4-column card grid listing independent testing, insurance, and warranty.",
   "category": "goliath",
   "icon": "awards",
   "keywords": [
     "compliance",
     "standards",
-    "hse",
-    "sema"
+    "bureau veritas",
+    "warranty"
   ],
   "textdomain": "my-custom-theme",
   "render": "file:./render.php",
   "attributes": {
     "heading": {
       "type": "string",
-      "default": "Built to Align with HSE, EN and SEMA Guidelines"
+      "default": "Independently Tested and Verified"
     },
     "p1": {
       "type": "string",
-      "default": "Racking systems in the UK are assessed against guidelines from the HSE, EN standards, and industry best practice supported by SEMA."
+      "default": "Goliath™ has been independently tested and verified by Bureau Veritas. It is certified not to alter the original racking bay design."
     },
     "p2": {
       "type": "string",
-      "default": "Goliath™ has been tested to comply with these expectations. It reinforces the part of the upright most susceptible to impact, helping maintain structural integrity and reduce the likelihood of damage being flagged during warehouse inspections."
+      "default": "Every installation is fully insured and backed by a warranty that lasts a lifetime."
     },
     "card1Title": {
       "type": "string",
-      "default": "BS EN 15512:2020 + A1:2022"
+      "default": "Bureau Veritas certified"
     },
     "card1Body": {
       "type": "string",
-      "default": "Regulations for steel storage systems for adjustable pallet racking-principles for structural design"
+      "default": "Independently tested and verified by Bureau Veritas."
     },
     "card2Title": {
       "type": "string",
-      "default": "BS EN 15635:2008"
+      "default": "Original bay design protected"
     },
     "card2Body": {
       "type": "string",
-      "default": "Regulations for steel static storage systems application and maintenance of storage equipment"
+      "default": "Certified not to alter the original racking bay design."
     },
     "card3Title": {
       "type": "string",
-      "default": "SEMA code of practice"
+      "default": "Fully insured"
     },
     "card3Body": {
       "type": "string",
-      "default": "for the design of adjustable pallet racking"
+      "default": "Installations are fully insured for warehouse operations."
     },
     "card4Title": {
       "type": "string",
-      "default": "SEMA code of practice"
+      "default": "Lifetime warranty"
     },
     "card4Body": {
       "type": "string",
-      "default": "for the design and use of racking protection"
+      "default": "Every repair is backed by a warranty that lasts a lifetime."
     }
   },
   "supports": {

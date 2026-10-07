@@ -16,23 +16,23 @@
   "attributes": {
     "description": {
       "type": "string",
-      "default": "GOLIATH™ meets all UK and EU safety standards for new installations. Your project will pass inspections with complete compliance documentation."
+      "default": "GOLIATH™ is independently tested and verified by Bureau Veritas and certified not to alter the original racking bay design. Work is fully insured and backed by a lifetime warranty."
     },
     "item1": {
       "type": "string",
-      "default": "BS EN 15512:2020 + A1:2022 compliant"
+      "default": "Independently tested and verified by Bureau Veritas"
     },
     "item2": {
       "type": "string",
-      "default": "BS EN 15635:2008 certified"
+      "default": "Certified not to alter the original racking bay design"
     },
     "item3": {
       "type": "string",
-      "default": "SEMA codes of practice adherence"
+      "default": "Fully insured"
     },
     "item4": {
       "type": "string",
-      "default": "Full compliance documentation provided"
+      "default": "Lifetime warranty on every repair"
     },
     "certH3": {
       "type": "string",

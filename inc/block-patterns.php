@@ -35,9 +35,9 @@ function my_theme_register_block_patterns(): void
             'categories'  => ['goliath-page-templates'],
             'content'     => '<!-- wp:goliath/hero-section {"heading":"Service Name","subheading":"A short, compelling one-line description of the service and who it benefits.","primaryButtonText":"Book Free Assessment","primaryButtonUrl":"/contact/"} /-->
 
-<!-- wp:goliath/orange-banner {"text":"SEMA-qualified technicians. 30-minute installation. Lifetime warranty on every repair.","background":"orange","centered":true,"size":"medium"} /-->
+<!-- wp:goliath/orange-banner {"text":"experienced technicians. 30-minute installation. Lifetime warranty on every repair.","background":"orange","centered":true,"size":"medium"} /-->
 
-<!-- wp:goliath/tick-list {"heading":"What\'s Included","items":[{"text":"Free site survey and damage assessment"},{"text":"SEMA-qualified engineers on every job"},{"text":"30-minute installation per upright"},{"text":"Zero operational downtime required"},{"text":"Lifetime warranty on all repairs"},{"text":"Full compliance documentation provided"}],"columns":"2","theme":"light","background":"gray"} /-->
+<!-- wp:goliath/tick-list {"heading":"What\'s Included","items":[{"text":"Free site survey and damage assessment"},{"text":"experts on every job"},{"text":"30-minute installation per upright"},{"text":"Zero operational downtime required"},{"text":"Lifetime warranty on all repairs"},{"text":"Full compliance documentation provided"}],"columns":"2","theme":"light","background":"gray"} /-->
 
 <!-- wp:goliath/content-card {"heading":"Card Title One","body":"Describe this aspect of the service clearly and concisely. Focus on the client benefit.","theme":"dark"} /-->
 
@@ -45,11 +45,11 @@ function my_theme_register_block_patterns(): void
 
 <!-- wp:goliath/content-card {"heading":"Card Title Three","body":"Describe this aspect of the service clearly and concisely. Focus on the client benefit.","theme":"dark"} /-->
 
-<!-- wp:goliath/image-text-split {"heading":"Why This Service Matters","body":"Explain the importance of the service, the risks of not acting, and the benefits of choosing Goliath. Use clear, professional language.","callout":"Safety-critical work carried out by SEMA-qualified engineers.","imagePosition":"left","background":"white"} /-->
+<!-- wp:goliath/image-text-split {"heading":"Why This Service Matters","body":"Explain the importance of the service, the risks of not acting, and the benefits of choosing Goliath. Use clear, professional language.","callout":"Safety-critical work carried out by experts.","imagePosition":"left","background":"white"} /-->
 
 <!-- wp:goliath/callout-box {"text":"Ready to book your free assessment? Our team responds within one working day.","theme":"orange","showArrow":true,"layout":"full-width"} /-->
 
-<!-- wp:goliath/cta-section {"heading":"Book Your Free Assessment","body":"Our SEMA-qualified engineers will assess your warehouse, identify risk areas, and provide transparent pricing with no obligation.","primaryButtonText":"Get a Free Quote","primaryButtonUrl":"/contact/","theme":"dark"} /-->',
+<!-- wp:goliath/cta-section {"heading":"Book Your Free Assessment","body":"Our experts will assess your warehouse, identify risk areas, and provide transparent pricing with no obligation.","primaryButtonText":"Get a Free Quote","primaryButtonUrl":"/contact/","theme":"dark"} /-->',
         ]
     );
 
@@ -85,7 +85,7 @@ function my_theme_register_block_patterns(): void
             'categories'  => ['goliath-page-templates'],
             'content'     => '<!-- wp:goliath/hero-section {"heading":"Frequently Asked Questions","subheading":"Everything you need to know about warehouse racking repair, safety, and compliance.","primaryButtonText":"Book Free Assessment","primaryButtonUrl":"/contact/"} /-->
 
-<!-- wp:goliath/faq-accordion {"heading":"Common Questions","showHeading":true,"items":[{"question":"How long does installation take?","answer":"Most installations are completed within 30 minutes per upright with no operational downtime required."},{"question":"Is there a warranty on repairs?","answer":"Yes. Every repair carried out by Goliath comes with a lifetime warranty."},{"question":"Are your engineers SEMA qualified?","answer":"Yes. All of our engineers hold SEMA qualifications and carry full certification documentation."},{"question":"How quickly can you respond?","answer":"We aim to respond to all enquiries within one working day and can arrange emergency assessments within 48 hours."}]} /-->
+<!-- wp:goliath/faq-accordion {"heading":"Common Questions","showHeading":true,"items":[{"question":"How long does installation take?","answer":"Most installations are completed within 30 minutes per upright with no operational downtime required."},{"question":"Is there a warranty on repairs?","answer":"Yes. Every repair carried out by Goliath comes with a lifetime warranty."},{"question":"Are your experts experienced?","answer":"Our experts are experienced racking specialists and carry full documentation."},{"question":"How quickly can you respond?","answer":"We aim to respond to all enquiries within one working day and can arrange emergency assessments within 48 hours."}]} /-->
 
 <!-- wp:goliath/resource-cards {"heading":"Explore Further","card1Title":"How It Works","card1Desc":"See the full step-by-step process from assessment to sign-off.","card1ButtonText":"Learn More","card1Url":"/how-it-works/","card2Title":"Our Services","card2Desc":"Browse the full range of warehouse racking repair and installation services.","card2ButtonText":"View Services","card2Url":"/services/","card3Title":"Case Studies","card3Desc":"See real results from clients across the UK.","card3ButtonText":"Read Case Studies","card3Url":"/case-studies/"} /-->
 
@@ -102,15 +102,15 @@ function my_theme_register_block_patterns(): void
             'title'       => __('New Team / About Page', 'my-custom-theme'),
             'description' => __('About or team page with hero, intro text, team member cards, and CTA.', 'my-custom-theme'),
             'categories'  => ['goliath-page-templates'],
-            'content'     => '<!-- wp:goliath/hero-section {"heading":"Meet the Team","subheading":"The SEMA-qualified engineers and operations team behind every Goliath repair.","primaryButtonText":"Book Free Assessment","primaryButtonUrl":"/contact/"} /-->
+            'content'     => '<!-- wp:goliath/hero-section {"heading":"Meet the Team","subheading":"The experts and operations team behind every Goliath repair.","primaryButtonText":"Book Free Assessment","primaryButtonUrl":"/contact/"} /-->
 
-<!-- wp:goliath/text-columns {"heading":"Who We Are","leftColumn":"Goliath Racking Repair is a specialist warehouse racking repair company serving clients across the UK and Europe. Founded by engineers with decades of experience in the industry, the business was built on a simple principle: safety-critical work should be done properly, every time.","rightColumn":"Every member of our team holds SEMA qualifications. We carry full compliance documentation on every job, and we stand behind our work with a lifetime warranty on every repair."} /-->
+<!-- wp:goliath/text-columns {"heading":"Who We Are","leftColumn":"Goliath Racking Repair is a specialist warehouse racking repair company serving clients across the UK and Europe. Founded by experts with decades of experience in the industry, the business was built on a simple principle: safety-critical work should be done properly, every time.","rightColumn":"Our team are experienced racking specialists. We carry full compliance documentation on every job, and we stand behind our work with a lifetime warranty on every repair."} /-->
 
-<!-- wp:goliath/team-member {"name":"Team Member Name","role":"Job Title","qualifications":"SEMA Qualified","bio":"Write a short biography here. Include their experience, qualifications, and what they bring to the team.","background":"white"} /-->
+<!-- wp:goliath/team-member {"name":"Team Member Name","role":"Job Title","qualifications":"Experienced racking specialist","bio":"Write a short biography here. Include their experience, qualifications, and what they bring to the team.","background":"white"} /-->
 
-<!-- wp:goliath/team-member {"name":"Team Member Name","role":"Job Title","qualifications":"SEMA Qualified","bio":"Write a short biography here. Include their experience, qualifications, and what they bring to the team.","background":"white"} /-->
+<!-- wp:goliath/team-member {"name":"Team Member Name","role":"Job Title","qualifications":"Experienced racking specialist","bio":"Write a short biography here. Include their experience, qualifications, and what they bring to the team.","background":"white"} /-->
 
-<!-- wp:goliath/cta-section {"heading":"Work With Our Team","body":"Book a free site assessment and meet the engineers who will be on site.","primaryButtonText":"Book Free Assessment","primaryButtonUrl":"/contact/","theme":"dark"} /-->',
+<!-- wp:goliath/cta-section {"heading":"Work With Our Team","body":"Book a free site assessment and meet the experts who will be on site.","primaryButtonText":"Book Free Assessment","primaryButtonUrl":"/contact/","theme":"dark"} /-->',
         ]
     );
 
@@ -150,7 +150,7 @@ function my_theme_register_block_patterns(): void
 
 <!-- wp:goliath/cs-inline-quote {"quote":"Replacing individual uprights within a legacy XHD racking system is not simply a matter of ordering parts. The procurement lead times, import costs, and operational downtime can dwarf the cost of the steel itself. There had to be a better way.","attribution":"Warehouse Operations Manager"} /-->
 
-<!-- wp:goliath/cs-results {"sectionTitle":"The Results","resultsIntro":"Describe the measurable outcomes achieved after the Goliath solution was deployed. Focus on the most impactful results the client experienced.","result1Title":"Full Capacity Restored","result1Text":"All 397 damaged uprights repaired and certified — racking returned to full operational capacity.","result2Title":"Zero Downtime","result2Text":"The entire project was completed with no operational disruption to the warehouse during installation.","result3Title":"Cost Savings Realised","result3Text":"Estimated saving of £380,000 compared to a full racking replacement programme.","result4Title":"Compliance Achieved","result4Text":"Full SEMA compliance documentation provided for every repaired upright.","warrantyText":"Every Goliath repair is backed by our lifetime warranty — so the client has ongoing peace of mind long after the job is complete."} /-->
+<!-- wp:goliath/cs-results {"sectionTitle":"The Results","resultsIntro":"Describe the measurable outcomes achieved after the Goliath solution was deployed. Focus on the most impactful results the client experienced.","result1Title":"Full Capacity Restored","result1Text":"All 397 damaged uprights repaired and certified — racking returned to full operational capacity.","result2Title":"Zero Downtime","result2Text":"The entire project was completed with no operational disruption to the warehouse during installation.","result3Title":"Cost Savings Realised","result3Text":"Estimated saving of £380,000 compared to a full racking replacement programme.","result4Title":"Compliance Achieved","result4Text":"Full installation documentation provided for every repaired upright.","warrantyText":"Every Goliath repair is backed by our lifetime warranty — so the client has ongoing peace of mind long after the job is complete."} /-->
 
 <!-- wp:goliath/cs-testimonial-cta {"quote":"The Goliath team turned around a project that would have cost us weeks of downtime and hundreds of thousands of pounds. The results speak for themselves.","attribution":"Operations Director, Client Name","ctaText":"Get Similar Results","ctaUrl":"/contact/"} /-->',
         ]

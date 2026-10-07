@@ -9,7 +9,13 @@ $eyebrow             = $attributes['eyebrow']            ?? 'Featured Case Study
 $heading             = $attributes['heading']            ?? 'UK leading retailer saved 70% on repairs in the first 12 months vs traditional replacement';
 $body                = $attributes['body']               ?? 'As a result, Goliath is now being rolled out across all of their sites.';
 $expert_badge        = $attributes['expertBadge']        ?? 'Free Audit';
-$expert_headline     = $attributes['expertHeadline']     ?? 'Our SEMA qualified inspectors will assess your warehouse and demonstrate how Goliath can help you';
+$expert_headline     = $attributes['expertHeadline']     ?? 'Our experts will assess your warehouse and demonstrate how Goliath can help you';
+if (function_exists('my_theme_sanitize_restricted_claims_string')) {
+    $expert_headline = my_theme_sanitize_restricted_claims_string($expert_headline);
+}
+if (stripos((string) $expert_headline, 'engineer') !== false) {
+    $expert_headline = 'Our experts will assess your warehouse and demonstrate how Goliath can help you';
+}
 $expert_cta1         = $attributes['expertCta1Text']     ?? 'Interested in GOLIATH™?';
 $expert_cta1_url     = $attributes['expertCta1Url']      ?? '#contact';
 $expert_cta2         = $attributes['expertCta2Text']     ?? 'Book My Free Site Survey';
@@ -36,8 +42,14 @@ $img3 = $case_img3 ?: my_theme_get_image_url('my_theme_hp_casestudy_img3', get_t
 $view_cs_text        = $attributes['viewCaseStudiesText'] ?? 'View Case Studies';
 $view_cs_url         = $attributes['viewCaseStudiesUrl']  ?? '/case-studies/';
 
-$feat1_title         = $attributes['expertFeature1Title'] ?? 'Qualified';
-$feat1_sub           = $attributes['expertFeature1Sub']   ?? 'inspectors';
+$feat1_title         = $attributes['expertFeature1Title'] ?? 'Experienced';
+$feat1_sub           = $attributes['expertFeature1Sub']   ?? 'experts';
+if (strcasecmp($feat1_title, 'Qualified') === 0) {
+    $feat1_title = 'Experienced';
+}
+if (strcasecmp($feat1_sub, 'inspectors') === 0) {
+    $feat1_sub = 'experts';
+}
 $feat2_title         = $attributes['expertFeature2Title'] ?? 'Tailored';
 $feat2_sub           = $attributes['expertFeature2Sub']   ?? 'Solution';
 $feat3_title         = $attributes['expertFeature3Title'] ?? 'Analysis';

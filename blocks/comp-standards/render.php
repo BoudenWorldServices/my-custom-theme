@@ -18,12 +18,13 @@ $card4_title = $attributes['card4Title'] ?? '';
 $card4_body  = $attributes['card4Body']  ?? '';
 
 $icon   = get_theme_file_uri( 'assets/images/icons/why-goliath-bullet-dark.svg' );
-$cards  = [
+$cards  = my_theme_filter_standards_cards([
     [ 'title' => $card1_title, 'body' => $card1_body ],
     [ 'title' => $card2_title, 'body' => $card2_body ],
     [ 'title' => $card3_title, 'body' => $card3_body ],
     [ 'title' => $card4_title, 'body' => $card4_body ],
-];
+]);
+$grid_class = my_theme_standards_cards_grid_class(count($cards));
 ?>
 <section class="w-full bg-white">
     <div class="mx-auto w-full max-w-[1440px] px-5 pb-10 sm:px-6 lg:px-[59px] lg:pb-[80px]">
@@ -33,7 +34,7 @@ $cards  = [
                 <?php if ( $p1 ) : ?><p><?php echo esc_html( $p1 ); ?></p><?php endif; ?>
                 <?php if ( $p2 ) : ?><p><?php echo esc_html( $p2 ); ?></p><?php endif; ?>
             </div>
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            <div class="<?php echo esc_attr($grid_class); ?>">
                 <?php foreach ( $cards as $card ) : ?>
                     <article class="flex min-h-0 min-w-0 flex-col rounded-lg bg-[#f9fafb] p-6">
                         <img

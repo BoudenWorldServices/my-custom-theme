@@ -38,7 +38,6 @@ function my_theme_get_breadcrumb_items(): array
         'services'                        => 'Services',
         'services/racking-upright-repair' => 'Racking Upright Repair',
         'services/damage-prevention'      => 'Damage Prevention',
-        'services/annual-inspections'     => 'Annual Inspections',
         'services/installations-cdm'      => 'Installations & CDM',
         'services/reconfiguration'        => 'Reconfiguration',
         'compliance'                      => 'Compliance',

@@ -61,36 +61,25 @@ function my_theme_build_schema_graph(): array
         ],
         'email'          => $org_email,
         'telephone'      => $org_phone,
-        'description'    => 'Permanent pallet racking upright repair with lifetime warranty. SEMA-aligned engineered steel repair system serving warehouses across the UK and EU.',
+        'description'    => 'Permanent pallet racking upright repair with lifetime warranty. Independently tested and verified by Bureau Veritas, serving warehouses across the UK and EU.',
         'address'        => function_exists('my_theme_contact_schema_address') ? my_theme_contact_schema_address() : [],
         'areaServed'     => $area_served,
         'knowsAbout'     => [
             'Pallet racking repair',
-            'Warehouse safety compliance',
-            'SEMA racking inspection standards',
-            'BS EN 15512 structural design',
-            'BS EN 15635 storage equipment maintenance',
+            'Warehouse safety',
+            'Bureau Veritas independent testing',
+            'Lifetime impact warranty',
         ],
         'hasCredential'  => [
             [
                 '@type'              => 'EducationalOccupationalCredential',
-                'credentialCategory' => 'Industry Qualification',
-                'name'               => 'SEMA Approved Racking Inspector',
-                'recognizedBy'       => [
-                    '@type' => 'Organization',
-                    'name'  => 'Storage Equipment Manufacturers\' Association (SEMA)',
-                    'url'   => 'https://www.sema.org.uk/',
-                ],
+                'credentialCategory' => 'Independent Testing',
+                'name'               => 'Independently tested and verified by Bureau Veritas',
             ],
             [
                 '@type'              => 'EducationalOccupationalCredential',
-                'credentialCategory' => 'Standards Compliance',
-                'name'               => 'BS EN 15512:2020 + A1:2022 — Steel static storage systems',
-            ],
-            [
-                '@type'              => 'EducationalOccupationalCredential',
-                'credentialCategory' => 'Standards Compliance',
-                'name'               => 'BS EN 15635:2008 — Steel static storage systems: Application and maintenance',
+                'credentialCategory' => 'Independent Testing',
+                'name'               => 'Certified not to alter the original racking bay design',
             ],
             [
                 '@type'              => 'EducationalOccupationalCredential',
@@ -128,7 +117,7 @@ function my_theme_build_schema_graph(): array
             'url'           => $site_url,
             'telephone'     => $org_phone,
             'email'         => $org_email,
-            'description'   => 'Permanent pallet racking upright repair specialists. Engineered steel repair system with lifetime warranty, 30-minute installation, and SEMA-qualified inspectors.',
+            'description'   => 'Permanent pallet racking upright repair specialists. Engineered steel repair system with lifetime warranty, 30-minute installation, and independent Bureau Veritas testing.',
             'image'         => [
                 get_theme_file_uri('assets/images/icons/Goliath_logo_fullcolor.svg'),
                 get_theme_file_uri('assets/images/Homepage/carousel-image1.webp'),
@@ -169,7 +158,6 @@ function my_theme_build_schema_graph(): array
     $service_schemas = [
         'Racking Upright Repair'       => 'services/racking-upright-repair',
         'Damage Prevention'            => 'services/damage-prevention',
-        'Annual Inspections'           => 'services/annual-inspections',
         'Racking Installations & CDM'  => 'services/installations-cdm',
         'Racking Reconfiguration Services' => 'services/reconfiguration',
     ];
@@ -305,7 +293,7 @@ function my_theme_build_schema_graph(): array
             'description' => 'Step-by-step overview of the Goliath pallet racking upright repair process, from inspection to installation.',
             'url'         => $current,
             'step'        => [
-                ['@type' => 'HowToStep', 'position' => 1, 'name' => 'Assessment', 'text' => 'Our SEMA-qualified inspector assesses the damaged racking upright on site.'],
+                ['@type' => 'HowToStep', 'position' => 1, 'name' => 'Assessment', 'text' => 'Our expert assesses the damaged racking upright on site.'],
                 ['@type' => 'HowToStep', 'position' => 2, 'name' => 'Precision cut', 'text' => 'The damaged section is removed using a specially designed jig for a factory-quality cut.'],
                 ['@type' => 'HowToStep', 'position' => 3, 'name' => 'Goliath installation', 'text' => 'The Goliath engineered steel repair sleeve is fitted in under 30 minutes with no disruption to operations.'],
                 ['@type' => 'HowToStep', 'position' => 4, 'name' => 'Certification', 'text' => 'The repair is load-tested and certified with a lifetime impact warranty.'],
@@ -319,13 +307,11 @@ function my_theme_build_schema_graph(): array
             '@context'    => 'https://schema.org',
             '@type'       => 'WebPage',
             'name'        => 'Compliance & Standards — Goliath Racking Repair',
-            'description' => 'How Goliath racking repairs comply with SEMA guidelines, HSE regulations, BS EN 15512 and BS EN 15635 standards.',
+            'description' => 'Goliath racking repairs are independently tested and verified by Bureau Veritas, certified not to alter the original racking bay design, fully insured, and backed by a lifetime warranty.',
             'url'         => $current,
             'mentions'    => [
-                ['@type' => 'Thing', 'name' => 'BS EN 15512:2020 + A1:2022'],
-                ['@type' => 'Thing', 'name' => 'BS EN 15635:2008'],
-                ['@type' => 'Thing', 'name' => 'SEMA Code of Practice'],
-                ['@type' => 'Thing', 'name' => 'Health and Safety Executive (HSE)'],
+                ['@type' => 'Thing', 'name' => 'Bureau Veritas'],
+                ['@type' => 'Thing', 'name' => 'Lifetime impact warranty'],
             ],
         ];
     }
@@ -444,7 +430,7 @@ function my_theme_build_schema_graph(): array
             '@context'    => 'https://schema.org',
             '@type'       => 'AboutPage',
             'name'        => 'About Goliath — Our Team & Credentials',
-            'description' => 'Meet the SEMA-qualified team behind the UK\'s only permanent pallet racking upright repair system. Learn about our credentials, experience, and mission.',
+            'description' => 'Meet the experienced team behind the UK\'s only permanent pallet racking upright repair system. Learn about our credentials, experience, and mission.',
             'url'         => $current,
             'about'       => ['@id' => trailingslashit($site_url) . '#organization'],
         ];

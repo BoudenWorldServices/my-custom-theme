@@ -24,7 +24,7 @@ $check = get_theme_file_uri( 'assets/images/icons/why-goliath-bullet-light.svg' 
     <div class="mx-auto w-full max-w-[1440px] px-5 sm:px-6 lg:px-[59px]">
         <div class="relative">
             <div class="w-full overflow-hidden">
-                <img src="<?php echo $image_url; ?>" alt="Warehouse racking upright protected by Goliath during compliance inspection" class="h-auto w-full object-cover" loading="lazy" decoding="async">
+                <img src="<?php echo $image_url; ?>" alt="Warehouse racking upright protected by Goliath in operation" class="h-auto w-full object-cover" loading="lazy" decoding="async">
             </div>
             <div class="mt-6 bg-[#ff5c00] p-8 lg:absolute lg:-right-[130px] lg:top-[48%] lg:w-[532px] lg:-translate-y-1/2 lg:px-[42px] lg:py-[42px]">
                 <h3 class="font-montserrat text-[24px] font-bold leading-[36px] text-white"><?php echo esc_html( $h3 ); ?></h3>

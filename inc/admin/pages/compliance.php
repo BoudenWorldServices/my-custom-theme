@@ -22,7 +22,7 @@ function my_theme_admin_compliance_fields(array $defs, string $page): array
         'my_theme_comp_reg_box_h3'            => 'text',
         'my_theme_comp_reg_box_p'             => 'textarea',
 
-        // HSE EN SEMA Standards
+        // Independent verification cards
         'my_theme_comp_std_h2'                => 'text',
         'my_theme_comp_std_p1'                => 'textarea',
         'my_theme_comp_std_p2'                => 'textarea',
@@ -120,24 +120,23 @@ function my_theme_admin_render_compliance(): void
     my_theme_admin_section_open('Regulation Compliant');
     my_theme_admin_text_field('my_theme_comp_reg_h2', 'Heading (H2)', 'Regulation Compliant');
     my_theme_admin_textarea_field('my_theme_comp_reg_p1', 'Paragraph 1', 'For warehouse owners and operators, compliance is more than just about meeting the laid-out standards. When followed properly, it helps reduce risk, protect people, and ensure that work is carried out without interrupting operations.');
-    my_theme_admin_textarea_field('my_theme_comp_reg_p2', 'Paragraph 2', 'Goliath™ supports these requirements directly. Our permanent upright repair solution is tested and certified. Our product aligns with recognised UK and European standards, which address one of the most common causes of non-compliance in warehouses: impact damage to uprights.');
-    my_theme_admin_text_field('my_theme_comp_reg_box_h3', 'Black box heading', '100% UK Compliance Guaranteed');
-    my_theme_admin_textarea_field('my_theme_comp_reg_box_p', 'Black box paragraph', 'Every GOLIATH™ installation is fully compliant with UK Health & Safety regulations. We provide complete documentation and certification for your records and inspections.');
+    my_theme_admin_textarea_field('my_theme_comp_reg_p2', 'Paragraph 2', 'Goliath™ supports warehouse safety by reinforcing the part of the upright most susceptible to impact. The system is independently tested and verified by Bureau Veritas and certified not to alter the original racking bay design.');
+    my_theme_admin_text_field('my_theme_comp_reg_box_h3', 'Black box heading', 'Independently verified');
+    my_theme_admin_textarea_field('my_theme_comp_reg_box_p', 'Black box paragraph', 'Every GOLIATH™ installation is independently tested and verified by Bureau Veritas. Work is fully insured and backed by a lifetime warranty.');
     my_theme_admin_section_close();
 
-    // HSE EN SEMA Standards
-    my_theme_admin_section_open('HSE, EN &amp; SEMA Standards');
-    my_theme_admin_text_field('my_theme_comp_std_h2', 'Heading (H2)', 'Built to Align with HSE, EN and SEMA Guidelines');
-    my_theme_admin_textarea_field('my_theme_comp_std_p1', 'Paragraph 1', 'Racking systems in the UK are assessed against guidelines from the HSE, EN standards, and industry best practice supported by SEMA.');
-    my_theme_admin_textarea_field('my_theme_comp_std_p2', 'Paragraph 2', 'Goliath™ has been tested to comply with these expectations. It reinforces the part of the upright most susceptible to impact, helping maintain structural integrity and reduce the likelihood of damage being flagged during warehouse inspections.');
-    my_theme_admin_text_field('my_theme_comp_std_card1_title', 'Card 1 title', 'BS EN 15512:2020 + A1:2022');
-    my_theme_admin_textarea_field('my_theme_comp_std_card1_body', 'Card 1 body', 'Regulations for steel storage systems for adjustable pallet racking-principles for structural design');
-    my_theme_admin_text_field('my_theme_comp_std_card2_title', 'Card 2 title', 'BS EN 15635:2008');
-    my_theme_admin_textarea_field('my_theme_comp_std_card2_body', 'Card 2 body', 'Regulations for steel static storage systems application and maintenance of storage equipment');
-    my_theme_admin_text_field('my_theme_comp_std_card3_title', 'Card 3 title', 'SEMA code of practice');
-    my_theme_admin_textarea_field('my_theme_comp_std_card3_body', 'Card 3 body', 'for the design of adjustable pallet racking');
-    my_theme_admin_text_field('my_theme_comp_std_card4_title', 'Card 4 title', 'SEMA code of practice');
-    my_theme_admin_textarea_field('my_theme_comp_std_card4_body', 'Card 4 body', 'for the design and use of racking protection');
+    my_theme_admin_section_open('Independent Verification');
+    my_theme_admin_text_field('my_theme_comp_std_h2', 'Heading (H2)', 'Independently Tested and Verified');
+    my_theme_admin_textarea_field('my_theme_comp_std_p1', 'Paragraph 1', 'Goliath™ has been independently tested and verified by Bureau Veritas. It is certified not to alter the original racking bay design.');
+    my_theme_admin_textarea_field('my_theme_comp_std_p2', 'Paragraph 2', 'Every installation is fully insured and backed by a warranty that lasts a lifetime.');
+    my_theme_admin_text_field('my_theme_comp_std_card1_title', 'Card 1 title', 'Bureau Veritas certified');
+    my_theme_admin_textarea_field('my_theme_comp_std_card1_body', 'Card 1 body', 'Independently tested and verified by Bureau Veritas.');
+    my_theme_admin_text_field('my_theme_comp_std_card2_title', 'Card 2 title', 'Original bay design protected');
+    my_theme_admin_textarea_field('my_theme_comp_std_card2_body', 'Card 2 body', 'Certified not to alter the original racking bay design.');
+    my_theme_admin_text_field('my_theme_comp_std_card3_title', 'Card 3 title', 'Fully insured');
+    my_theme_admin_textarea_field('my_theme_comp_std_card3_body', 'Card 3 body', 'Installations are fully insured for warehouse operations.');
+    my_theme_admin_text_field('my_theme_comp_std_card4_title', 'Card 4 title', 'Lifetime warranty');
+    my_theme_admin_textarea_field('my_theme_comp_std_card4_body', 'Card 4 body', 'Every repair is backed by a warranty that lasts a lifetime.');
     my_theme_admin_section_close();
 
     // Image with Warranty Overlay
@@ -176,7 +175,7 @@ function my_theme_admin_render_compliance(): void
     my_theme_admin_section_open('Proven Performance');
     my_theme_admin_text_field('my_theme_comp_proven_h2', 'Heading (H2)', 'Proven Performance Backed by Lifetime Warranty');
     my_theme_admin_textarea_field('my_theme_comp_proven_p1', 'Paragraph 1', 'Goliath™ is supported by a lifetime impact warranty, reflecting our confidence in its durability and long-term performance.');
-    my_theme_admin_textarea_field('my_theme_comp_proven_p2', 'Paragraph 2', 'Once installed, it provides continuous protection in the same location without the need to change your uprights regularly. This reduces the frequency of repairs and keeps your uprights in good condition, through inspection cycles.');
+    my_theme_admin_textarea_field('my_theme_comp_proven_p2', 'Paragraph 2', 'Once installed, it provides continuous protection in the same location without the need to change your uprights regularly. This reduces the frequency of repairs and keeps your uprights in good condition over the long term.');
     my_theme_admin_text_field('my_theme_comp_proven_case_h3', 'Case study heading', 'Case Study: B&M');
     my_theme_admin_textarea_field('my_theme_comp_proven_case_p', 'Case study paragraph', 'Our client, B&M, reduced racking repair costs by over 30% within the first 12 months of installation. This was achieved by preventing repeat damage to the uprights in their warehouse, which also reduces the likelihood of compliance issues arising from compromised uprights.');
     my_theme_admin_section_close();
@@ -203,15 +202,6 @@ function my_theme_admin_render_compliance(): void
     my_theme_admin_text_field('my_theme_comp_doc_card3_h3', 'Card 3 heading', 'Price Comparison');
     my_theme_admin_text_field('my_theme_comp_doc_card3_sub', 'Card 3 subtitle', 'Insights vs. traditional methods');
     my_theme_admin_textarea_field('my_theme_comp_doc_closing', 'Closing paragraph', "Downloadable PDFs are also available to support internal reviews, safety documentation, and procurement decisions. Our resources make it easier to show due diligence in the process and to explain clearly how Goliath™ contributes to safety and compliance.");
-    my_theme_admin_section_close();
-
-    // Audit Readiness
-    my_theme_admin_section_open('Audit Readiness');
-    my_theme_admin_text_field('my_theme_comp_audit_h2', 'Heading (H2)', 'Supporting Inspection Outcomes and Audit Readiness');
-    my_theme_admin_textarea_field('my_theme_comp_audit_p1', 'Paragraph 1', 'Regular inspections are an important part of ensuring compliance. A SEMA racking inspection or internal audit will assess the visible damage, structural condition, and overall system safety.');
-    my_theme_admin_textarea_field('my_theme_comp_audit_p2', 'Paragraph 2', 'By reducing impact damage, Goliath™ improves your inspection outcomes. Fewer damaged uprights in your reports mean fewer red or amber risk classifications and little to no need for urgent corrective action.');
-    my_theme_admin_text_field('my_theme_comp_audit_aside_h3', 'Aside heading', 'Digital Racking Management');
-    my_theme_admin_textarea_field('my_theme_comp_audit_aside_p', 'Aside paragraph', 'When combined with our digital racking management system, Goliath™ operators gain additional visibility through recorded inspection data and reports, proper risk categorisation, and repair documentation.');
     my_theme_admin_section_close();
 
     // Final CTA

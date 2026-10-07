@@ -51,7 +51,7 @@ function my_theme_get_faq_items(): array
         [
             'question' => 'Do you offer a warranty?',
             'paragraphs' => [
-                'Yes, and to meet SEMA and EN guidelines, we offer a lifetime impact warranty for the repair and overall structure. This ensures that the new support system performs as expected once it has been installed.',
+                'Yes. We offer a lifetime impact warranty for the repair and overall structure. This ensures that the new support system performs as expected once it has been installed.',
             ],
         ],
         [
@@ -69,20 +69,20 @@ function my_theme_get_faq_items(): array
         [
             'question' => 'How do you know your product is safe to use?',
             'paragraphs' => [
-                'Goliath™ has received testing to allow it to conform to recognised standards. These include BS EN 15512:2020 + A1:2022 for structural design and BS EN 15635:2008 for application and maintenance of storage equipment. This ensures our product meets established safety and performance requirements for pallet racking systems.',
+                'Goliath™ has been independently tested and verified by Bureau Veritas. It is certified not to alter the original racking bay design, and every installation is fully insured and backed by a lifetime warranty.',
             ],
         ],
         [
             'question' => 'Is Goliath™ compliant with regulations?',
             'paragraphs' => [
-                'Yes. Goliath™ is designed to align with recognised UK and European safety standards, including HSE guidance, EN standards, and SEMA best practice. Goliath™ supports this by reducing impact damage, which is one of the main causes of non-compliance.',
-                'It has also been independently tested to ensure performance in real-world conditions.',
+                'Goliath™ is independently tested and verified by Bureau Veritas and certified not to alter the original racking bay design. It helps reduce impact damage, which is one of the main causes of racking being taken out of service.',
+                'Installations are fully insured and backed by a lifetime warranty.',
             ],
         ],
         [
-            'question' => 'Do I still need racking inspections?',
+            'question' => 'Does Goliath™ provide racking inspections?',
             'paragraphs' => [
-                'Yes. Regular inspections are essential for safety and compliance.',
+                'No. Goliath™ is a repair and protection system, not an inspection service. Warehouse operators remain responsible for their own racking safety checks.',
             ],
         ],
     ];

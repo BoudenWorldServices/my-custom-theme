@@ -12,8 +12,8 @@ $realworld_items     = $attributes['realworldItems'] ?? ['Distribution centres',
 $realworld_closing   = $attributes['realworldClosing'] ?? 'Once it is installed, it becomes a part of the upright that provides continuous protection without affecting daily operations.';
 
 $compliance_h2      = $attributes['complianceH2'] ?? 'Built to Support Compliance';
-$compliance_intro   = $attributes['complianceIntro'] ?? 'Goliath™ aligns with recognised UK standards:';
-$compliance_items   = $attributes['complianceItems'] ?? ['BS EN 15512', 'BS EN 15635', 'SEMA guidelines'];
+$compliance_intro   = $attributes['complianceIntro'] ?? 'Goliath™ is independently tested and verified:';
+$compliance_items   = $attributes['complianceItems'] ?? ['Bureau Veritas certified', 'Fully insured', 'Lifetime warranty'];
 $compliance_closing = $attributes['complianceClosing'] ?? 'By reinforcing damaged uprights, our permanent upright repair helps maintain structural integrity and supports ongoing inspection requirements.';
 ?>
 <section class="w-full bg-white">

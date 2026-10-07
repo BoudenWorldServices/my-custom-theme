@@ -3,7 +3,11 @@ $bg = $attributes['bgColor'] ?? 'grey';
 $bg_class = $bg === 'dark' ? 'bg-[#020202]' : ($bg === 'light-grey' ? 'bg-[#f9fafb]' : ($bg === 'grey' ? 'bg-[#f8f8f8]' : 'bg-white'));
 $text_color = $bg === 'dark' ? 'text-white' : 'text-[#364153]';
 $heading_color = $bg === 'dark' ? 'text-white' : 'text-[#020202]';
-$heading = esc_html($attributes['heading'] ?? '');
+$heading_raw = (string) ($attributes['heading'] ?? '');
+if (preg_match('/SEMA|Racking Inspection and Compliance/i', $heading_raw)) {
+    return;
+}
+$heading = esc_html($heading_raw);
 $paragraphs = $attributes['paragraphs'] ?? [];
 $sub_heading = esc_html($attributes['subHeading'] ?? '');
 $tick_items = $attributes['tickItems'] ?? [];

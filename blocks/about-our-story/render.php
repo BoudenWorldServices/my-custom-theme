@@ -6,8 +6,18 @@
 
 $heading = $attributes['heading'] ?? 'Our Story';
 $p1      = $attributes['p1']      ?? 'Goliath was founded with a clear mission: to provide warehouse operators with a permanent, cost-effective alternative to repeated racking upright replacement. Our engineered steel repair system was developed to address one of the most persistent problems in warehouse maintenance.';
-$p2      = $attributes['p2']      ?? 'Working closely with structural engineers and guided by UK safety standards including BS EN 15512 and BS EN 15635, we created a repair solution that does not just restore uprights to their original strength but reinforces them against future impact.';
-$p3      = $attributes['p3']      ?? 'Every member of our installation team holds SEMA-approved racking inspector qualifications. We believe that the people who repair your racking should be qualified to inspect it first, ensuring every repair meets the highest safety standards.';
+$p2      = $attributes['p2']      ?? 'Working closely with structural engineers, we created a repair solution that does not just restore uprights to their original strength but reinforces them against future impact. Goliath™ is independently tested and verified by Bureau Veritas and certified not to alter the original racking bay design.';
+$p3      = $attributes['p3']      ?? 'Our installation team brings extensive warehouse racking experience to every job. We believe the people who repair your racking should understand how it is used, so every repair is carried out to a high safety standard.';
+if (function_exists('my_theme_sanitize_restricted_claims_string')) {
+    $p2 = my_theme_sanitize_restricted_claims_string((string) $p2);
+    $p3 = my_theme_sanitize_restricted_claims_string((string) $p3);
+}
+if (stripos((string) $p2, 'BS EN') !== false || stripos((string) $p2, '15512') !== false || stripos((string) $p2, 'Bureau Veritas') === false) {
+    $p2 = 'Working closely with structural engineers, we created a repair solution that does not just restore uprights to their original strength but reinforces them against future impact. Goliath™ is independently tested and verified by Bureau Veritas and certified not to alter the original racking bay design.';
+}
+if (stripos((string) $p3, 'inspect') !== false || stripos((string) $p3, 'should be understand') !== false) {
+    $p3 = 'Our installation team brings extensive warehouse racking experience to every job. We believe the people who repair your racking should understand how it is used, so every repair is carried out to a high safety standard.';
+}
 $p4      = $attributes['p4']      ?? 'Today, Goliath is trusted by leading UK retailers and logistics operators. Our system is being rolled out across hundreds of warehouse sites, protecting the racking infrastructure that businesses depend on every day.';
 ?>
 <section class="w-full bg-white py-10 lg:py-[80px]">

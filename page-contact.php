@@ -43,7 +43,7 @@ $assets = [
                     <span class="text-white"><?php echo esc_html($cp_h1_parts[0]); ?> </span><span class="text-[#ff5c00]"><?php echo esc_html($cp_h1_parts[1] ?? ''); ?></span>
                 </h1>
                 <p class="max-w-[1291px] font-montserrat text-[17px] font-normal leading-[28px] text-white/90 lg:text-[20px] lg:leading-[32px]">
-                    <?php echo esc_html(get_option('my_theme_cp_hero_desc', 'Request a free warehouse racking assessment from our SEMA-qualified team. We respond within one working day and provide transparent, no-obligation pricing.')); ?>
+                    <?php echo esc_html(get_option('my_theme_cp_hero_desc', 'Request a free warehouse racking assessment from our experienced team. We respond within one working day and provide transparent, no-obligation pricing.')); ?>
                 </p>
             </div>
         </div>

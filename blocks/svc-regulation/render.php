@@ -5,17 +5,17 @@
  * @var array $attributes Block attributes.
  */
 
-$description = $attributes['description'] ?? 'GOLIATH™ meets all UK and EU safety standards for new installations.';
+$description = $attributes['description'] ?? 'GOLIATH™ is independently tested and verified by Bureau Veritas and certified not to alter the original racking bay design.';
 $cert_h3     = $attributes['certH3']      ?? 'Certified Protection';
 $cert_line1  = $attributes['certLine1']   ?? 'UK Registered Design No. 6410620';
 $cert_line2  = $attributes['certLine2']   ?? 'EU Design Registration No. DM/244641';
 $cert_banner = $attributes['certBanner']  ?? 'Lifetime Warranty Included';
 
 $compliance = [
-    $attributes['item1'] ?? 'BS EN 15512:2020 + A1:2022 compliant',
-    $attributes['item2'] ?? 'BS EN 15635:2008 certified',
-    $attributes['item3'] ?? 'SEMA codes of practice adherence',
-    $attributes['item4'] ?? 'Full compliance documentation provided',
+    $attributes['item1'] ?? 'Independently tested and verified by Bureau Veritas',
+    $attributes['item2'] ?? 'Certified not to alter the original racking bay design',
+    $attributes['item3'] ?? 'Fully insured',
+    $attributes['item4'] ?? 'Lifetime warranty on every repair',
 ];
 
 $check_icon = get_theme_file_uri('assets/images/icons/Icon-1.svg');

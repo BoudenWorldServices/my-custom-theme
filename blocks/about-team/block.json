@@ -21,7 +21,7 @@
     },
     "subtitle": {
       "type": "string",
-      "default": "SEMA-qualified inspectors and engineers delivering safe, permanent racking repairs across the UK."
+      "default": "Experts delivering safe, permanent racking repairs across the UK."
     },
     "members": {
       "type": "array",

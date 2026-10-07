@@ -157,22 +157,6 @@ $assets = [
         </div>
     </section>
 
-    <section class="w-full bg-white">
-        <div class="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-5 py-12 sm:px-6 lg:flex-row lg:items-start lg:gap-10 lg:px-[68px] lg:py-[80px]">
-            <div class="w-full lg:max-w-[597px]">
-                <img src="<?php echo esc_url($assets['card_icon']); ?>" alt="" class="h-12 w-12 shrink-0 object-contain" width="40" height="40">
-                <h2 class="mt-6 max-w-[545px] font-montserrat text-[32px] font-bold leading-[40px] text-[#020202] lg:text-[36px]"><?php echo esc_html(get_option('my_theme_svc_prevention_sema_h2', 'Support SEMA Racking Inspection and Compliance')); ?></h2>
-                <div class="mt-6 font-roboto text-[18px] leading-[28px] text-[#364153]">
-                    <p><?php echo esc_html(get_option('my_theme_svc_prevention_sema_p1', 'Safety compliance is important in warehouse operations. An annual SEMA racking inspection is crucial for identifying risks and maintaining safe load conditions.')); ?></p>
-                    <p class="mt-4"><?php echo esc_html(get_option('my_theme_svc_prevention_sema_p2', 'Damaged uprights are one of the most common issues identified during inspections. By installing Goliath™, you reduce the likelihood of damage being flagged at all. This supports ongoing compliance while reducing the need for corrective action between inspections.')); ?></p>
-                </div>
-            </div>
-            <div class="w-full overflow-hidden lg:h-[427px] lg:w-[640px]">
-                <img src="<?php echo esc_url(my_theme_get_image_url('my_theme_svc_prevention_sema_img', get_theme_file_uri('assets/images/Services/damage/support.webp'))); ?>" alt="Warehouse operative inspecting racking with tablet" class="h-full w-full object-cover">
-            </div>
-        </div>
-    </section>
-
     <section class="w-full bg-[#020202]">
         <div class="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-5 py-12 sm:px-6 lg:flex-row lg:items-start lg:justify-between lg:px-[68px] lg:py-[80px]">
             <div class="w-full bg-[#ff5c00] px-8 py-10 lg:w-[532px] lg:h-[392px] lg:px-[32px]">
@@ -213,8 +197,8 @@ $assets = [
                         <span><?php echo esc_html(get_option('my_theme_svc_prevention_cta_btn1', 'Get Free Site Survey')); ?></span>
                         <img src="<?php echo esc_url($assets['orange_button_arrow']); ?>" alt="" class="ml-3 size-5">
                     </a>
-                    <a href="<?php echo esc_url(home_url('/services/annual-inspections/')); ?>" class="inline-flex h-[60px] w-full items-center justify-center bg-[#020202] font-roboto text-[18px] font-bold uppercase tracking-[0.45px] text-white sm:w-[279px]">
-                        <?php echo esc_html(get_option('my_theme_svc_prevention_cta_btn2', 'Annual Inspections')); ?>
+                    <a href="<?php echo esc_url(home_url('/compliance/')); ?>" class="inline-flex h-[60px] w-full items-center justify-center bg-[#020202] font-roboto text-[18px] font-bold uppercase tracking-[0.45px] text-white sm:w-[279px]">
+                        <?php echo esc_html(get_option('my_theme_svc_prevention_cta_btn2', 'View Compliance Info')); ?>
                     </a>
                 </div>
             </div>

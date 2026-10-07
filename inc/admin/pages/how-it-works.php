@@ -173,18 +173,18 @@ function my_theme_admin_render_how_it_works(): void
 
     // UK Standards
     my_theme_admin_section_open('Designed to Meet UK Standards', 'Standards compliance section with four cards.');
-    my_theme_admin_text_field('my_theme_hiw_standards_h2', 'Section Heading', 'Designed to Meet UK Standards');
-    my_theme_admin_textarea_field('my_theme_hiw_standards_intro1', 'Intro Paragraph 1', 'Goliath™ is developed to meet the UK\'s racking regulations and industry best practices. This ensures every repair supports both safety and compliance.', 2);
-    my_theme_admin_text_field('my_theme_hiw_standards_intro2', 'Intro Paragraph 2', 'It aligns with key standards, including:');
-    my_theme_admin_text_field('my_theme_hiw_standards_card1_title', 'Card 1 Title', 'BS EN 15512:2020 + A1:2022');
-    my_theme_admin_textarea_field('my_theme_hiw_standards_card1_body', 'Card 1 Body', 'Regulations for steel storage systems for adjustable pallet racking-principles for structural design', 2);
-    my_theme_admin_text_field('my_theme_hiw_standards_card2_title', 'Card 2 Title', 'BS EN 15635:2008');
-    my_theme_admin_textarea_field('my_theme_hiw_standards_card2_body', 'Card 2 Body', 'Regulations for steel static storage systems application and maintenance of storage equipment', 2);
-    my_theme_admin_text_field('my_theme_hiw_standards_card3_title', 'Card 3 Title', 'SEMA code of practice');
-    my_theme_admin_textarea_field('my_theme_hiw_standards_card3_body', 'Card 3 Body', 'for the design of adjustable pallet racking', 2);
-    my_theme_admin_text_field('my_theme_hiw_standards_card4_title', 'Card 4 Title', 'SEMA code of practice');
-    my_theme_admin_textarea_field('my_theme_hiw_standards_card4_body', 'Card 4 Body', 'for the design and use of racking protection', 2);
-    my_theme_admin_textarea_field('my_theme_hiw_standards_closing', 'Closing Paragraph', 'We\'re proud that Goliath™ is reinforced in a way that supports ongoing safety, reduces risk, and meets the expectations of UK regulatory bodies. Our upright repair solution was built according to UK H&S specifications, making it a trusted solution for warehouses in the UK.', 3);
+    my_theme_admin_text_field('my_theme_hiw_standards_h2', 'Section Heading', 'Independently Tested and Verified');
+    my_theme_admin_textarea_field('my_theme_hiw_standards_intro1', 'Intro Paragraph 1', 'Goliath™ is independently tested and verified by Bureau Veritas. It is certified not to alter the original racking bay design.', 2);
+    my_theme_admin_text_field('my_theme_hiw_standards_intro2', 'Intro Paragraph 2', 'What that means for your warehouse:');
+    my_theme_admin_text_field('my_theme_hiw_standards_card1_title', 'Card 1 Title', 'Bureau Veritas certified');
+    my_theme_admin_textarea_field('my_theme_hiw_standards_card1_body', 'Card 1 Body', 'Independently tested and verified by Bureau Veritas.', 2);
+    my_theme_admin_text_field('my_theme_hiw_standards_card2_title', 'Card 2 Title', 'Original bay design protected');
+    my_theme_admin_textarea_field('my_theme_hiw_standards_card2_body', 'Card 2 Body', 'Certified not to alter the original racking bay design.', 2);
+    my_theme_admin_text_field('my_theme_hiw_standards_card3_title', 'Card 3 Title', 'Fully insured');
+    my_theme_admin_textarea_field('my_theme_hiw_standards_card3_body', 'Card 3 Body', 'Installations are fully insured for warehouse operations.', 2);
+    my_theme_admin_text_field('my_theme_hiw_standards_card4_title', 'Card 4 Title', 'Lifetime warranty');
+    my_theme_admin_textarea_field('my_theme_hiw_standards_card4_body', 'Card 4 Body', 'Every repair is backed by a warranty that lasts a lifetime.', 2);
+    my_theme_admin_textarea_field('my_theme_hiw_standards_closing', 'Closing Paragraph', 'Every Goliath™ installation is fully insured and backed by a lifetime warranty, giving operators long-term confidence in the repair.', 3);
     my_theme_admin_section_close();
 
     // Crash Test Video Band

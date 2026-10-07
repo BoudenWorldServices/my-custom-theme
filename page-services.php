@@ -229,15 +229,15 @@ $figma_assets = [
                 <h2 class="font-montserrat text-[32px] font-bold leading-[40px] text-white lg:text-[42px] lg:leading-[52px]">UK Regulation</h2>
                 <h2 class="font-montserrat text-[32px] font-bold leading-[40px] text-[#ff5c00] lg:text-[42px] lg:leading-[52px]">Compliant</h2>
                 <p class="mt-6 max-w-[569px] font-montserrat text-[18px] font-normal leading-[28px] text-white/90">
-                    <?php echo esc_html(get_option('my_theme_svc_reg_desc', 'GOLIATH™ meets all UK and EU safety standards for new installations. Your project will pass inspections with complete compliance documentation.')); ?>
+                    <?php echo esc_html(get_option('my_theme_svc_reg_desc', 'GOLIATH™ is independently tested and verified by Bureau Veritas and certified not to alter the original racking bay design. Work is fully insured and backed by a lifetime warranty.')); ?>
                 </p>
                 <ul class="mt-8 flex flex-col gap-[12px]">
                     <?php
                     $compliance = [
-                        get_option('my_theme_svc_reg_item1', 'BS EN 15512:2020 + A1:2022 compliant'),
-                        get_option('my_theme_svc_reg_item2', 'BS EN 15635:2008 certified'),
-                        get_option('my_theme_svc_reg_item3', 'SEMA codes of practice adherence'),
-                        get_option('my_theme_svc_reg_item4', 'Full compliance documentation provided'),
+                        get_option('my_theme_svc_reg_item1', 'Independently tested and verified by Bureau Veritas'),
+                        get_option('my_theme_svc_reg_item2', 'Certified not to alter the original racking bay design'),
+                        get_option('my_theme_svc_reg_item3', 'Fully insured'),
+                        get_option('my_theme_svc_reg_item4', 'Lifetime warranty on every repair'),
                     ];
                     foreach ($compliance as $item) :
                     ?>

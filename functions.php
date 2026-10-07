@@ -20,6 +20,7 @@ require_once __DIR__ . '/inc/admin/bootstrap.php';
 require_once __DIR__ . '/inc/blocks.php';
 require_once __DIR__ . '/inc/block-patterns.php';
 require_once __DIR__ . '/inc/media-urls.php';
+require_once __DIR__ . '/inc/restricted-claims.php';
 
 /**
  * Theme setup: register support for WordPress features.
@@ -907,7 +908,6 @@ function my_theme_get_primary_nav_items(): array
             'children' => [
                 'Racking Upright Repair' => home_url('/services/racking-upright-repair/'),
                 'Damage Prevention' => home_url('/services/damage-prevention/'),
-                'Annual Inspections' => home_url('/services/annual-inspections/'),
                 'Racking Installations & CDM' => home_url('/services/installations-cdm/'),
                 'Racking Reconfiguration Services' => home_url('/services/reconfiguration/'),
             ],
@@ -1078,7 +1078,6 @@ function my_theme_resolve_static_document_title(): string
         'services'                        => 'Service portfolio | ' . $brand,
         'services/racking-upright-repair' => 'Racking upright repair | ' . $brand,
         'services/damage-prevention'     => 'Damage prevention | ' . $brand,
-        'services/annual-inspections'     => 'Annual inspections | ' . $brand,
         'services/installations-cdm'      => 'Racking installations & CDM | ' . $brand,
         'services/reconfiguration'        => 'Racking reconfiguration | ' . $brand,
         'compliance'                      => 'Compliance & safety standards | ' . $brand,
@@ -1265,14 +1264,13 @@ function my_theme_get_seo_context(): array
         ''                                => 'Permanent pallet racking upright repair with lifetime warranty. Save 70% vs replacement with 30-minute installation across the UK and EU.',
         'why-goliath'                     => 'Discover why Goliath is the UK\'s only permanent racking upright repair system with a lifetime warranty, 30-minute install, and 70% cost saving.',
         'how-it-works'                    => 'See how Goliath permanently repairs damaged racking uprights in 30 minutes with no hot works, no disruption, and a lifetime structural warranty.',
-        'services'                        => 'Explore Goliath services including permanent upright repair, damage prevention, annual inspections, and compliance-led warehouse support.',
+        'services'                        => 'Explore Goliath services including permanent upright repair, damage prevention, and compliance-led warehouse support.',
         'services/racking-upright-repair' => 'Permanent pallet racking upright repair in 30 minutes. Engineered steel system with lifetime warranty — no welding, no disruption, no replacement needed.',
         'services/damage-prevention'      => 'Prevent repeat racking upright damage with Goliath\'s engineered protection system. Reduce ongoing repair costs by over 30% in the first year.',
-        'services/annual-inspections'     => 'SEMA-qualified annual racking inspections to keep your warehouse compliant with HSE requirements. Expert assessments with clear repair recommendations.',
         'services/installations-cdm'      => 'Professional racking installation and CDM-compliant project management. New racking systems installed safely with full compliance documentation.',
         'services/reconfiguration'        => 'Warehouse racking reconfiguration services. Restructure your storage layout with minimal disruption and full compliance with UK safety standards.',
-        'compliance'                      => 'Understand how Goliath aligns with SEMA, HSE, and EN 15635 warehouse racking safety standards. Full compliance documentation provided.',
-        'contact'                         => 'Request a free warehouse racking assessment from Goliath. SEMA-qualified inspectors, one working day response, transparent pricing with no obligation.',
+        'compliance'                      => 'Goliath is independently tested and verified by Bureau Veritas, certified not to alter original racking bay design, fully insured, and backed by a lifetime warranty.',
+        'contact'                         => 'Request a free warehouse racking assessment from Goliath. Experienced experts, one working day response, transparent pricing with no obligation.',
         'faqs'                            => 'Answers to common questions about Goliath racking repair — installation time, warranty coverage, costs, compliance, and how the system works.',
         'faq'                             => 'Answers to common questions about Goliath racking repair — installation time, warranty coverage, costs, compliance, and how the system works.',
         'videos'                          => 'Watch Goliath racking repair in action. Installation demos, crash tests, and product walkthroughs showing the 30-minute permanent repair process.',
@@ -1429,7 +1427,6 @@ function my_theme_route_static_pages(): void
         'services'     => 'page-services.php',
         'services/racking-upright-repair' => 'page-service-racking-upright-repair.php',
         'services/damage-prevention' => 'page-service-damage-prevention.php',
-        'services/annual-inspections' => 'page-service-annual-inspections.php',
         'services/installations-cdm' => 'page-service-installations-cdm.php',
         'services/reconfiguration' => 'page-service-reconfiguration.php',
         'compliance'   => 'page-compliance.php',
@@ -1565,7 +1562,6 @@ function my_theme_get_sitemap_page_paths(): array
         'services',
         'services/racking-upright-repair',
         'services/damage-prevention',
-        'services/annual-inspections',
         'services/installations-cdm',
         'services/reconfiguration',
         'compliance',
@@ -1739,7 +1735,6 @@ function my_theme_provision_pages(): void
 
         ['title' => 'Racking Upright Repair',            'slug' => 'racking-upright-repair',  'template' => '',                                'parent' => 'services'],
         ['title' => 'Damage Prevention',                 'slug' => 'damage-prevention',       'template' => '',                                'parent' => 'services'],
-        ['title' => 'Annual Inspections',                'slug' => 'annual-inspections',      'template' => '',                                'parent' => 'services'],
         ['title' => 'Racking Installations & CDM',       'slug' => 'installations-cdm',       'template' => '',                                'parent' => 'services'],
         ['title' => 'Racking Reconfiguration Services',  'slug' => 'reconfiguration',         'template' => '',                                'parent' => 'services'],
     ];
